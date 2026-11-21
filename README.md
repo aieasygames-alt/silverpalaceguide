@@ -4,6 +4,10 @@
 
 第一版围绕三个特色建设：案件分级提示、探索攻略、养成工具。部署采用 Astro 静态生成与 Cloudflare Pages。
 
+- 公开仓库：[aieasygames-alt/silverpalaceguide](https://github.com/aieasygames-alt/silverpalaceguide)
+- Pages 项目：`silverpalaceguide`，默认地址 `https://silverpalaceguide.pages.dev`
+- 发布方式：Pages 原生 GitHub 集成，推送 `main` 自动检查、构建并发布；其他分支生成预览。
+
 ## 筹备文档
 
 - [第一版筹备与上线方案](docs/launch-plan.md)：定位、功能边界、信息架构、内容与数据规范、技术方案、里程碑和验收标准。
@@ -53,5 +57,6 @@ npm run preview
 - 手输入素材规划器，计算缺口并保存；角色自动预设等待可靠数据。
 - 官方来源台账 `src/data/sources.json`、英日术语表 `src/data/glossary.json`、有发布门槛的内容集合。
 - 原创 SVG 城市插画和本地字体，无远程图片、字体或解析服务依赖。
+- 英日编辑方针页提供 GitHub 公开纠错入口，仓库包含双语纠错模板。
 
 参见 [部署说明](docs/deployment.md) 和 [实施记录](docs/implementation-status.md)。

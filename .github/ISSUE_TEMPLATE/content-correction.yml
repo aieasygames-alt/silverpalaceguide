@@ -1,0 +1,41 @@
+name: Content correction / 内容の訂正
+description: Report an inaccurate guide, translation or source. / 攻略・翻訳・出典の誤りを報告します。
+title: "[Correction] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        English and Japanese reports are welcome. Keep story answers out of the title. Reports are public; omit personal information and save-file backups.
+
+        英語・日本語で報告できます。タイトルには物語の答えを含めないでください。報告は公開されるため、個人情報やバックアップファイルは添付しないでください。
+  - type: input
+    id: page
+    attributes:
+      label: Page URL / ページのURL
+      placeholder: https://silverpalaceguide.com/en/...
+    validations:
+      required: true
+  - type: dropdown
+    id: language
+    attributes:
+      label: Page language / ページの言語
+      options:
+        - English
+        - 日本語
+        - Both / 両方
+    validations:
+      required: true
+  - type: textarea
+    id: correction
+    attributes:
+      label: What should change? / 訂正内容
+      description: Quote the inaccurate passage and explain the correction. / 誤りのある箇所と訂正内容を記入してください。
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Source or reproduction steps / 出典・再現手順
+      description: Include an official URL or a reproducible observation, with server, platform, version and date when relevant. / 公式URLまたは再現できる記録を記入してください。必要に応じてサーバー・機種・バージョン・確認日も添えてください。
+    validations:
+      required: true

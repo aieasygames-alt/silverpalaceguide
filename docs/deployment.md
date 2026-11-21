@@ -2,20 +2,37 @@
 
 目标域名：`https://silverpalaceguide.com`，用户已完成注册。
 
+## 已建立的基础设施
+
+- GitHub 公开仓库：<https://github.com/aieasygames-alt/silverpalaceguide>。
+- Cloudflare Pages 项目：`silverpalaceguide`。
+- Pages 默认域名：<https://silverpalaceguide.pages.dev>。
+- Pages 已关联上述 GitHub 仓库，生产分支为 `main`，生产自动部署已启用；其他分支自动生成预览。
+- 使用 Pages 原生 GitHub 集成，不依赖 GitHub Actions 部署凭据。项目中不保存 Cloudflare 或 GitHub 令牌。
+
 ## 构建方式
 
 项目是 Astro 静态站点，无 SSR 适配器、Functions 或数据库依赖。依赖版本由 `package-lock.json` 固定。
 
 | Pages 设置 | 值 |
 | --- | --- |
-| Git 仓库 | 部署时连接项目所在的 GitHub 仓库 |
+| Git 仓库 | `aieasygames-alt/silverpalaceguide`，已连接 |
 | Production branch | `main` |
 | Build command | `npm run check && npm test && npm run build` |
 | Build output directory | `dist` |
-| Node.js | `24`，与 `.node-version` 一致 |
+| Node.js | `24`，已设置 `NODE_VERSION`，与 `.node-version` 一致 |
 | 生产环境机密 | 无 |
 
-连接 Git 仓库、创建 Pages 项目以及绑定域名在实际部署阶段执行。当前目录可在不连接任何账户的情况下完成本地构建与预览。
+Git 仓库和 Pages 项目已创建并关联。本地目录可独立完成构建与预览。
+
+## 后续发布
+
+1. 修改内容或代码，运行 `npm run check && npm test && npm run build`。
+2. 提交并推送到 `main`。Pages 会自动获取该提交，安装依赖、运行上述构建命令并发布 `dist`。
+3. 在 Pages 的部署记录或 GitHub 提交检查中确认状态与提交 SHA，再检查正式页面。
+4. 需要预览时推送其他分支；预览环境设置 `PREVIEW_NOINDEX=1`，不影响生产索引。
+
+不需要手工上传 `dist`，也不需要每次在本地调用部署命令。不要同时添加第二套自动上传流程，以免出现重复发布。
 
 ## 预览环境
 
