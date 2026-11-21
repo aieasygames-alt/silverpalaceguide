@@ -56,7 +56,7 @@ npm run preview
 - 本地探索清单，支持进度、备份导入导出及格式校验。
 - 手输入素材规划器，计算缺口并保存；角色自动预设等待可靠数据。
 - 官方来源台账 `src/data/sources.json`、英日术语表 `src/data/glossary.json`、有发布门槛的内容集合。
-- 原创 SVG 城市插画和本地字体，无远程图片、字体或解析服务依赖。
+- 本地托管的游戏配图、原创 SVG 图案和本地字体，无远程图片、字体或解析服务依赖。游戏图经 Astro 生成响应式 AVIF/WebP/JPEG，来源与用途见 [图片台账](docs/image-register.md)。
 - 英日编辑方针页提供 GitHub 公开纠错入口，仓库包含双语纠错模板。
 
 参见 [部署说明](docs/deployment.md) 和 [实施记录](docs/implementation-status.md)。

@@ -1,0 +1,32 @@
+---
+import { Picture } from 'astro:assets';
+import { artwork, type ArtworkId } from '../data/artwork';
+import type { Locale } from '../lib/i18n';
+
+interface Props {
+  image: ArtworkId;
+  locale: Locale;
+  sizes: string;
+  priority?: boolean;
+  decorative?: boolean;
+}
+const { image, locale, sizes, priority = false, decorative = false } = Astro.props;
+const art = artwork[image];
+const maxWidth = Math.min(1440, art.src.width);
+const widths = [...new Set([360, 640, 960, maxWidth].filter((width) => width <= maxWidth))];
+---
+<Picture
+  src={art.src}
+  alt={decorative ? '' : art.alt[locale]}
+  formats={['avif', 'webp']}
+  fallbackFormat="jpg"
+  quality={60}
+  width={maxWidth}
+  widths={widths}
+  sizes={sizes}
+  loading={priority ? 'eager' : 'lazy'}
+  fetchpriority={priority ? 'high' : undefined}
+  decoding="async"
+  class={`game-image art-${image}`}
+  pictureAttributes={{ class: 'art-frame' }}
+/>
