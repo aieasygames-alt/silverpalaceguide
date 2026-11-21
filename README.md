@@ -60,3 +60,5 @@ npm run preview
 - 英日编辑方针页提供 GitHub 公开纠错入口，仓库包含双语纠错模板。
 
 参见 [部署说明](docs/deployment.md) 和 [实施记录](docs/implementation-status.md)。
+
+GitHub 自动部署的生产与预览验收见 [部署验收记录](docs/deployment-verification.md)。自定义域名的 DNS 切换尚待应用，当前可使用 Pages 默认域名访问。
