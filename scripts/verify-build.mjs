@@ -13,6 +13,13 @@ const failures = [];
 for (const file of htmlFiles) {
   const html = await readFile(file, 'utf8');
   const route = '/' + file.replace(/^dist\//, '').replace(/index\.html$/, '');
+  for (const script of html.matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script>/gi)) {
+    const attributes = script[1];
+    const inertData = /\btype=["']application\/(?:ld\+)?json["']/i.test(attributes);
+    if (!/\bsrc=["']/i.test(attributes) && !inertData && script[2].trim()) {
+      failures.push(`${route}: executable inline script would be blocked by the Pages CSP`);
+    }
+  }
   for (const match of html.matchAll(/<(?:a|link|script|img)\b[^>]*?\b(?:href|src)="([^"]+)"/g)) {
     const target = match[1].replaceAll('&amp;', '&');
     const url = new URL(target, site + route);
@@ -35,4 +42,4 @@ assert.ok(!sitemap.includes('/characters/') && !sitemap.includes('/search/'), 'N
 const sourceIds = new Set(JSON.parse(await readFile('src/data/sources.json', 'utf8')).map((source) => source.id));
 for (const term of JSON.parse(await readFile('src/data/glossary.json', 'utf8'))) assert.ok(term.kind === 'site-interface' || sourceIds.has(term.sourceId), `Unknown glossary source: ${term.id}`);
 assert.equal(failures.length, 0, failures.join('\n'));
-console.log(`Verified ${htmlFiles.length} HTML pages: internal assets/links, language, canonical, draft exclusion, sitemap and terminology sources.`);
+console.log(`Verified ${htmlFiles.length} HTML pages: CSP-compatible scripts, internal assets/links, language, canonical, draft exclusion, sitemap and terminology sources.`);

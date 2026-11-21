@@ -14,6 +14,8 @@
 - 内容元数据校验、草稿排除、英日搜索、安全摘要、canonical、hreflang、sitemap、robots 与 404。
 - 官方来源台账与英日术语表，区分游戏官方名称与网站自定义术语。
 - Pages 静态规则、预览禁止索引和部署说明。
+- GitHub 公开仓库 `aieasygames-alt/silverpalaceguide` 与 Pages 项目 `silverpalaceguide` 已建立，原生 GitHub 集成已通过真实推送验证。
+- GitHub 双语纠错模板已加入，英日编辑方针页提供公开入口。
 
 ## 首轮范围调整
 
@@ -30,7 +32,7 @@
 
 - 收集并核验第一组真实案件、探索路线和材料需求，替换研究状态、扩展内容集合。
 - 日语核心内容的进一步术语与人工审校。
-- GitHub 仓库、Cloudflare Pages 项目与注册域名的实际连接，部署后验证平台规则。
+- 确认并应用域名 DNS 切换，再验证自定义域名与 HTTPS；GitHub 和 Pages 项目已完成关联。
 - 上线前性能与辅助技术审查、公开纠错方式、统计方案及隐私说明同步。
 
 ## 本轮验证结果
@@ -44,4 +46,12 @@
 - 日语窄屏复核：390px iframe 中实际内容宽 375px，页面滚动宽与内容宽一致；移动导航正常，搜索入口有可访问名称。
 - 英语首页与日语窄屏截图保存在 `artifacts/screenshots/`。临时响应式测试页面已从构建产物移除。
 
-以上为本地构建和浏览器验证。Cloudflare Pages 的实际响应头、重定向、域名与 HTTPS 状态需要部署后验证；完整辅助技术审查与性能测量尚未完成。
+## 部署阶段补充
+
+- 生产首次自动部署成功：`5f7791f` → `83ca6f46-d0e5-4a2a-9402-f1e5562b9eb6`，触发类型 `github:push`，GitHub 的 Cloudflare Pages 检查为 success。
+- Pages 默认域名已可访问，实际 CSP、安全头已验证生效。
+- 线上发现 Astro 自动内联小型脚本与 CSP 冲突，已设置 `assetsInlineLimit: 0`。新增构建检查可以检出旧产物中的问题；修复后 30 个页面通过检查。
+- 新增 `npm run verify:deployment`，用于复查生产与预览的 HTTP、SEO 和平台规则。
+- 主域与 `www` 已登记为 Pages 自定义域名；旧 A 记录替换为 CNAME 的控制台配置已准备，等待用户确认后保存。当前不宣称自定义域名已上线。
+
+完整辅助技术审查与性能测量尚未完成。

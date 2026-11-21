@@ -9,6 +9,18 @@
 - Pages 默认域名：<https://silverpalaceguide.pages.dev>。
 - Pages 已关联上述 GitHub 仓库，生产分支为 `main`，生产自动部署已启用；其他分支自动生成预览。
 - 使用 Pages 原生 GitHub 集成，不依赖 GitHub Actions 部署凭据。项目中不保存 Cloudflare 或 GitHub 令牌。
+- 已验证 `github:push` 自动部署：提交 `5f7791f` 对应部署 `83ca6f46-d0e5-4a2a-9402-f1e5562b9eb6`，GitHub 检查和 Pages 发布均成功。
+
+## 域名解析待应用
+
+主域与 `www` 已登记到 Pages 自定义域名，DNS 仍需从注册时的 A 记录切换。
+
+| 现有记录 | 拟应用记录 |
+| --- | --- |
+| `silverpalaceguide.com`，A，`54.149.79.189`，Proxied，Auto | `silverpalaceguide.com`，CNAME，`silverpalaceguide.pages.dev`，Proxied，Auto |
+| `silverpalaceguide.com`，A，`34.216.117.25`，Proxied，Auto | `www.silverpalaceguide.com`，CNAME，`silverpalaceguide.pages.dev`，Proxied，Auto |
+
+现有命令行凭据具有 Pages 权限，但没有 DNS 权限。控制台更改记录类型会删除旧记录并重建，等待用户确认后应用；当前未保存 DNS 修改。应用后需要验证自定义域名状态、HTTPS 与 `www` 重定向。以上原始值保留用于回溯。
 
 ## 构建方式
 
@@ -49,6 +61,8 @@ Git 仓库和 Pages 项目已创建并关联。本地目录可独立完成构建
 4. `public/_headers` 配置安全头和带内容哈希资源的长缓存；允许搜索使用 WebAssembly，但不开放任意脚本求值。
 5. 如以后增加统计或外部资源，需同时审阅 CSP 与隐私说明。
 
+Astro 的 `vite.build.assetsInlineLimit` 设置为 `0`，避免小型脚本内联后被 CSP 拦截。构建验证会拒绝可执行的内联脚本。
+
 ## 发布前验证
 
 ```sh
@@ -65,6 +79,15 @@ npm run preview
 - 验证主域 HTTPS、`www` 重定向、根路径和实际不存在路径的 404 响应。
 - 验证响应 CSP 生效时，Pagefind 搜索仍能运行。
 - 远程 Pages 平台规则需要部署后再次验证，本地 Astro 预览不模拟 `_headers` 和 `_redirects` 的全部行为。
+
+部署后可重复运行只读检查（自定义域名生效前使用 Pages 默认域名）：
+
+```sh
+npm run verify:deployment -- https://silverpalaceguide.pages.dev
+npm run verify:deployment -- https://<branch-preview-hostname> --preview
+```
+
+该检查验证英日页面、规范地址、索引信号、安全响应头、脚本形式、根路径重定向、404 和 sitemap。搜索、清单与材料表仍需在浏览器中验证实际交互。
 
 ## 内容发布与数据范围
 
