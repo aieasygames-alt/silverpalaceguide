@@ -1,0 +1,67 @@
+---
+import Icon from './Icon.astro';
+import type { Locale } from '../lib/i18n';
+interface Props { locale: Locale; }
+const { locale } = Astro.props;
+const en = locale === 'en';
+---
+<section class="panel" id="field-notes" data-locale={locale} data-pagefind-ignore aria-label={en ? 'Personal exploration checklist' : '自分用の探索チェックリスト'}>
+  <div class="panel-title"><h2>{en ? 'Your field notes' : '自分だけの探索ノート'}</h2><Icon name="compass" size={26}/></div>
+  <p>{en ? 'A place to remember your own discoveries, unfinished tasks and places to revisit.' : '気づいたこと、まだ終えていないこと、後で訪れたい場所を書き留めましょう。'}</p>
+  <form class="checklist-form" id="note-form"><label class="sr-only" for="note-input">{en ? 'A place or task to remember' : '覚えておきたい場所や目標'}</label><input id="note-input" name="note" maxlength="200" required placeholder={en ? 'What would you like to remember?' : '覚えておきたいことは？'} autocomplete="off"/><button class="button" type="submit"><Icon name="plus" size={16}/>{en ? 'Add' : '追加'}</button></form>
+  <div class="tool-summary"><span>{en ? 'Your progress' : '進み具合'}</span><span id="notes-count" aria-live="polite">0 / 0</span></div><progress id="notes-progress" value="0" max="1" aria-label={en ? 'Completed notes' : '完了した項目'}></progress>
+  <p id="notes-empty" class="tiny">{en ? 'An open page. Add your first note above.' : 'まっさらなノートです。上の欄から最初のメモを追加してください。'}</p><ul id="notes-list" class="checklist-items"></ul>
+  <p id="notes-status" class="status-message" role="status" aria-live="polite"></p>
+  <div class="button-row"><button id="export-notes" class="button secondary" type="button">{en ? 'Export notes' : '書き出す'}</button><button id="import-notes" class="button secondary" type="button">{en ? 'Import notes' : '読み込む'}</button><button id="clear-notes" class="text-link" type="button">{en ? 'Clear all' : 'すべて消去'}</button></div>
+  <input id="notes-file" type="file" accept="application/json,.json" hidden aria-label={en ? 'Import notes file' : 'メモファイルの読み込み'}/>
+  <noscript><p class="notice">{en ? 'Enable JavaScript to add and save your field notes.' : 'メモの追加・保存にはJavaScriptを有効にしてください。'}</p></noscript>
+</section>
+<script>
+  import { validateNotes, NOTES_KEY, type FieldNotes } from '../lib/progress';
+  import { readLocal, saveLocal, downloadJSON, parseBackup } from '../lib/local-data';
+  const root = document.querySelector<HTMLElement>('#field-notes');
+  if (root) {
+    const en = root.dataset.locale === 'en';
+    const status = root.querySelector<HTMLElement>('#notes-status')!;
+    const list = root.querySelector<HTMLElement>('#notes-list')!;
+    const input = root.querySelector<HTMLInputElement>('#note-input')!;
+    const fileInput = root.querySelector<HTMLInputElement>('#notes-file')!;
+    let notes: FieldNotes = { type: 'spg-field-notes', schemaVersion: 1, items: [] };
+    let warning = '';
+    try { const stored = readLocal(NOTES_KEY); if (stored !== null) notes = validateNotes(stored); }
+    catch { warning = en ? 'Saved notes could not be read. Import a backup or add a new note to start again.' : '保存されたメモを読み取れませんでした。バックアップを読み込むか、新しいメモを追加してください。'; }
+    function persist() { status.textContent = saveLocal(NOTES_KEY, notes) ? (en ? 'Saved in this browser. English and Japanese pages share these notes.' : 'このブラウザーに保存しました。英語・日本語ページで同じメモを使えます。') : (en ? 'Browser storage is unavailable. Export your notes to keep a copy.' : '保存機能を利用できません。書き出しでメモを残してください。'); }
+    function render() {
+      list.replaceChildren();
+      const done = notes.items.filter((item) => item.done).length;
+      root!.querySelector('#notes-count')!.textContent = `${done} / ${notes.items.length}`;
+      const progress = root!.querySelector<HTMLProgressElement>('#notes-progress')!; progress.max = Math.max(1, notes.items.length); progress.value = done;
+      root!.querySelector<HTMLElement>('#notes-empty')!.hidden = notes.items.length > 0;
+      for (const item of notes.items) {
+        const li = document.createElement('li'); li.className = 'checklist-item';
+        const label = document.createElement('label'); const checkbox = document.createElement('input'); checkbox.type = 'checkbox'; checkbox.checked = item.done;
+        checkbox.addEventListener('change', () => { item.done = checkbox.checked; const focusId = item.id; render(); persist(); document.getElementById(`note-${focusId}`)?.focus(); }); checkbox.id = `note-${item.id}`;
+        const span = document.createElement('span'); span.textContent = item.text; label.append(checkbox, span);
+        const remove = document.createElement('button'); remove.className = 'remove-row'; remove.type = 'button'; remove.textContent = '×'; remove.setAttribute('aria-label', `${en ? 'Remove note' : 'メモを削除'}: ${item.text}`);
+        remove.addEventListener('click', () => { notes.items = notes.items.filter((entry) => entry.id !== item.id); render(); persist(); input.focus(); });
+        li.append(label, remove); list.append(li);
+      }
+    }
+    root.querySelector('#note-form')?.addEventListener('submit', (event) => {
+      event.preventDefault(); const value = input.value.trim(); if (!value) { input.focus(); return; }
+      if (notes.items.length >= 200) { status.textContent = en ? 'Your notebook can hold up to 200 notes.' : '登録できるメモは200件までです。'; return; }
+      notes.items.push({ id: crypto.randomUUID(), text: value, done: false }); input.value = ''; render(); persist(); input.focus();
+    });
+    root.querySelector('#export-notes')?.addEventListener('click', () => downloadJSON('silver-palace-field-notes.json', notes));
+    root.querySelector('#import-notes')?.addEventListener('click', () => fileInput.click());
+    fileInput.addEventListener('change', async () => {
+      const file = fileInput.files?.[0]; if (!file) return;
+      try { const imported = validateNotes(await parseBackup(file)); if (window.confirm(en ? 'Replace your current field notes with this backup?' : 'このバックアップで現在のメモを置き換えますか？')) { notes = imported; render(); persist(); } }
+      catch { status.textContent = en ? 'This file is not a supported notebook. Your notes have not been changed.' : '対応するメモファイルではありません。現在の内容は変更していません。'; }
+      finally { fileInput.value = ''; }
+    });
+    root.querySelector('#clear-notes')?.addEventListener('click', () => { if (window.confirm(en ? 'Clear all field notes in this browser? Export a backup first if you need it.' : 'このブラウザーのメモをすべて消去しますか？必要であれば先に書き出してください。')) { notes = { type: 'spg-field-notes', schemaVersion: 1, items: [] }; render(); persist(); } });
+    render(); status.textContent = warning || (en ? 'Personal notes, stored on this device. Export a backup for safekeeping.' : 'メモはこの端末に保存されます。書き出しでバックアップを残せます。');
+    if (!warning) { try { const probe = `${NOTES_KEY}:probe`; localStorage.setItem(probe, '1'); localStorage.removeItem(probe); } catch { status.textContent = en ? 'Browser storage is unavailable. You can use this notebook, then export it.' : '保存機能を利用できません。使用後に書き出してメモを残してください。'; } }
+  }
+</script>

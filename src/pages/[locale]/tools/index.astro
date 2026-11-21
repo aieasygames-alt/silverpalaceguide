@@ -1,0 +1,10 @@
+---
+import Base from '../../../layouts/Base.astro';
+import PageHeading from '../../../components/PageHeading.astro';
+import Icon from '../../../components/Icon.astro';
+import { locales, path, type Locale } from '../../../lib/i18n';
+export const getStaticPaths = () => locales.map((locale) => ({ params: { locale } }));
+const locale = Astro.params.locale as Locale;
+const en = locale === 'en';
+---
+<Base locale={locale} title={en ? 'Planning tools' : '計画ツール'} description={en ? 'Simple tools for Silver Palace: a custom material planner and personal exploration checklist, saved locally in your browser.' : '白銀の城の冒険を支える、手入力の素材プランナーと自分用の探索チェックリスト。データはブラウザーに保存します。'} section="tools"><div class="shell" data-pagefind-body><PageHeading locale={locale} eyebrow={en ? 'THE WORKBENCH' : '探偵の作業机'} title={en ? 'A clearer next step.' : '次の一歩を、見つけやすく。'} description={en ? 'Small, practical tools. No account needed. Your plans and notes stay on this device unless you export them.' : '小さく、実用的なツール。アカウント登録は不要です。計画とメモは、書き出さない限りこの端末に保存されます。'}/><div class="feature-grid tools-grid" style="margin-bottom:64px"><a class="feature dark" href={path(locale, 'tools/material-planner')}><div class="feature-top"><Icon name="planner" size={28}/><span>01 / {en ? 'CUSTOM WORKSHEET' : '手入力の計画表'}</span></div><h3>{en ? 'Material planner' : '素材プランナー'}</h3><p>{en ? 'Enter required and owned quantities. See the shortage for each material, then save or export your plan.' : '必要数と所持数を入力して、素材ごとの不足数を確認。保存と書き出しもできます。'}</p><div class="feature-bottom"><span>{en ? 'Make a plan' : '計画を立てる'}</span><Icon name="arrow" size={18}/></div></a><a class="feature" href={path(locale, 'exploration')}><div class="feature-top"><Icon name="compass" size={28}/><span>02 / {en ? 'PERSONAL NOTES' : '自分用のノート'}</span></div><h3>{en ? 'Exploration checklist' : '探索チェックリスト'}</h3><p>{en ? 'Keep your own tasks and places to revisit in one notebook. Mark things off as you go.' : '自分の目標や、後で訪れたい場所をノートに。終わった項目をチェックできます。'}</p><div class="feature-bottom"><span>{en ? 'Open your notebook' : 'ノートを開く'}</span><Icon name="arrow" size={18}/></div></a></div></div></Base>

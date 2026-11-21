@@ -1,0 +1,87 @@
+---
+import Icon from './Icon.astro';
+import type { Locale } from '../lib/i18n';
+interface Props { locale: Locale; }
+const { locale } = Astro.props;
+const en = locale === 'en';
+---
+<section class="panel" id="material-planner" data-locale={locale} data-pagefind-ignore aria-label={en ? 'Custom material plan' : '手入力の素材計画'}>
+  <div class="panel-title"><h2>{en ? 'Your material plan' : '素材の計画表'}</h2><span class="pill">{en ? 'CUSTOM PLAN' : '手入力'}</span></div>
+  <p>{en ? 'Enter the cost of your remaining upgrades and the materials you already own. Use one row per material.' : 'これから行う育成の必要数と所持数を入力してください。同じ素材は1行にまとめます。'}</p>
+  <div class="tool-row tool-labels" aria-hidden="true" style="margin-top:24px"><span>{en ? 'Material' : '素材名'}</span><span>{en ? 'Required' : '必要数'}</span><span>{en ? 'Owned' : '所持数'}</span><span>{en ? 'Need' : '不足数'}</span><span></span></div>
+  <div id="material-rows"></div>
+  <div class="button-row"><button id="add-material" class="text-link" type="button"><Icon name="plus" size={17}/>{en ? 'Add a material' : '素材を追加'}</button></div>
+  <div class="tool-summary"><span>{en ? 'Material types still needed' : '不足している素材の種類数'}</span><strong id="material-total" aria-live="polite">0</strong></div>
+  <p class="status-message" id="planner-status" role="status" aria-live="polite"></p>
+  <div class="button-row"><button id="export-plan" class="button secondary" type="button">{en ? 'Export plan' : '書き出す'}</button><button id="import-plan" class="button secondary" type="button">{en ? 'Import plan' : '読み込む'}</button><button id="clear-plan" class="text-link" type="button">{en ? 'Clear plan' : '計画を消去'}</button></div>
+  <input id="plan-file" type="file" accept="application/json,.json" hidden aria-label={en ? 'Import plan file' : '計画ファイルの読み込み'}/>
+  <noscript><p class="notice">{en ? 'Enable JavaScript to calculate and save your plan.' : '計算と保存にはJavaScriptを有効にしてください。'}</p></noscript>
+</section>
+<script>
+  import { validatePlan, shortage, PLAN_KEY, MAX_QUANTITY, type MaterialPlan } from '../lib/planner';
+  import { readLocal, saveLocal, downloadJSON, parseBackup } from '../lib/local-data';
+  const root = document.querySelector<HTMLElement>('#material-planner');
+  if (root) {
+    const en = root.dataset.locale === 'en';
+    const labels = en ? {
+      name: 'Material name', required: 'Required amount', owned: 'Owned amount', remove: 'Remove material', saved: 'Saved in this browser. Export a backup to keep a copy.', unavailable: 'Browser storage is unavailable. You can still use and export this plan.', invalid: 'Give each material a unique name and use whole numbers from 0 to 1,000,000,000.', duplicate: 'Combine duplicate material names into one row so inventory is counted once.', badFile: 'That file is not a supported material plan. Your current plan has not been changed.', replace: 'Replace your current material plan with the imported plan?', clear: 'Clear all materials in this browser? Export a backup first if you need it.', limit: 'A plan can hold up to 50 material types.', recovered: 'The saved plan could not be read. Import a backup or start a new plan.',
+    } : {
+      name: '素材名', required: '必要数', owned: '所持数', remove: '素材を削除', saved: 'このブラウザーに保存しました。書き出しでバックアップを残せます。', unavailable: 'ブラウザーの保存機能を利用できません。計算と書き出しは使えます。', invalid: '素材名は重複させず、数値は0〜1,000,000,000の整数で入力してください。', duplicate: '同じ素材は1行にまとめてください。所持数の二重計算を防ぎます。', badFile: '対応する素材計画ファイルではありません。現在の計画は変更していません。', replace: '読み込んだ計画で現在の内容を置き換えますか？', clear: 'このブラウザーの素材計画をすべて消去しますか？必要であれば先に書き出してください。', limit: '登録できる素材は50種類までです。', recovered: '保存された計画を読み取れませんでした。バックアップを読み込むか、新しい計画を作成してください。',
+    };
+    const rowsElement = root.querySelector<HTMLElement>('#material-rows')!;
+    const status = root.querySelector<HTMLElement>('#planner-status')!;
+    const total = root.querySelector<HTMLElement>('#material-total')!;
+    const exportButton = root.querySelector<HTMLButtonElement>('#export-plan')!;
+    const fileInput = root.querySelector<HTMLInputElement>('#plan-file')!;
+    let plan: MaterialPlan = { type: 'spg-material-plan', schemaVersion: 1, rows: [] };
+    let initialMessage = '';
+    try { const stored = readLocal(PLAN_KEY); if (stored !== null) plan = validatePlan(stored); } catch { initialMessage = labels.recovered; }
+    function recalculate(persist = true) {
+      try {
+        const valid = validatePlan(plan);
+        plan.rows.forEach((row) => { const output = document.getElementById(`need-${row.id}`); if (output) output.textContent = shortage(row.required, row.owned).toLocaleString(en ? 'en' : 'ja'); });
+        total.textContent = String(valid.rows.filter((row) => shortage(row.required, row.owned) > 0).length);
+        exportButton.disabled = false;
+        if (persist) status.textContent = saveLocal(PLAN_KEY, valid) ? labels.saved : labels.unavailable;
+      } catch (error) {
+        rowsElement.querySelectorAll('output').forEach((output) => output.textContent = '—');
+        total.textContent = '—'; exportButton.disabled = true;
+        status.textContent = error instanceof Error && error.message === 'duplicate' ? labels.duplicate : labels.invalid;
+      }
+    }
+    function render() {
+      rowsElement.replaceChildren();
+      for (const row of plan.rows) {
+        const line = document.createElement('div'); line.className = 'tool-row';
+        for (const field of ['name', 'required', 'owned'] as const) {
+          const input = document.createElement('input'); input.type = field === 'name' ? 'text' : 'number';
+          input.setAttribute('aria-label', `${labels[field]} ${plan.rows.indexOf(row) + 1}`); input.value = String(row[field]);
+          if (field === 'name') { input.maxLength = 60; input.placeholder = en ? 'Material name' : '素材名'; }
+          else { input.min = '0'; input.max = String(MAX_QUANTITY); input.step = '1'; input.inputMode = 'numeric'; }
+          input.addEventListener('input', () => { if (field === 'name') row.name = input.value; else row[field] = input.value === '' ? NaN : Number(input.value); recalculate(); });
+          line.append(input);
+        }
+        const output = document.createElement('output'); output.id = `need-${row.id}`; output.setAttribute('aria-label', en ? `Missing ${row.name}` : `${row.name}の不足数`); line.append(output);
+        const remove = document.createElement('button'); remove.type = 'button'; remove.className = 'remove-row'; remove.textContent = '×'; remove.setAttribute('aria-label', `${labels.remove} ${row.name || plan.rows.indexOf(row) + 1}`);
+        remove.addEventListener('click', () => { plan.rows = plan.rows.filter((item) => item.id !== row.id); render(); recalculate(); root?.querySelector<HTMLButtonElement>('#add-material')?.focus(); });
+        line.append(remove); rowsElement.append(line);
+      }
+      recalculate(false);
+    }
+    root.querySelector('#add-material')?.addEventListener('click', () => {
+      if (plan.rows.length >= 50) { status.textContent = labels.limit; return; }
+      plan.rows.push({ id: crypto.randomUUID(), name: '', required: 0, owned: 0 }); render();
+      rowsElement.lastElementChild?.querySelector('input')?.focus();
+    });
+    exportButton.addEventListener('click', () => { try { downloadJSON('silver-palace-material-plan.json', validatePlan(plan)); } catch { status.textContent = labels.invalid; } });
+    root.querySelector('#import-plan')?.addEventListener('click', () => fileInput.click());
+    fileInput.addEventListener('change', async () => {
+      const file = fileInput.files?.[0]; if (!file) return;
+      try { const imported = validatePlan(await parseBackup(file)); if (window.confirm(labels.replace)) { plan = imported; render(); recalculate(); } }
+      catch { status.textContent = labels.badFile; } finally { fileInput.value = ''; }
+    });
+    root.querySelector('#clear-plan')?.addEventListener('click', () => { if (window.confirm(labels.clear)) { plan = { type: 'spg-material-plan', schemaVersion: 1, rows: [] }; render(); recalculate(); } });
+    render(); status.textContent = initialMessage || labels.saved;
+    if (!initialMessage) { try { const probe = `${PLAN_KEY}:probe`; localStorage.setItem(probe, '1'); localStorage.removeItem(probe); } catch { status.textContent = labels.unavailable; } }
+  }
+</script>

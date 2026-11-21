@@ -1,0 +1,7 @@
+---
+import { path, text, type Locale } from '../lib/i18n';
+interface Props { locale: Locale; eyebrow: string; title: string; description: string; }
+const { locale, eyebrow, title, description } = Astro.props;
+---
+<div class="breadcrumb" data-pagefind-ignore><a href={path(locale)}>{text[locale].home}</a><span>/</span><span>{eyebrow}</span></div>
+<div class="page-heading"><span class="eyebrow">{eyebrow}</span><h1 data-pagefind-meta="title">{title}</h1><p>{description}</p></div>

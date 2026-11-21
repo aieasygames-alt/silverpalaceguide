@@ -1,0 +1,11 @@
+---
+import Base from '../../../layouts/Base.astro';
+import PageHeading from '../../../components/PageHeading.astro';
+import Checklist from '../../../components/Checklist.astro';
+import Icon from '../../../components/Icon.astro';
+import { locales, path, type Locale } from '../../../lib/i18n';
+export const getStaticPaths = () => locales.map((locale) => ({ params: { locale } }));
+const locale = Astro.params.locale as Locale;
+const en = locale === 'en';
+---
+<Base locale={locale} title={en ? 'Exploration & field notes' : '探索とフィールドノート'} description={en ? 'Keep a personal exploration checklist, save your discoveries in this browser and export your field notes.' : '探索の目標や発見をチェックリストに。ブラウザー内で保存でき、バックアップも書き出せます。'} section="exploration"><div class="shell" data-pagefind-body><PageHeading locale={locale} eyebrow={en ? 'EXPLORATION / 02' : '探索 / 02'} title={en ? 'Leave no loose ends.' : '気になる場所を、忘れずに。'} description={en ? 'A locked door. A path worth returning to. Give the little things a place to live, and pick up where you left off.' : 'まだ開かない扉。後から戻りたい道。小さな気がかりを書き留めて、次の探索につなげましょう。'}/><div class="page-grid"><div><Checklist locale={locale}/><div class="empty-note"><h3>{en ? 'Verified routes are on the way.' : '探索ルートは、確認できたものから。'}</h3><p>{en ? 'This notebook is for your own notes. It is not a complete collectible list. Game-specific routes and puzzle guides will be added after their locations and requirements are checked.' : 'このノートは自分用のメモです。ゲーム内収集物の完全な一覧ではありません。探索ルートと謎解き攻略は、場所や条件を確認してから追加します。'}</p></div></div><aside class="margin-note"><Icon name="book" size={26}/><span class="eyebrow">{en ? 'A USEFUL FIELD NOTE' : '役立つメモの残し方'}</span><h3>{en ? 'Leave yourself a clue.' : '未来の自分に、手がかりを。'}</h3><p>{en ? 'Write down the area, a nearby landmark, what you tried, and what you want to check next. A specific note is easier to return to.' : 'エリア、近くの目印、試したこと、次に確認したいこと。具体的に書くと、戻ってきたときに役立ちます。'}</p><a class="text-link" href={path(locale, 'privacy')}>{en ? 'How local saves work' : '保存データについて'}<Icon name="arrow" size={16}/></a></aside></div></div></Base>

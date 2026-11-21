@@ -1,0 +1,11 @@
+---
+import Base from '../../../layouts/Base.astro';
+import PageHeading from '../../../components/PageHeading.astro';
+import HintDemo from '../../../components/HintDemo.astro';
+import Icon from '../../../components/Icon.astro';
+import { locales, path, type Locale } from '../../../lib/i18n';
+export const getStaticPaths = () => locales.map((locale) => ({ params: { locale } }));
+const locale = Astro.params.locale as Locale;
+const en = locale === 'en';
+---
+<Base locale={locale} title={en ? 'Case notes & staged hints' : '事件ノートと段階式ヒント'} description={en ? 'Choose how much help you read. Try our staged hint format while verified Silver Palace case walkthroughs are being prepared.' : '必要な分だけ読む段階式ヒント。事件攻略の検証に先立ち、読み方を試せます。'} section="cases"><div class="shell" data-pagefind-body><PageHeading locale={locale} eyebrow={en ? 'CASE NOTES / 01' : '事件ノート / 01'} title={en ? 'Keep the mystery yours.' : '謎を解く楽しみを、そのままに。'} description={en ? 'Sometimes all you need is a small detail. Start with a nudge, take a closer look, or choose the full explanation. You set the pace.' : '見落としていた小さなことが、次の一歩につながります。小さなヒントから詳しい解説まで、読む範囲は自分で選べます。'}/><div class="page-grid"><div><div class="notice"><strong>{en ? 'Archive status · ' : '公開状況 · '}</strong>{en ? 'No verified game-case walkthroughs are published yet. The exercise below demonstrates the reading experience, without revealing any game story.' : '検証済みのゲーム内事件攻略は、まだ公開していません。下の問題で、物語のネタバレなしに読み方を試せます。'}</div><HintDemo locale={locale}/></div><aside class="margin-note"><Icon name="shield" size={26}/><span class="eyebrow">{en ? 'YOUR READING PREFERENCE' : '読む範囲は、自分で選ぶ'}</span><h3>{en ? 'Only open what you need.' : '必要なところだけ、開く。'}</h3><p>{en ? 'Each layer stays closed until you open it. Changing the question closes all hints. The complete answer asks for confirmation.' : 'ヒントは自分で開くまで表示されません。問いを切り替えるとすべて閉じます。答えを開く前には確認があります。'}</p><a class="text-link" href={path(locale, 'guides/reading-case-hints')}>{en ? 'About the hint levels' : 'ヒントの段階について'}<Icon name="arrow" size={16}/></a></aside></div></div></Base>

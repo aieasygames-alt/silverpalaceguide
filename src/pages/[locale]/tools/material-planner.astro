@@ -1,0 +1,11 @@
+---
+import Base from '../../../layouts/Base.astro';
+import PageHeading from '../../../components/PageHeading.astro';
+import Planner from '../../../components/Planner.astro';
+import Icon from '../../../components/Icon.astro';
+import { locales, path, type Locale } from '../../../lib/i18n';
+export const getStaticPaths = () => locales.map((locale) => ({ params: { locale } }));
+const locale = Astro.params.locale as Locale;
+const en = locale === 'en';
+---
+<Base locale={locale} title={en ? 'Material planner' : '素材プランナー'} description={en ? 'Make a custom Silver Palace material plan. Enter required and owned quantities, calculate shortages, and save or export your plan locally.' : '必要数と所持数から不足する素材を計算。手入力の計画をブラウザーに保存し、書き出せます。'} section="tools"><div class="shell" data-pagefind-body><PageHeading locale={locale} eyebrow={en ? 'PLANNING TOOLS / 03' : '計画ツール / 03'} title={en ? 'A little planning goes a long way.' : '少しの計画で、準備に見通しを。'} description={en ? 'See what you have. Work out what is missing. Keep your next upgrade in view with a simple material worksheet.' : '今ある素材と、これから必要な素材。シンプルな計画表で、次の育成に向けた準備を整理しましょう。'}/><div class="page-grid"><div><div class="notice"><strong>{en ? 'Custom worksheet · ' : '手入力の計画表 · '}</strong>{en ? 'Character presets are not available yet. Enter requirements you have verified in-game. No costs, drops or farming times are assumed.' : 'キャラクター別の自動入力にはまだ対応していません。ゲーム内で確認した必要数を入力してください。費用、ドロップ率、周回時間は推定しません。'}</div><Planner locale={locale}/></div><aside class="margin-note"><Icon name="planner" size={26}/><span class="eyebrow">{en ? 'THE CALCULATION' : '計算について'}</span><h3>{en ? 'Required − owned.' : '必要数 − 所持数。'}</h3><p>{en ? 'The result never falls below zero. Combine the same material into one row. Your plan stays in this browser and is shared between the English and Japanese pages.' : '不足数が0未満になることはありません。同じ素材は1行にまとめてください。計画はこのブラウザーに保存し、英語・日本語ページで共有します。'}</p><a class="text-link" href={path(locale, 'guides/planning-materials')}>{en ? 'Read the planning guide' : '使い方を読む'}<Icon name="arrow" size={16}/></a></aside></div></div></Base>

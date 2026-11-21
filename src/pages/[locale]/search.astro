@@ -1,0 +1,21 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHeading from '../../components/PageHeading.astro';
+import { locales, text, path, type Locale } from '../../lib/i18n';
+export const getStaticPaths = () => locales.map((locale) => ({ params: { locale } }));
+const locale = Astro.params.locale as Locale;
+const en = locale === 'en';
+---
+<Base locale={locale} title={en ? 'Search the archive' : '資料を検索'} description={text[locale].searchDescription} noindex><link slot="head" rel="stylesheet" href="/pagefind/pagefind-ui.css"/><div class="shell" data-pagefind-ignore><PageHeading locale={locale} eyebrow={en ? 'ARCHIVE SEARCH' : '資料検索'} title={en ? 'What are you looking for?' : '何を探していますか？'} description={text[locale].searchDescription}/><div class="search-panel"><div id="search" data-locale={locale}></div><p class="tiny" id="search-fallback">{en ? 'You can also browse the ' : '検索できない場合は、'}<a href={path(locale, 'guides')}>{en ? 'field guides' : 'ガイド一覧'}</a>{en ? ' or open the tools from the navigation.' : 'やツールをご利用ください。'}</p><noscript><p class="notice">{en ? 'Search needs JavaScript. You can browse every guide using the link above.' : '検索にはJavaScriptが必要です。上のリンクからガイドをご覧いただけます。'}</p></noscript></div></div><script is:inline src="/pagefind/pagefind-ui.js" defer></script></Base>
+<script>
+  declare const PagefindUI: new (options: Record<string, unknown>) => { triggerSearch: (term: string) => void };
+  window.addEventListener('DOMContentLoaded', () => {
+    const root = document.querySelector<HTMLElement>('#search');
+    if (!root || typeof PagefindUI === 'undefined') return;
+    const en = root.dataset.locale === 'en';
+    const ui = new PagefindUI({ element: '#search', showSubResults: true, showImages: false, resetStyles: false, translations: en ? { placeholder: 'Search guides and tools…' } : { placeholder: 'ガイドやツールを検索…', zero_results: '「[SEARCH_TERM]」に一致する資料がありません。', clear_search: 'クリア', load_more: 'もっと見る', searching: '検索中…' } });
+    const query = new URLSearchParams(location.search).get('q');
+    if (query) ui.triggerSearch(query);
+    root.querySelector<HTMLInputElement>('input')?.focus();
+  });
+</script>

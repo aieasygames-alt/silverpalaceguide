@@ -1,0 +1,29 @@
+export interface MaterialRow { id: string; name: string; required: number; owned: number; }
+export interface MaterialPlan { type: 'spg-material-plan'; schemaVersion: 1; rows: MaterialRow[]; }
+export const PLAN_KEY = 'spg:material-plan:v1';
+export const MAX_QUANTITY = 1_000_000_000;
+export function shortage(required: number, owned: number) {
+  if (![required, owned].every((value) => Number.isSafeInteger(value) && value >= 0 && value <= MAX_QUANTITY)) throw new Error('quantity');
+  return Math.max(required - owned, 0);
+}
+export function validatePlan(input: unknown): MaterialPlan {
+  if (!input || typeof input !== 'object') throw new Error('format');
+  const data = input as Record<string, unknown>;
+  if (data.type !== 'spg-material-plan' || data.schemaVersion !== 1 || !Array.isArray(data.rows) || data.rows.length > 50) throw new Error('format');
+  const ids = new Set<string>();
+  const names = new Set<string>();
+  const rows = data.rows.map((entry: unknown) => {
+    if (!entry || typeof entry !== 'object') throw new Error('format');
+    const row = entry as Record<string, unknown>;
+    if (typeof row.id !== 'string' || !/^[a-zA-Z0-9_-]{1,64}$/.test(row.id) || ids.has(row.id)) throw new Error('format');
+    if (typeof row.name !== 'string' || row.name.trim().length === 0 || row.name.length > 60) throw new Error('name');
+    const name = row.name.trim().normalize('NFC');
+    const normalized = name.toLocaleLowerCase('en-US');
+    if (names.has(normalized)) throw new Error('duplicate');
+    if (typeof row.required !== 'number' || typeof row.owned !== 'number') throw new Error('quantity');
+    shortage(row.required, row.owned);
+    names.add(normalized); ids.add(row.id);
+    return { id: row.id, name, required: row.required, owned: row.owned };
+  });
+  return { type: 'spg-material-plan', schemaVersion: 1, rows };
+}

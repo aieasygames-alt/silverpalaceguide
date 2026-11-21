@@ -1,0 +1,10 @@
+---
+import Base from '../../../layouts/Base.astro';
+import PageHeading from '../../../components/PageHeading.astro';
+import Icon from '../../../components/Icon.astro';
+import { locales, path, type Locale } from '../../../lib/i18n';
+export const getStaticPaths = () => locales.map((locale) => ({ params: { locale } }));
+const locale = Astro.params.locale as Locale;
+const en = locale === 'en';
+---
+<Base locale={locale} title={en ? 'Character research' : 'キャラクター資料'} description={en ? 'Our approach to verified Silver Palace character guides and progression requirements.' : '白銀の城のキャラクター攻略と育成データの検証方針。'} section="characters" noindex><div class="shell" data-pagefind-ignore><PageHeading locale={locale} eyebrow={en ? 'CHARACTER RESEARCH' : 'キャラクター資料'} title={en ? 'A dossier worth waiting for.' : '確かな資料を、準備中です。'} description={en ? 'Character builds deserve tested advice. We are preparing a source-backed format for kits, roles and progression, with clear server and version labels.' : '育成の判断に役立つよう、スキル、役割、育成条件を出典とともに整理します。対象サーバーとバージョンを明記して公開する予定です。'}/><div class="page-grid"><div class="panel"><span class="pill">{en ? 'RESEARCH IN PROGRESS' : '資料を確認中'}</span><h2 style="margin:24px 0 16px">{en ? 'No launch-version builds published yet.' : '正式版の育成攻略は、まだ公開していません。'}</h2><p>{en ? 'We have not verified final character requirements or tested launch-version teams. Until then, you can make your own material plan or browse the official character introductions.' : '正式版の素材必要数と編成は、まだ検証できていません。それまでは手入力の素材プランナーや、公式のキャラクター紹介をご利用ください。'}</p><div class="button-row"><a class="button" href={path(locale, 'tools/material-planner')}>{en ? 'Custom material planner' : '手入力の素材プランナー'}<Icon name="arrow" size={16}/></a><a class="button secondary" href={`https://silverpalace.elementagames.com/${en ? 'en-us' : 'ja-jp'}/`} target="_blank" rel="noopener noreferrer">{en ? 'Official website' : '公式サイト'}<Icon name="diagonal" size={15}/></a></div></div></div></div></Base>

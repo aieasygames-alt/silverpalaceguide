@@ -1,0 +1,9 @@
+[
+  { "id": "game-title", "en": "Silver Palace", "ja": "白銀の城", "kind": "official", "sourceId": "official-ja", "checkedAt": "2026-11-21" },
+  { "id": "site-cases", "en": "Case notes", "ja": "事件ノート", "kind": "site-interface", "sourceId": null, "checkedAt": "2026-11-21" },
+  { "id": "site-exploration", "en": "Exploration", "ja": "探索", "kind": "site-interface", "sourceId": null, "checkedAt": "2026-11-21" },
+  { "id": "site-hint", "en": "A gentle nudge", "ja": "小さなヒント", "kind": "site-interface", "sourceId": null, "checkedAt": "2026-11-21" },
+  { "id": "site-evidence", "en": "A closer look", "ja": "もう少し詳しく", "kind": "site-interface", "sourceId": null, "checkedAt": "2026-11-21" },
+  { "id": "site-solution", "en": "The full explanation", "ja": "詳しい解説", "kind": "site-interface", "sourceId": null, "checkedAt": "2026-11-21" },
+  { "id": "site-planner", "en": "Material planner", "ja": "素材プランナー", "kind": "site-interface", "sourceId": null, "checkedAt": "2026-11-21" }
+]
