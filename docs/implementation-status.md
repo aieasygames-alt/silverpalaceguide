@@ -122,3 +122,9 @@ Extended the capture generator with structured bilingual `content.json`, reviewe
 Prepared bundles contain draft JSON and candidate images only, with no original recordings or private notes. They do not modify site data or public assets. The three existing legacy intake packages correctly remain incomplete; every existing file hash was unchanged after queue/check execution. Private reports list missing fields.
 
 Acceptance: 68 checked files without diagnostics, 37 passing tests, production build with 44 HTML and 40 searchable pages. No UI or save-format changes. The official news/deduction source was reviewed again and still does not establish a complete solution, route or cost interval. Real P3-03–05 content remains pending actual recordings and reproduction. See [capture workflow acceptance](capture-intake-release.md) and the updated [next-phase plan](next-phase-plan.md).
+
+## Beginner orientation and guide navigation — 22 November 2026
+
+Published the English/Japanese beginner orientation using the existing official sources, distinguishing editorial reading order, beta mechanisms and unknown launch behavior. Added a collapsible Markdown section directory and three related published guides to all 18 guide pages, with homepage, directory and tool entry points. Directories and recommendations stay out of search excerpts. Draft isolation checks now derive draft routes from actual metadata rather than reserving the beginner slug forever.
+
+Acceptance: 69 checked files without diagnostics, 37 passing tests, 46 HTML pages and 42 searchable pages. Browser checks cover keyboard directory activation, Japanese fragment navigation, native collapse and 16 narrow-layout combinations without overflow. Two Japanese emphasis-rendering issues were corrected. Production checks expand to 39 responses. Real case/route/cost milestones remain pending recorded and reproduced gameplay. See [release details](beginner-reading-release.md).

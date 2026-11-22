@@ -32,7 +32,7 @@ DEV-10 可以在骨架完成后提前建立预览，后续任务持续使用。�
 | ID | 优先级 | 页面 / 工作标题 | 语言 | 发布条件 |
 | --- | --- | --- | --- | --- |
 | CON-01 | P0 | Launch Preparation: What to Know Before You Start | EN + JA | 时间、平台、预约等信息能追溯到对应地区官方来源 |
-| CON-02 | P0 | Beginner Guide | EN + JA | 区分测试与正式服，操作和术语有可靠依据 |
+| CON-02 | P0，入门导读已完成 | Beginner Guide | EN + JA | 2026-11-22 发布官方资料导读与工具阅读路径，区分测试机制、编辑建议和待实测内容；不是首小时实测流程。见 [发布记录](beginner-reading-release.md) |
 | CON-03 | P1 | Combat Basics | EN + JA | 实际机制与操作经过核对，不套用其他游戏系统 |
 | CON-04 | P1 | Early Resource Priorities | EN + JA | 资源用途及限制已确认；建议说明依据与适用阶段 |
 | CON-05 | P1 | Platforms, Download & System Requirements | EN → JA | 只列官方公布的配置和下载入口；未公布项如实说明 |

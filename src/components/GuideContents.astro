@@ -1,0 +1,12 @@
+---
+import type { Locale } from '../lib/i18n';
+interface Props { locale: Locale; headings: { depth: number; slug: string; text: string }[]; }
+const { locale, headings } = Astro.props;
+const sections = headings.filter(heading => heading.depth === 2);
+---
+{sections.length > 0 && <nav class="guide-contents" aria-labelledby="guide-contents-label" data-guide-contents data-pagefind-ignore>
+  <details open>
+    <summary id="guide-contents-label">{locale === 'en' ? 'In this guide' : 'このガイドの目次'}</summary>
+    <ol>{sections.map((heading, index) => <li><a href={`#${heading.slug}`}><span aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>{heading.text}</a></li>)}</ol>
+  </details>
+</nav>}

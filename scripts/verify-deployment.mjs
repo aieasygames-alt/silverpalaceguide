@@ -13,7 +13,7 @@ async function request(path) {
   return { path, response, body: await response.text() };
 }
 
-const referenceRoutes = ['en', 'ja'].flatMap(locale => ['guides/mystery-unveiled', 'guides/combat-basics', 'guides/curious-deductions', 'guides/morgue-street', 'tools/event-rewards', 'tools/glossary'].map(suffix => `/${locale}/${suffix}/`));
+const referenceRoutes = ['en', 'ja'].flatMap(locale => ['guides/beginner-guide', 'guides/mystery-unveiled', 'guides/combat-basics', 'guides/curious-deductions', 'guides/morgue-street', 'tools/event-rewards', 'tools/glossary'].map(suffix => `/${locale}/${suffix}/`));
 const routes = ['/', '/en/', '/ja/', '/en/search/', '/en/characters/', '/ja/characters/', '/en/tools/character-compare/', '/ja/tools/character-compare/', ...referenceRoutes, '/en/events/mystery-unveiled.ics', '/ja/events/mystery-unveiled.ics', '/robots.txt', '/sitemap-index.xml', '/sitemap-0.xml', '/__deployment_check_missing__/', '/images/social/default-en.jpg', '/images/social/default-ja.jpg', '/en/cases/fixture-case/', '/en/exploration/fixture-route/', '/en/qa-preview/'];
 const results = await Promise.allSettled(routes.map(request));
 const failures = [];
@@ -62,6 +62,13 @@ for (let index = 0; index < results.length; index++) {
       assert.equal(/name="robots" content="[^"]*noindex/.test(body), preview);
       if (path.includes('/tools/event-rewards/')) assert.equal((body.match(/data-reward-card=/g) || []).length, 10);
       if (path.includes('/tools/glossary/')) assert.equal((body.match(/data-term-card/g) || []).length, 50);
+      if (path.includes('/guides/')) {
+        const contents = body.match(/<nav\b[^>]*data-guide-contents[^>]*>([\s\S]*?)<\/nav>/)?.[1] ?? '';
+        const targets = [...contents.matchAll(/href="#([^"]+)"/g)].map(match => decodeURIComponent(match[1]));
+        assert.ok(targets.length > 0, 'Guide contents missing');
+        for (const id of targets) assert.ok(body.includes(`id="${id}"`), 'Contents link target missing');
+        assert.ok(body.includes('data-guide-next'), 'Related guide navigation missing');
+      }
     }
     if (path.endsWith('.ics')) {
       assert.ok(response.headers.get('content-type')?.includes('text/calendar'), 'Calendar MIME type');

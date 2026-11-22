@@ -12,6 +12,16 @@ const htmlFiles = files.filter((file) => extname(file) === '.html');
 const site = 'https://silverpalaceguide.com';
 const failures = [];
 const isPreview = process.env.PREVIEW_NOINDEX === '1' || (process.env.CF_PAGES === '1' && process.env.CF_PAGES_BRANCH !== 'main');
+const draftRoutes = [];
+for (const file of await filesIn('src/content/guides')) {
+  const markdown = await readFile(file, 'utf8');
+  const frontmatter = markdown.match(/^---\r?\n([\s\S]*?)\r?\n---/)?.[1] ?? '';
+  if (!/^status:\s*draft\s*$/m.test(frontmatter)) continue;
+  const locale = frontmatter.match(/^locale:\s*(en|ja)\s*$/m)?.[1];
+  const slug = frontmatter.match(/^slug:\s*([a-z0-9-]+)\s*$/m)?.[1];
+  assert.ok(locale && slug, `${file}: draft metadata missing`);
+  draftRoutes.push(`/${locale}/guides/${slug}/`);
+}
 for (const file of htmlFiles) {
   const html = await readFile(file, 'utf8');
   const route = '/' + file.replace(/^dist\//, '').replace(/index\.html$/, '');
@@ -39,20 +49,37 @@ for (const file of htmlFiles) {
     assert.ok(html.includes('name="twitter:card" content="summary_large_image"'), `${file}: missing Twitter large-image card`);
   }
   if (/working draft|This draft must never|PRIVATE_(?:HINT|CLUE|ANSWER)_SENTINEL|fixture-case|fixture-route|fixture-character/.test(html)) failures.push(`${route}: draft leaked`);
+  if (/^\/(en|ja)\/guides\/[^/]+\/$/.test(route)) {
+    const ids = [...html.matchAll(/\bid="([^"]+)"/g)].map(match => match[1]);
+    assert.equal(new Set(ids).size, ids.length, `${route}: duplicate element IDs`);
+    const contents = html.match(/<nav\b[^>]*data-guide-contents[^>]*>([\s\S]*?)<\/nav>/)?.[1];
+    assert.ok(contents, `${route}: missing article contents`);
+    const targets = [...contents.matchAll(/href="#([^"]+)"/g)].map(match => decodeURIComponent(match[1]));
+    assert.ok(targets.length > 0, `${route}: empty article contents`);
+    assert.equal(new Set(targets).size, targets.length, `${route}: repeated contents target`);
+    for (const target of targets) assert.ok(ids.includes(target), `${route}: missing contents target ${target}`);
+    const headings = [...html.matchAll(/<h2\b[^>]*\bid="([^"]+)"/g)].map(match => match[1]).filter(id => id !== 'guide-next-title');
+    assert.deepEqual(targets, headings, `${route}: contents must follow every article section in order`);
+    const related = html.match(/<section\b[^>]*data-guide-next[^>]*>([\s\S]*?)<\/section>/)?.[1] ?? '';
+    const relatedLinks = [...related.matchAll(/href="([^"]+)"/g)].map(match => match[1]);
+    assert.equal(new Set(relatedLinks).size, 3, `${route}: three distinct related guides required`);
+    assert.ok(relatedLinks.every(target => target.startsWith(`/${route.split('/')[1]}/guides/`) && target !== route), `${route}: related guides must be local and different from the current page`);
+  }
 }
-assert.ok(!files.some((file) => file.includes('/beginner-guide/')), 'Draft route generated');
+for (const route of draftRoutes) assert.ok(!files.includes(`dist${route}index.html`), `Draft route generated: ${route}`);
 for (const file of files.filter((file) => file.endsWith('.pf_fragment'))) {
   const fragment = gunzipSync(await readFile(file)).toString();
   assert.ok(!/PRIVATE_(?:HINT|CLUE|ANSWER)_SENTINEL|spg(?:hint|clue|answer)zzqx|fixture-(?:case|route|character)/.test(fragment), `${file}: private or spoiler content in search index`);
 }
 const sitemap = (await Promise.all(files.filter((file) => /sitemap.*\.xml$/.test(file)).map((file) => readFile(file, 'utf8')))).join('');
 assert.ok(!sitemap.includes('/search/'), 'Noindex search routes in sitemap');
+for (const route of draftRoutes) assert.ok(!sitemap.includes(route), `Draft in sitemap: ${route}`);
 for (const locale of ['en', 'ja']) {
   assert.ok(sitemap.includes(`/${locale}/characters/`), 'Substantive character directory missing from sitemap');
   const roster = await readFile(`dist/${locale}/characters/index.html`, 'utf8');
   assert.equal(roster.includes('name="robots" content="noindex'), isPreview, 'Character indexing does not match the deployment environment');
   assert.equal((roster.match(/data-profile-card/g) || []).length, 20, 'Character dossier missing');
-  for (const suffix of ['guides/mystery-unveiled', 'guides/combat-basics', 'guides/curious-deductions', 'guides/morgue-street', 'tools/event-rewards', 'tools/glossary']) {
+  for (const suffix of ['guides/beginner-guide', 'guides/mystery-unveiled', 'guides/combat-basics', 'guides/curious-deductions', 'guides/morgue-street', 'tools/event-rewards', 'tools/glossary']) {
     const route = `/${locale}/${suffix}/`;
     assert.ok(sitemap.includes(`<loc>${site}${route}</loc>`), `${route}: missing from sitemap`);
     const html = await readFile(`dist${route}index.html`, 'utf8');
