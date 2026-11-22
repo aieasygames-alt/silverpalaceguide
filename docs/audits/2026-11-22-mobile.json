@@ -1,0 +1,951 @@
+{
+  "date": "2026-11-22",
+  "timezone": "Asia/Shanghai",
+  "site": "https://silverpalaceguide.com",
+  "codeCommit": "4a8d735eb52ce499387f0c3089b3b09ea61581cd",
+  "environment": {
+    "service": "Google PageSpeed Insights",
+    "formFactor": "mobile",
+    "device": "Moto G Power (service preset)",
+    "network": "Slow 4G (service preset)",
+    "cpu": "Service-managed preset; numeric multiplier not exposed in report UI.",
+    "lighthouse": "13.6.0",
+    "browser": "HeadlessChromium 157.0.8103.38",
+    "load": "Initial page load, single-page session, three fresh reports per URL"
+  },
+  "fieldData": null,
+  "summary": [
+    {
+      "path": "/en/",
+      "performance": 100,
+      "accessibility": 100,
+      "bestPractices": 100,
+      "lcpMs": 1502,
+      "cls": 0,
+      "tbtMs": 0
+    },
+    {
+      "path": "/ja/",
+      "performance": 100,
+      "accessibility": 100,
+      "bestPractices": 100,
+      "lcpMs": 1502,
+      "cls": 0,
+      "tbtMs": 0
+    },
+    {
+      "path": "/en/guides/reading-case-hints/",
+      "performance": 100,
+      "accessibility": 100,
+      "bestPractices": 100,
+      "lcpMs": 902,
+      "cls": 0,
+      "tbtMs": 0
+    },
+    {
+      "path": "/ja/guides/reading-case-hints/",
+      "performance": 100,
+      "accessibility": 100,
+      "bestPractices": 100,
+      "lcpMs": 901,
+      "cls": 0,
+      "tbtMs": 0
+    },
+    {
+      "path": "/en/characters/",
+      "performance": 100,
+      "accessibility": 100,
+      "bestPractices": 100,
+      "lcpMs": 902,
+      "cls": 0,
+      "tbtMs": 0
+    },
+    {
+      "path": "/ja/characters/",
+      "performance": 100,
+      "accessibility": 100,
+      "bestPractices": 100,
+      "lcpMs": 901,
+      "cls": 0,
+      "tbtMs": 0
+    },
+    {
+      "path": "/en/search/",
+      "performance": 100,
+      "accessibility": 100,
+      "bestPractices": 100,
+      "lcpMs": 901,
+      "cls": 0.006,
+      "tbtMs": 0
+    },
+    {
+      "path": "/ja/search/",
+      "performance": 100,
+      "accessibility": 100,
+      "bestPractices": 100,
+      "lcpMs": 901,
+      "cls": 0.003,
+      "tbtMs": 0
+    },
+    {
+      "path": "/en/tools/material-planner/",
+      "performance": 100,
+      "accessibility": 100,
+      "bestPractices": 100,
+      "lcpMs": 901,
+      "cls": 0,
+      "tbtMs": 0
+    },
+    {
+      "path": "/ja/tools/material-planner/",
+      "performance": 100,
+      "accessibility": 100,
+      "bestPractices": 100,
+      "lcpMs": 901,
+      "cls": 0,
+      "tbtMs": 0
+    }
+  ],
+  "runs": [
+    {
+      "path": "/en/",
+      "run": 1,
+      "report": "https://pagespeed.web.dev/analysis/https-silverpalaceguide-com-en/u1gkfogt2r?form_factor=mobile",
+      "fcpMs": 913,
+      "lcpMs": 1352,
+      "tbtMs": 0,
+      "cls": 0,
+      "scores": [
+        {
+          "category": "performance",
+          "score": 100
+        },
+        {
+          "category": "accessibility",
+          "score": 100
+        },
+        {
+          "category": "best-practices",
+          "score": 100
+        },
+        {
+          "category": "seo",
+          "score": 100
+        }
+      ],
+      "version": "13.6.0"
+    },
+    {
+      "path": "/ja/",
+      "run": 1,
+      "report": "https://pagespeed.web.dev/analysis/https-silverpalaceguide-com-ja/cwfpus5lie?form_factor=mobile",
+      "fcpMs": 949,
+      "lcpMs": 1502,
+      "tbtMs": 0,
+      "cls": 0,
+      "scores": [
+        {
+          "category": "performance",
+          "score": 100
+        },
+        {
+          "category": "accessibility",
+          "score": 100
+        },
+        {
+          "category": "best-practices",
+          "score": 100
+        },
+        {
+          "category": "seo",
+          "score": 100
+        }
+      ],
+      "version": "13.6.0"
+    },
+    {
+      "path": "/en/guides/reading-case-hints/",
+      "run": 1,
+      "report": "https://pagespeed.web.dev/analysis/https-silverpalaceguide-com-en-guides-reading-case-hints/t850ihfbo0?form_factor=mobile",
+      "fcpMs": 902,
+      "lcpMs": 902,
+      "tbtMs": 0,
+      "cls": 0,
+      "scores": [
+        {
+          "category": "performance",
+          "score": 100
+        },
+        {
+          "category": "accessibility",
+          "score": 100
+        },
+        {
+          "category": "best-practices",
+          "score": 100
+        },
+        {
+          "category": "seo",
+          "score": 100
+        }
+      ],
+      "version": "13.6.0"
+    },
+    {
+      "path": "/ja/guides/reading-case-hints/",
+      "run": 1,
+      "report": "https://pagespeed.web.dev/analysis/https-silverpalaceguide-com-ja-guides-reading-case-hints/2fhk0sjrdv?form_factor=mobile",
+      "fcpMs": 901,
+      "lcpMs": 901,
+      "tbtMs": 0,
+      "cls": 0,
+      "scores": [
+        {
+          "category": "performance",
+          "score": 100
+        },
+        {
+          "category": "accessibility",
+          "score": 100
+        },
+        {
+          "category": "best-practices",
+          "score": 100
+        },
+        {
+          "category": "seo",
+          "score": 100
+        }
+      ],
+      "version": "13.6.0"
+    },
+    {
+      "path": "/en/characters/",
+      "run": 1,
+      "report": "https://pagespeed.web.dev/analysis/https-silverpalaceguide-com-en-characters/1px8gaqcpa?form_factor=mobile",
+      "fcpMs": 902,
+      "lcpMs": 902,
+      "tbtMs": 0,
+      "cls": 0,
+      "scores": [
+        {
+          "category": "performance",
+          "score": 100
+        },
+        {
+          "category": "accessibility",
+          "score": 100
+        },
+        {
+          "category": "best-practices",
+          "score": 100
+        },
+        {
+          "category": "seo",
+          "score": 69
+        }
+      ],
+      "version": "13.6.0"
+    },
+    {
+      "path": "/ja/characters/",
+      "run": 1,
+      "report": "https://pagespeed.web.dev/analysis/https-silverpalaceguide-com-ja-characters/n3085osqcr?form_factor=mobile",
+      "fcpMs": 901,
+      "lcpMs": 901,
+      "tbtMs": 0,
+      "cls": 0,
+      "scores": [
+        {
+          "category": "performance",
+          "score": 100
+        },
+        {
+          "category": "accessibility",
+          "score": 100
+        },
+        {
+          "category": "best-practices",
+          "score": 100
+        },
+        {
+          "category": "seo",
+          "score": 69
+        }
+      ],
+      "version": "13.6.0"
+    },
+    {
+      "path": "/en/search/",
+      "run": 1,
+      "report": "https://pagespeed.web.dev/analysis/https-silverpalaceguide-com-en-search/dgk2v5vran?form_factor=mobile",
+      "fcpMs": 901,
+      "lcpMs": 901,
+      "tbtMs": 0,
+      "cls": 0.006,
+      "scores": [
+        {
+          "category": "performance",
+          "score": 100
+        },
+        {
+          "category": "accessibility",
+          "score": 100
+        },
+        {
+          "category": "best-practices",
+          "score": 100
+        },
+        {
+          "category": "seo",
+          "score": 66
+        }
+      ],
+      "version": "13.6.0"
+    },
+    {
+      "path": "/ja/search/",
+      "run": 1,
+      "report": "https://pagespeed.web.dev/analysis/https-silverpalaceguide-com-ja-search/qxy1qx7hf2?form_factor=mobile",
+      "fcpMs": 901,
+      "lcpMs": 901,
+      "tbtMs": 0,
+      "cls": 0.003,
+      "scores": [
+        {
+          "category": "performance",
+          "score": 100
+        },
+        {
+          "category": "accessibility",
+          "score": 100
+        },
+        {
+          "category": "best-practices",
+          "score": 100
+        },
+        {
+          "category": "seo",
+          "score": 66
+        }
+      ],
+      "version": "13.6.0"
+    },
+    {
+      "path": "/en/tools/material-planner/",
+      "run": 1,
+      "report": "https://pagespeed.web.dev/analysis/https-silverpalaceguide-com-en-tools-material-planner/v286qs4ekh?form_factor=mobile",
+      "fcpMs": 901,
+      "lcpMs": 901,
+      "tbtMs": 0,
+      "cls": 0,
+      "scores": [
+        {
+          "category": "performance",
+          "score": 100
+        },
+        {
+          "category": "accessibility",
+          "score": 100
+        },
+        {
+          "category": "best-practices",
+          "score": 100
+        },
+        {
+          "category": "seo",
+          "score": 100
+        }
+      ],
+      "version": "13.6.0"
+    },
+    {
+      "path": "/ja/tools/material-planner/",
+      "run": 1,
+      "report": "https://pagespeed.web.dev/analysis/https-silverpalaceguide-com-ja-tools-material-planner/esd3l9qlxm?form_factor=mobile",
+      "fcpMs": 901,
+      "lcpMs": 901,
+      "tbtMs": 0,
+      "cls": 0,
+      "scores": [
+        {
+          "category": "performance",
+          "score": 100
+        },
+        {
+          "category": "accessibility",
+          "score": 100
+        },
+        {
+          "category": "best-practices",
+          "score": 100
+        },
+        {
+          "category": "seo",
+          "score": 100
+        }
+      ],
+      "version": "13.6.0"
+    },
+    {
+      "path": "/en/",
+      "run": 2,
+      "report": "https://pagespeed.web.dev/analysis/https-silverpalaceguide-com-en/w6opqmxjtu?form_factor=mobile",
+      "fcpMs": 921,
+      "lcpMs": 1503,
+      "tbtMs": 0,
+      "cls": 0,
+      "scores": [
+        {
+          "category": "performance",
+          "score": 100
+        },
+        {
+          "category": "accessibility",
+          "score": 100
+        },
+        {
+          "category": "best-practices",
+          "score": 100
+        },
+        {
+          "category": "seo",
+          "score": 100
+        }
+      ],
+      "version": "13.6.0"
+    },
+    {
+      "path": "/ja/",
+      "run": 2,
+      "report": "https://pagespeed.web.dev/analysis/https-silverpalaceguide-com-ja/t4jg0gydfu?form_factor=mobile",
+      "fcpMs": 945,
+      "lcpMs": 1502,
+      "tbtMs": 0,
+      "cls": 0,
+      "scores": [
+        {
+          "category": "performance",
+          "score": 100
+        },
+        {
+          "category": "accessibility",
+          "score": 100
+        },
+        {
+          "category": "best-practices",
+          "score": 100
+        },
+        {
+          "category": "seo",
+          "score": 100
+        }
+      ],
+      "version": "13.6.0"
+    },
+    {
+      "path": "/en/guides/reading-case-hints/",
+      "run": 2,
+      "report": "https://pagespeed.web.dev/analysis/https-silverpalaceguide-com-en-guides-reading-case-hints/qmpg7977w8?form_factor=mobile",
+      "fcpMs": 901,
+      "lcpMs": 901,
+      "tbtMs": 0,
+      "cls": 0,
+      "scores": [
+        {
+          "category": "performance",
+          "score": 100
+        },
+        {
+          "category": "accessibility",
+          "score": 100
+        },
+        {
+          "category": "best-practices",
+          "score": 100
+        },
+        {
+          "category": "seo",
+          "score": 100
+        }
+      ],
+      "version": "13.6.0"
+    },
+    {
+      "path": "/ja/guides/reading-case-hints/",
+      "run": 2,
+      "report": "https://pagespeed.web.dev/analysis/https-silverpalaceguide-com-ja-guides-reading-case-hints/ldnxf7wjc7?form_factor=mobile",
+      "fcpMs": 901,
+      "lcpMs": 901,
+      "tbtMs": 0,
+      "cls": 0,
+      "scores": [
+        {
+          "category": "performance",
+          "score": 100
+        },
+        {
+          "category": "accessibility",
+          "score": 100
+        },
+        {
+          "category": "best-practices",
+          "score": 100
+        },
+        {
+          "category": "seo",
+          "score": 100
+        }
+      ],
+      "version": "13.6.0"
+    },
+    {
+      "path": "/en/characters/",
+      "run": 2,
+      "report": "https://pagespeed.web.dev/analysis/https-silverpalaceguide-com-en-characters/4dg1gtnd5r?form_factor=mobile",
+      "fcpMs": 902,
+      "lcpMs": 902,
+      "tbtMs": 0,
+      "cls": 0,
+      "scores": [
+        {
+          "category": "performance",
+          "score": 100
+        },
+        {
+          "category": "accessibility",
+          "score": 100
+        },
+        {
+          "category": "best-practices",
+          "score": 100
+        },
+        {
+          "category": "seo",
+          "score": 69
+        }
+      ],
+      "version": "13.6.0"
+    },
+    {
+      "path": "/ja/characters/",
+      "run": 2,
+      "report": "https://pagespeed.web.dev/analysis/https-silverpalaceguide-com-ja-characters/c7izwtgmm5?form_factor=mobile",
+      "fcpMs": 902,
+      "lcpMs": 902,
+      "tbtMs": 0,
+      "cls": 0,
+      "scores": [
+        {
+          "category": "performance",
+          "score": 100
+        },
+        {
+          "category": "accessibility",
+          "score": 100
+        },
+        {
+          "category": "best-practices",
+          "score": 100
+        },
+        {
+          "category": "seo",
+          "score": 69
+        }
+      ],
+      "version": "13.6.0"
+    },
+    {
+      "path": "/en/search/",
+      "run": 2,
+      "report": "https://pagespeed.web.dev/analysis/https-silverpalaceguide-com-en-search/q67g7nrmig?form_factor=mobile",
+      "fcpMs": 901,
+      "lcpMs": 901,
+      "tbtMs": 0,
+      "cls": 0.006,
+      "scores": [
+        {
+          "category": "performance",
+          "score": 100
+        },
+        {
+          "category": "accessibility",
+          "score": 100
+        },
+        {
+          "category": "best-practices",
+          "score": 100
+        },
+        {
+          "category": "seo",
+          "score": 66
+        }
+      ],
+      "version": "13.6.0"
+    },
+    {
+      "path": "/ja/search/",
+      "run": 2,
+      "report": "https://pagespeed.web.dev/analysis/https-silverpalaceguide-com-ja-search/maea0r1nnu?form_factor=mobile",
+      "fcpMs": 901,
+      "lcpMs": 901,
+      "tbtMs": 0,
+      "cls": 0.003,
+      "scores": [
+        {
+          "category": "performance",
+          "score": 100
+        },
+        {
+          "category": "accessibility",
+          "score": 100
+        },
+        {
+          "category": "best-practices",
+          "score": 100
+        },
+        {
+          "category": "seo",
+          "score": 66
+        }
+      ],
+      "version": "13.6.0"
+    },
+    {
+      "path": "/en/tools/material-planner/",
+      "run": 2,
+      "report": "https://pagespeed.web.dev/analysis/https-silverpalaceguide-com-en-tools-material-planner/m5il0vt8wu?form_factor=mobile",
+      "fcpMs": 901,
+      "lcpMs": 901,
+      "tbtMs": 0,
+      "cls": 0,
+      "scores": [
+        {
+          "category": "performance",
+          "score": 100
+        },
+        {
+          "category": "accessibility",
+          "score": 100
+        },
+        {
+          "category": "best-practices",
+          "score": 100
+        },
+        {
+          "category": "seo",
+          "score": 100
+        }
+      ],
+      "version": "13.6.0"
+    },
+    {
+      "path": "/ja/tools/material-planner/",
+      "run": 2,
+      "report": "https://pagespeed.web.dev/analysis/https-silverpalaceguide-com-ja-tools-material-planner/31hijpu8fj?form_factor=mobile",
+      "fcpMs": 901,
+      "lcpMs": 1201,
+      "tbtMs": 0,
+      "cls": 0,
+      "scores": [
+        {
+          "category": "performance",
+          "score": 100
+        },
+        {
+          "category": "accessibility",
+          "score": 100
+        },
+        {
+          "category": "best-practices",
+          "score": 100
+        },
+        {
+          "category": "seo",
+          "score": 100
+        }
+      ],
+      "version": "13.6.0"
+    },
+    {
+      "path": "/en/",
+      "run": 3,
+      "report": "https://pagespeed.web.dev/analysis/https-silverpalaceguide-com-en/raz0mpmx7s?form_factor=mobile",
+      "fcpMs": 924,
+      "lcpMs": 1502,
+      "tbtMs": 0,
+      "cls": 0,
+      "scores": [
+        {
+          "category": "performance",
+          "score": 100
+        },
+        {
+          "category": "accessibility",
+          "score": 100
+        },
+        {
+          "category": "best-practices",
+          "score": 100
+        },
+        {
+          "category": "seo",
+          "score": 100
+        }
+      ],
+      "version": "13.6.0"
+    },
+    {
+      "path": "/ja/",
+      "run": 3,
+      "report": "https://pagespeed.web.dev/analysis/https-silverpalaceguide-com-ja/1el8jflkt7?form_factor=mobile",
+      "fcpMs": 951,
+      "lcpMs": 1362,
+      "tbtMs": 0,
+      "cls": 0,
+      "scores": [
+        {
+          "category": "performance",
+          "score": 100
+        },
+        {
+          "category": "accessibility",
+          "score": 100
+        },
+        {
+          "category": "best-practices",
+          "score": 100
+        },
+        {
+          "category": "seo",
+          "score": 100
+        }
+      ],
+      "version": "13.6.0"
+    },
+    {
+      "path": "/en/guides/reading-case-hints/",
+      "run": 3,
+      "report": "https://pagespeed.web.dev/analysis/https-silverpalaceguide-com-en-guides-reading-case-hints/5tuln8kloh?form_factor=mobile",
+      "fcpMs": 902,
+      "lcpMs": 902,
+      "tbtMs": 0,
+      "cls": 0,
+      "scores": [
+        {
+          "category": "performance",
+          "score": 100
+        },
+        {
+          "category": "accessibility",
+          "score": 100
+        },
+        {
+          "category": "best-practices",
+          "score": 100
+        },
+        {
+          "category": "seo",
+          "score": 100
+        }
+      ],
+      "version": "13.6.0"
+    },
+    {
+      "path": "/ja/guides/reading-case-hints/",
+      "run": 3,
+      "report": "https://pagespeed.web.dev/analysis/https-silverpalaceguide-com-ja-guides-reading-case-hints/ayqxg8or0e?form_factor=mobile",
+      "fcpMs": 901,
+      "lcpMs": 901,
+      "tbtMs": 0,
+      "cls": 0,
+      "scores": [
+        {
+          "category": "performance",
+          "score": 100
+        },
+        {
+          "category": "accessibility",
+          "score": 100
+        },
+        {
+          "category": "best-practices",
+          "score": 100
+        },
+        {
+          "category": "seo",
+          "score": 100
+        }
+      ],
+      "version": "13.6.0"
+    },
+    {
+      "path": "/en/characters/",
+      "run": 3,
+      "report": "https://pagespeed.web.dev/analysis/https-silverpalaceguide-com-en-characters/sjhyt110x3?form_factor=mobile",
+      "fcpMs": 901,
+      "lcpMs": 901,
+      "tbtMs": 0,
+      "cls": 0,
+      "scores": [
+        {
+          "category": "performance",
+          "score": 100
+        },
+        {
+          "category": "accessibility",
+          "score": 100
+        },
+        {
+          "category": "best-practices",
+          "score": 100
+        },
+        {
+          "category": "seo",
+          "score": 69
+        }
+      ],
+      "version": "13.6.0"
+    },
+    {
+      "path": "/ja/characters/",
+      "run": 3,
+      "report": "https://pagespeed.web.dev/analysis/https-silverpalaceguide-com-ja-characters/77kys7uqo7?form_factor=mobile",
+      "fcpMs": 901,
+      "lcpMs": 901,
+      "tbtMs": 0,
+      "cls": 0,
+      "scores": [
+        {
+          "category": "performance",
+          "score": 100
+        },
+        {
+          "category": "accessibility",
+          "score": 100
+        },
+        {
+          "category": "best-practices",
+          "score": 100
+        },
+        {
+          "category": "seo",
+          "score": 69
+        }
+      ],
+      "version": "13.6.0"
+    },
+    {
+      "path": "/en/search/",
+      "run": 3,
+      "report": "https://pagespeed.web.dev/analysis/https-silverpalaceguide-com-en-search/kyz2mx20nf?form_factor=mobile",
+      "fcpMs": 902,
+      "lcpMs": 902,
+      "tbtMs": 0,
+      "cls": 0.006,
+      "scores": [
+        {
+          "category": "performance",
+          "score": 100
+        },
+        {
+          "category": "accessibility",
+          "score": 100
+        },
+        {
+          "category": "best-practices",
+          "score": 100
+        },
+        {
+          "category": "seo",
+          "score": 66
+        }
+      ],
+      "version": "13.6.0"
+    },
+    {
+      "path": "/ja/search/",
+      "run": 3,
+      "report": "https://pagespeed.web.dev/analysis/https-silverpalaceguide-com-ja-search/nl5mlfmbbf?form_factor=mobile",
+      "fcpMs": 901,
+      "lcpMs": 901,
+      "tbtMs": 0,
+      "cls": 0.003,
+      "scores": [
+        {
+          "category": "performance",
+          "score": 100
+        },
+        {
+          "category": "accessibility",
+          "score": 100
+        },
+        {
+          "category": "best-practices",
+          "score": 100
+        },
+        {
+          "category": "seo",
+          "score": 66
+        }
+      ],
+      "version": "13.6.0"
+    },
+    {
+      "path": "/en/tools/material-planner/",
+      "run": 3,
+      "report": "https://pagespeed.web.dev/analysis/https-silverpalaceguide-com-en-tools-material-planner/c7z0ma3z9i?form_factor=mobile",
+      "fcpMs": 901,
+      "lcpMs": 901,
+      "tbtMs": 0,
+      "cls": 0,
+      "scores": [
+        {
+          "category": "performance",
+          "score": 100
+        },
+        {
+          "category": "accessibility",
+          "score": 100
+        },
+        {
+          "category": "best-practices",
+          "score": 100
+        },
+        {
+          "category": "seo",
+          "score": 100
+        }
+      ],
+      "version": "13.6.0"
+    },
+    {
+      "path": "/ja/tools/material-planner/",
+      "run": 3,
+      "report": "https://pagespeed.web.dev/analysis/https-silverpalaceguide-com-ja-tools-material-planner/6ie4sf2zq4?form_factor=mobile",
+      "fcpMs": 901,
+      "lcpMs": 901,
+      "tbtMs": 0,
+      "cls": 0,
+      "scores": [
+        {
+          "category": "performance",
+          "score": 100
+        },
+        {
+          "category": "accessibility",
+          "score": 100
+        },
+        {
+          "category": "best-practices",
+          "score": 100
+        },
+        {
+          "category": "seo",
+          "score": 100
+        }
+      ],
+      "version": "13.6.0"
+    }
+  ]
+}
