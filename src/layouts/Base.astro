@@ -5,6 +5,7 @@ import '@fontsource/dm-sans/latin-500.css';
 import '@fontsource/dm-sans/latin-600.css';
 import '../styles/global.css';
 import Icon from '../components/Icon.astro';
+import SiteBrand from '../components/SiteBrand.astro';
 import { text, path, navPaths, type Locale } from '../lib/i18n';
 interface Props { locale: Locale; title: string; description: string; section?: string; noindex?: boolean; alternatePath?: string; }
 const { locale, title, description, section, noindex = false, alternatePath } = Astro.props;
@@ -38,14 +39,14 @@ const isPreview = import.meta.env.PREVIEW_NOINDEX === '1' || (import.meta.env.CF
     <div class="utility"><div class="shell utility-inner"><span><span class="status-dot"></span>{t.unofficial}</span><a href={path(locale, 'guides/launch-preparation')}>{t.launch}<Icon name="diagonal" size={12}/></a></div></div>
     <header class="site-header" data-pagefind-ignore>
       <div class="shell masthead">
-        <a class="brand" href={path(locale)} aria-label="Silver Palace Guide — home"><img src="/favicon.svg" width="43" height="43" alt=""/><span>SILVER PALACE<span class="brand-sub">G U I D E</span></span></a>
+        <SiteBrand locale={locale}/>
         <span class="masthead-note">{locale === 'en' ? 'A little direction.\nA lot to discover.' : '少しのヒントで、\nもっと遠くへ。'}</span>
         <div class="masthead-actions"><a class="search-link" href={path(locale, 'search')} aria-label={t.search}><Icon name="search" size={18}/><span>{t.search}</span><kbd>/</kbd></a><a class="language-switch" href={path(t.otherLocale, alternatePath ?? suffix)} lang={t.otherLocale} aria-label={t.otherLanguage}>{t.otherLanguage}<span aria-hidden="true">↗</span></a><button class="menu-toggle" aria-expanded="false" aria-controls="main-nav">{t.menu}<Icon name="plus" size={18}/></button></div>
       </div>
       <div class="nav-wrap"><nav id="main-nav" class="shell main-nav" aria-label={locale === 'en' ? 'Main navigation' : 'メインナビゲーション'}><a class:list={['home-link', { active: !section }]} href={path(locale)} aria-current={!section ? 'page' : undefined}>{t.home}</a><div class="nav-sections">{navPaths.map((navPath, i) => <a href={path(locale, navPath)} class:list={{ active: section === navPath }} aria-current={section === navPath ? 'page' : undefined}>{t.nav[i]}</a>)}</div><a class="official-link" href="https://silverpalace.elementagames.com/en-us/" target="_blank" rel="noopener noreferrer">{t.official}<Icon name="diagonal" size={13}/></a></nav></div>
     </header>
     <main id="main"><slot /></main>
-    <footer data-pagefind-ignore><div class="shell footer-top"><a class="brand footer-brand" href={path(locale)}><img src="/favicon.svg" width="34" height="34" alt=""/><span>SILVER PALACE<span class="brand-sub">G U I D E</span></span></a><p>{t.footer}</p><div><a href={path(locale, 'about')}>{t.about}</a><a href={path(locale, 'privacy')}>{t.privacy}</a></div></div><div class="shell footer-bottom"><p>{t.disclaimer}</p><span>© 2026 Silver Palace Guide</span></div></footer>
+    <footer data-pagefind-ignore><div class="shell footer-top"><SiteBrand locale={locale} footer/><p>{t.footer}</p><div><a href={path(locale, 'about')}>{t.about}</a><a href={path(locale, 'privacy')}>{t.privacy}</a></div></div><div class="shell footer-bottom"><p>{t.disclaimer}</p><span>© 2026 Silver Palace Guide</span></div></footer>
     <script>
       const menu = document.querySelector<HTMLButtonElement>('.menu-toggle');
       menu?.addEventListener('click', () => { const expanded = menu.getAttribute('aria-expanded') === 'true'; menu.setAttribute('aria-expanded', String(!expanded)); document.querySelector('.nav-wrap')?.classList.toggle('is-open', !expanded); });

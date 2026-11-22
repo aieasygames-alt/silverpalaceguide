@@ -1,0 +1,12 @@
+---
+import { path, type Locale } from '../lib/i18n';
+interface Props { locale: Locale; footer?: boolean; }
+const { locale, footer = false } = Astro.props;
+---
+<a class:list={['brand', { 'footer-brand': footer }]} href={path(locale)} aria-label={locale === 'en' ? 'Silver Palace Guide — home' : 'Silver Palace Guide — ホーム'}>
+  <!-- Frame the wordmark within its original square; preserve the supplied image bytes. -->
+  <svg class="brand-wordmark" width="228" height="42" viewBox="12 198 456 84" aria-hidden="true" focusable="false">
+    <image href="/images/silver-palace-wordmark-en.webp" width="480" height="480" />
+  </svg>
+  <span class="brand-sub">INDEPENDENT GUIDE</span>
+</a>
