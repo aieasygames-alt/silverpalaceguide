@@ -5,6 +5,7 @@
 第一版围绕三个特色建设：案件分级提示、探索攻略、养成工具。部署采用 Astro 静态生成与 Cloudflare Pages。
 
 - 公开仓库：[aieasygames-alt/silverpalaceguide](https://github.com/aieasygames-alt/silverpalaceguide)
+- 正式站点：[English](https://silverpalaceguide.com/en/) / [日本語](https://silverpalaceguide.com/ja/)
 - Pages 项目：`silverpalaceguide`，默认地址 `https://silverpalaceguide.pages.dev`
 - 发布方式：Pages 原生 GitHub 集成，推送 `main` 自动检查、构建并发布；其他分支生成预览。
 
@@ -23,7 +24,7 @@
 | 默认语言 | 英语 `en` |
 | 首批扩展 | 日语 `ja` 核心内容 |
 | 后续语言 | 优先评估韩语；中文可作为补充 |
-| 已注册域名 | `silverpalaceguide.com`；站点规范地址已配置，待绑定 Pages |
+| 正式域名 | `silverpalaceguide.com`；Pages 绑定、HTTPS 和 www 301 已验收 |
 | 技术方向 | Astro、TypeScript、Markdown/MDX、结构化 JSON、Pagefind |
 | 部署 | Cloudflare Pages，GitHub 集成 |
 | 首版账户与进度 | 无账户；收藏、提示展开及清单进度保存在浏览器 |
@@ -62,6 +63,6 @@ npm run preview
 
 参见 [部署说明](docs/deployment.md) 和 [实施记录](docs/implementation-status.md)。
 
-GitHub 自动部署的生产与预览验收见 [部署验收记录](docs/deployment-verification.md)。自定义域名的 DNS 切换尚待应用，当前可使用 Pages 默认域名访问。
+GitHub 自动部署的生产与预览验收见 [部署验收记录](docs/deployment-verification.md)。正式域名已上线，DNS、证书与 www 跳转见 [域名验收记录](docs/domain-dns-change.md)。
 
 第二阶段的案件、路线、材料区间与翻译修订接入规范见 [攻略内容流程](docs/content-workflow.md)，当前结果见 [下一阶段执行进展](docs/next-phase-plan.md)。公开真实攻略仍依赖可核验的实测资料；开发样例不发布。

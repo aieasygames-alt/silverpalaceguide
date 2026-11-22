@@ -13,7 +13,7 @@ async function request(path) {
   return { path, response, body: await response.text() };
 }
 
-const routes = ['/', '/en/', '/ja/', '/en/search/', '/en/characters/', '/robots.txt', '/sitemap-index.xml', '/__deployment_check_missing__/', '/images/social/default-en.jpg', '/images/social/default-ja.jpg', '/en/cases/fixture-case/', '/en/exploration/fixture-route/', '/en/qa-preview/'];
+const routes = ['/', '/en/', '/ja/', '/en/search/', '/en/characters/', '/robots.txt', '/sitemap-index.xml', '/sitemap-0.xml', '/__deployment_check_missing__/', '/images/social/default-en.jpg', '/images/social/default-ja.jpg', '/en/cases/fixture-case/', '/en/exploration/fixture-route/', '/en/qa-preview/'];
 const results = await Promise.allSettled(routes.map(request));
 const failures = [];
 for (let index = 0; index < results.length; index++) {
@@ -34,7 +34,9 @@ for (let index = 0; index < results.length; index++) {
       const language = path.slice(1, 3);
       assert.ok(body.includes(`<html lang="${language}">`));
       assert.ok(body.includes(`rel="canonical" href="${canonical}${path}"`));
-      assert.ok(body.includes('hreflang="en"') && body.includes('hreflang="ja"'));
+      for (const alternate of ['en', 'ja']) {
+        assert.ok(body.includes(`hreflang="${alternate}" href="${canonical}/${alternate}/"`), 'Alternate language must use the canonical domain');
+      }
       assert.equal(/<meta\b[^>]*name="robots"[^>]*content="[^"]*noindex/.test(body), preview, 'Indexing metadata does not match the environment');
       assert.ok(response.headers.get('content-security-policy')?.includes("script-src 'self' 'wasm-unsafe-eval'"), 'Pages CSP missing');
       assert.equal(response.headers.get('x-content-type-options'), 'nosniff');
@@ -51,8 +53,31 @@ for (let index = 0; index < results.length; index++) {
       else assert.ok(body.includes('Allow: /') && body.includes(`Sitemap: ${canonical}/sitemap-index.xml`));
     }
     if (path === '/sitemap-index.xml') assert.ok(body.includes(`${canonical}/sitemap-0.xml`));
+    if (path === '/sitemap-0.xml') {
+      const locations = [...body.matchAll(/<loc>([^<]+)<\/loc>/g)].map(match => match[1]);
+      assert.ok(locations.includes(`${canonical}/en/`) && locations.includes(`${canonical}/ja/`), 'Sitemap must include both homepages');
+      assert.ok(locations.every(location => new URL(location).origin === canonical), 'Sitemap URLs must use the canonical domain');
+    }
     console.log(`PASS ${path} (${response.status})`);
   } catch (error) { failures.push(`${path}: ${error.message}`); }
+}
+if (!preview && base.origin === canonical) {
+  const paths = ['/', '/en/tools/material-planner/?ref=domain-check&locale=en', '/ja/exploration/?ref=domain-check%20ja'];
+  const redirects = await Promise.allSettled(paths.flatMap(path => ['http:', 'https:'].map(async protocol => {
+    const source = new URL(path, `${protocol}//www.silverpalaceguide.com`);
+    const response = await fetch(source, { redirect: 'manual', signal: AbortSignal.timeout(20_000) });
+    try {
+      assert.equal(response.status, 301, 'WWW must return a permanent redirect');
+      assert.equal(response.headers.get('location'), new URL(path, canonical).href, 'WWW must preserve the path and query string');
+      return `PASS ${source.href} → ${response.headers.get('location')} (301)`;
+    } finally {
+      await response.body?.cancel();
+    }
+  })));
+  for (const result of redirects) {
+    if (result.status === 'rejected') failures.push(`WWW redirect: ${result.reason.message}`);
+    else console.log(result.value);
+  }
 }
 assert.equal(failures.length, 0, failures.join('\n'));
 console.log(`Verified ${preview ? 'preview' : 'production'} deployment at ${base.origin}`);

@@ -11,16 +11,16 @@
 - 使用 Pages 原生 GitHub 集成，不依赖 GitHub Actions 部署凭据。项目中不保存 Cloudflare 或 GitHub 令牌。
 - 已验证 `github:push` 自动部署：提交 `5f7791f` 对应部署 `83ca6f46-d0e5-4a2a-9402-f1e5562b9eb6`，GitHub 检查和 Pages 发布均成功。
 
-## 域名解析待应用
+## 正式域名与重定向
 
-主域与 `www` 已登记到 Pages 自定义域名，DNS 仍需从注册时的 A 记录切换。
+2026-11-22 已按用户确认替换注册时的两条 A 记录，主域与 `www` 均为 Pages **Active / SSL enabled**。
 
-| 现有记录 | 拟应用记录 |
+| 原记录（回溯） | 已应用记录 |
 | --- | --- |
 | `silverpalaceguide.com`，A，`54.149.79.189`，Proxied，Auto | `silverpalaceguide.com`，CNAME，`silverpalaceguide.pages.dev`，Proxied，Auto |
 | `silverpalaceguide.com`，A，`34.216.117.25`，Proxied，Auto | `www.silverpalaceguide.com`，CNAME，`silverpalaceguide.pages.dev`，Proxied，Auto |
 
-现有命令行凭据具有 Pages 权限，但没有 DNS 权限。控制台更改记录类型会删除旧记录并重建，等待用户确认后应用；当前未保存 DNS 修改。应用后需要验证自定义域名状态、HTTPS 与 `www` 重定向。以上原始值保留用于回溯。
+正式入口：<https://silverpalaceguide.com/en/>、<https://silverpalaceguide.com/ja/>。`www` 在 Cloudflare 区级 Single Redirects 中 301 到 HTTPS 主域，保留路径和查询参数。规则名、匹配表达式与验收记录见 [DNS 切换验收](domain-dns-change.md)。
 
 ## 构建方式
 
@@ -57,7 +57,7 @@ Git 仓库和 Pages 项目已创建并关联。本地目录可独立完成构建
 
 1. 在 Pages 项目的 Custom domains 中添加 `silverpalaceguide.com`，按 Cloudflare 提示完成 DNS 验证与绑定。
 2. 如使用 `www`，同时添加并验证 `www.silverpalaceguide.com`；只创建 DNS 记录不足以完成 Pages 域名绑定。
-3. `public/_redirects` 将根路径定向到 `/en/`，将 `www` 定向到主域。
+3. `public/_redirects` 将根路径 302 定向到 `/en/`。Pages 不支持域名级 `_redirects` 源地址；`www` 到主域由 Cloudflare 区级 Single Redirect `WWW to canonical HTTPS` 负责。
 4. `public/_headers` 配置安全头和带内容哈希资源的长缓存；允许搜索使用 WebAssembly，但不开放任意脚本求值。
 5. 如以后增加统计或外部资源，需同时审阅 CSP 与隐私说明。
 
@@ -80,14 +80,15 @@ npm run preview
 - 验证响应 CSP 生效时，Pagefind 搜索仍能运行。
 - 远程 Pages 平台规则需要部署后再次验证，本地 Astro 预览不模拟 `_headers` 和 `_redirects` 的全部行为。
 
-部署后可重复运行只读检查（自定义域名生效前使用 Pages 默认域名）：
+部署后可重复运行只读检查：
 
 ```sh
+npm run verify:deployment -- https://silverpalaceguide.com
 npm run verify:deployment -- https://silverpalaceguide.pages.dev
 npm run verify:deployment -- https://<branch-preview-hostname> --preview
 ```
 
-该检查验证英日页面、规范地址、索引信号、安全响应头、脚本形式、根路径重定向、404 和 sitemap。搜索、清单与材料表仍需在浏览器中验证实际交互。
+该检查验证英日页面、规范地址、语言替代地址、索引信号、安全响应头、脚本形式、分享图片、根路径重定向、404 和 sitemap。对正式主域额外检查 HTTP/HTTPS 的 www 301 及路径和查询参数保留。搜索、清单与材料表仍需在浏览器中验证实际交互。
 
 ## 内容发布与数据范围
 
