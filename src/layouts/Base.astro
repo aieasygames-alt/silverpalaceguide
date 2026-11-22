@@ -1,8 +1,7 @@
 ---
-import '@fontsource/cormorant-garamond/latin-600.css';
-import '@fontsource/dm-sans/latin-400.css';
-import '@fontsource/dm-sans/latin-500.css';
-import '@fontsource/dm-sans/latin-600.css';
+import '../styles/fonts.css';
+import serifFont from '@fontsource/cormorant-garamond/files/cormorant-garamond-latin-600-normal.woff2?url';
+import bodyFont from '@fontsource/dm-sans/files/dm-sans-latin-400-normal.woff2?url';
 import '../styles/global.css';
 import Icon from '../components/Icon.astro';
 import SiteBrand from '../components/SiteBrand.astro';
@@ -45,6 +44,8 @@ const isPreview = import.meta.env.PREVIEW_NOINDEX === '1' || (import.meta.env.CF
     <meta name="twitter:image:alt" content={shareAlt} />
     <meta name="theme-color" content="#193c35" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preload" href={bodyFont} as="font" type="font/woff2" crossorigin />
+    {locale === 'en' && <link rel="preload" href={serifFont} as="font" type="font/woff2" crossorigin />}
     <slot name="head" />
   </head>
   <body>
