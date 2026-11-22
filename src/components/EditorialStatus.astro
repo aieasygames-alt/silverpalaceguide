@@ -1,0 +1,18 @@
+---
+import { revisionStatus, type Revision } from '../lib/editorial';
+import type { Locale } from '../lib/i18n';
+interface Props { locale: Locale; entry: Revision; original?: Revision; originalHref?: string; checkedAt?: string; server?: string; build?: string; }
+const { locale, entry, original, originalHref, checkedAt, server, build } = Astro.props;
+const en = locale === 'en';
+const state = revisionStatus(entry, original);
+---
+<div class="editorial-status" data-pagefind-ignore>
+  {state.translationOutdated && <p class="notice">{en ? 'This translation follows an older English revision.' : `この翻訳は英語版の旧リビジョン（${entry.sourceRevision}）に基づいています。英語版は現在 ${state.sourceRevision} です。`}{originalHref && <> <a href={originalHref} lang="en">{en ? 'Read the updated English guide' : '最新の英語版を読む'}</a></>}</p>}
+  {state.needsRecheck && <p class="notice">{en ? 'This page has changed since its last gameplay check. Reverification is pending.' : '最終検証後に本文が更新されています。ゲーム内での再確認待ちです。'}</p>}
+  <dl class="meta-list compact-meta">
+    {server && <div><dt>{en ? 'Server' : 'サーバー'}</dt><dd>{server}</dd></div>}
+    {build && <div><dt>{en ? 'Build' : 'バージョン'}</dt><dd>{build}</dd></div>}
+    {checkedAt && <div><dt>{en ? 'Checked' : '確認日'}</dt><dd><time datetime={checkedAt}>{checkedAt}</time></dd></div>}
+    <div><dt>{en ? 'Revision' : 'リビジョン'}</dt><dd>{entry.revision}{!en && ` · EN ${entry.sourceRevision}`}</dd></div>
+  </dl>
+</div>

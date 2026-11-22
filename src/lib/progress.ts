@@ -16,3 +16,18 @@ export function validateNotes(input: unknown): FieldNotes {
   });
   return { type: 'spg-field-notes', schemaVersion: 1, items };
 }
+
+export interface RouteNote { id: string; text: string; }
+export function routeNoteId(routeId: string, stepId: string) {
+  if (![routeId, stepId].every((id) => /^[a-z0-9-]{1,24}$/.test(id))) throw new Error('route-id');
+  return `route_${routeId}_${stepId}`;
+}
+export function addRouteNotes(notes: FieldNotes, additions: RouteNote[]): { notes: FieldNotes; added: number } {
+  const current = validateNotes(notes);
+  // Validate everything before modifying a saved notebook. Existing text/done values win.
+  const incoming = validateNotes({ type: 'spg-field-notes', schemaVersion: 1, items: additions.map((item) => ({ ...item, done: false })) });
+  const ids = new Set(current.items.map((item) => item.id));
+  const fresh = incoming.items.filter((item) => !ids.has(item.id));
+  if (current.items.length + fresh.length > 200) throw new Error('limit');
+  return { notes: { ...current, items: [...current.items, ...fresh] }, added: fresh.length };
+}

@@ -1,6 +1,7 @@
 import { readdir, readFile, access } from 'node:fs/promises';
 import { join, extname } from 'node:path';
 import assert from 'node:assert/strict';
+import { gunzipSync } from 'node:zlib';
 
 async function filesIn(directory) {
   const entries = await readdir(directory, { withFileTypes: true });
@@ -33,13 +34,34 @@ for (const file of htmlFiles) {
     const locale = file.split('/')[1];
     assert.ok(html.includes(`<html lang="${locale}">`), `${file}: wrong language`);
     assert.ok(html.includes(`rel="canonical" href="${site}${route}"`), `${file}: wrong canonical`);
+    assert.ok(html.includes(`property="og:image" content="${site}/images/social/default-${locale}.jpg"`), `${file}: missing localized OG image`);
+    assert.ok(html.includes('name="twitter:card" content="summary_large_image"'), `${file}: missing Twitter large-image card`);
   }
-  if (html.includes('working draft') || html.includes('This draft must never')) failures.push(`${route}: draft leaked`);
+  if (/working draft|This draft must never|PRIVATE_(?:HINT|CLUE|ANSWER)_SENTINEL|fixture-case|fixture-route|fixture-character/.test(html)) failures.push(`${route}: draft leaked`);
 }
 assert.ok(!files.some((file) => file.includes('/beginner-guide/')), 'Draft route generated');
+for (const file of files.filter((file) => file.endsWith('.pf_fragment'))) {
+  const fragment = gunzipSync(await readFile(file)).toString();
+  assert.ok(!/PRIVATE_(?:HINT|CLUE|ANSWER)_SENTINEL|spg(?:hint|clue|answer)zzqx|fixture-(?:case|route|character)/.test(fragment), `${file}: private or spoiler content in search index`);
+}
 const sitemap = (await Promise.all(files.filter((file) => /sitemap.*\.xml$/.test(file)).map((file) => readFile(file, 'utf8')))).join('');
 assert.ok(!sitemap.includes('/characters/') && !sitemap.includes('/search/'), 'Noindex routes in sitemap');
 const sourceIds = new Set(JSON.parse(await readFile('src/data/sources.json', 'utf8')).map((source) => source.id));
 for (const term of JSON.parse(await readFile('src/data/glossary.json', 'utf8'))) assert.ok(term.kind === 'site-interface' || sourceIds.has(term.sourceId), `Unknown glossary source: ${term.id}`);
+for (const file of files.filter((file) => /\.(?:js|json)$/.test(file) && !file.includes('/pagefind/'))) {
+  const source = await readFile(file, 'utf8');
+  assert.ok(!/PRIVATE_(?:HINT|CLUE|ANSWER)_SENTINEL|fixture-(?:case|route|character|material)/.test(source), `${file}: private data bundled`);
+}
+for (const locale of ['en', 'ja']) {
+  const bytes = await readFile(`dist/images/social/default-${locale}.jpg`);
+  assert.equal(bytes.readUInt16BE(0), 0xffd8, 'Social image must be JPEG');
+  let found = false;
+  for (let offset = 2; offset < bytes.length;) {
+    const marker = bytes[offset + 1];
+    if ([0xc0, 0xc1, 0xc2].includes(marker)) { assert.equal(bytes.readUInt16BE(offset + 5), 630); assert.equal(bytes.readUInt16BE(offset + 7), 1200); found = true; break; }
+    offset += 2 + bytes.readUInt16BE(offset + 2);
+  }
+  assert.ok(found, 'Social image dimensions not found');
+}
 assert.equal(failures.length, 0, failures.join('\n'));
 console.log(`Verified ${htmlFiles.length} HTML pages: CSP-compatible scripts, internal assets/links, language, canonical, draft exclusion, sitemap and terminology sources.`);

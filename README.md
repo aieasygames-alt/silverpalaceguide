@@ -63,3 +63,5 @@ npm run preview
 参见 [部署说明](docs/deployment.md) 和 [实施记录](docs/implementation-status.md)。
 
 GitHub 自动部署的生产与预览验收见 [部署验收记录](docs/deployment-verification.md)。自定义域名的 DNS 切换尚待应用，当前可使用 Pages 默认域名访问。
+
+第二阶段的案件、路线、材料区间与翻译修订接入规范见 [攻略内容流程](docs/content-workflow.md)，当前结果见 [下一阶段执行进展](docs/next-phase-plan.md)。公开真实攻略仍依赖可核验的实测资料；开发样例不发布。

@@ -1,0 +1,15 @@
+import rawCases from '../data/cases.json';
+import rawRoutes from '../data/routes.json';
+import rawCharacters from '../data/characters.json';
+import rawMaterials from '../data/materials.json';
+import rawEvidence from '../data/evidence-images.json';
+import { caseSchema, routeSchema, characterSchema, materialSchema, evidenceSchema } from './game-schema';
+import type { Locale } from './i18n';
+export const cases = caseSchema.array().parse(rawCases);
+export const routes = routeSchema.array().parse(rawRoutes);
+export const characters = characterSchema.array().parse(rawCharacters);
+export const materials = materialSchema.array().parse(rawMaterials);
+export const evidenceImages = evidenceSchema.array().parse(rawEvidence);
+export const publishedCases = (locale?: Locale) => cases.filter((entry) => entry.status === 'published' && (!locale || entry.locale === locale));
+export const publishedRoutes = (locale?: Locale) => routes.filter((entry) => entry.status === 'published' && (!locale || entry.locale === locale));
+export const publishedCharacters = (locale?: Locale) => characters.filter((entry) => entry.status === 'published' && (!locale || entry.locale === locale));

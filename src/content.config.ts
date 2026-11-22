@@ -1,5 +1,6 @@
 import { defineCollection } from 'astro:content';
-import { glob } from 'astro/loaders';
+import { glob, file } from 'astro/loaders';
+import { caseSchema, routeSchema, characterSchema } from './lib/game-schema';
 import { z } from 'astro/zod';
 import sources from './data/sources.json';
 
@@ -23,4 +24,9 @@ const guides = defineCollection({
     order: z.number(),
   }),
 });
-export const collections = { guides };
+export const collections = {
+  guides,
+  cases: defineCollection({ loader: file('./src/data/cases.json'), schema: caseSchema }),
+  routes: defineCollection({ loader: file('./src/data/routes.json'), schema: routeSchema }),
+  characters: defineCollection({ loader: file('./src/data/characters.json'), schema: characterSchema }),
+};

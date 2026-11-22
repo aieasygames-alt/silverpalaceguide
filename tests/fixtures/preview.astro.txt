@@ -1,0 +1,25 @@
+---
+// Copy temporarily to src/pages/[locale]/qa-preview.astro for browser tests; never publish.
+import Base from '../../layouts/Base.astro';
+import CaseHints from '../../components/CaseHints.astro';
+import RouteSteps from '../../components/RouteSteps.astro';
+import Checklist from '../../components/Checklist.astro';
+import Planner from '../../components/Planner.astro';
+import EditorialStatus from '../../components/EditorialStatus.astro';
+import { cases, routes, characters, materials } from '../../lib/game-content';
+import { type Locale, locales } from '../../lib/i18n';
+export const getStaticPaths = () => locales.map((locale) => ({ params: { locale } }));
+const locale = Astro.params.locale as Locale;
+const entry = structuredClone(cases.find((entry) => entry.locale === locale)!);
+const route = structuredClone(routes.find((entry) => entry.locale === locale)!);
+if (locale === 'ja') route.steps.forEach((step, i) => step.checklistText = `非公開テストの手順 ${i + 1}`);
+const character = structuredClone(characters.find((entry) => entry.locale === locale)!);
+character.intervals[0].costs[0].amount = 120;
+character.intervals[0].costsComplete = true;
+character.intervals.push({ id: 'unknown', label: 'Incomplete test interval', costsComplete: false, from: 2, to: 3, costs: [{ materialId: 'fixture-material', amount: null }] });
+---
+<Base locale={locale} title="Private component verification" description="Temporary development fixture" noindex><div class="shell">
+<div data-pagefind-body><h1 style="margin-top:40px">Private fixture-case template</h1><p>Safe summary for the private test.</p><CaseHints entry={entry}/></div>
+<EditorialStatus locale={locale} entry={{ locale, revision: 2, sourceRevision: 1, checkedRevision: 1 }} original={{ locale: 'en', revision: 3, sourceRevision: 3 }} originalHref="/en/qa-preview/"/>
+<RouteSteps entry={route}/><Checklist locale={locale} routeEntries={[route]}/><Planner locale={locale} presetEntries={[character]} materialCatalog={materials}/>
+</div></Base>

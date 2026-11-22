@@ -1,0 +1,21 @@
+---
+import Base from '../../../layouts/Base.astro';
+import PageHeading from '../../../components/PageHeading.astro';
+import RouteSteps from '../../../components/RouteSteps.astro';
+import Checklist from '../../../components/Checklist.astro';
+import EvidenceImage from '../../../components/EvidenceImage.astro';
+import EditorialStatus from '../../../components/EditorialStatus.astro';
+import SourceList from '../../../components/SourceList.astro';
+import { routes, publishedRoutes } from '../../../lib/game-content';
+import { path } from '../../../lib/i18n';
+export function getStaticPaths() { return publishedRoutes().map((entry) => ({ params: { locale: entry.locale, slug: entry.slug }, props: { entry } })); }
+const { entry } = Astro.props;
+const locale = entry.locale;
+const en = locale === 'en';
+const original = routes.find((candidate) => candidate.translationId === entry.translationId && candidate.locale === 'en');
+---
+<Base locale={locale} title={entry.title} description={entry.summary} section="exploration"><div class="shell" data-pagefind-body><PageHeading locale={locale} eyebrow={en ? 'EXPLORATION ROUTE' : '探索ルート'} title={entry.title} description={entry.summary}/><div class="page-grid"><article>
+<a class="text-link" href={path(locale, 'exploration')}>{en ? '← All exploration notes' : '← 探索ノート一覧'}</a>
+<section class="panel prerequisites"><h2>{en ? 'Before setting out' : '出発前に'}</h2><dl class="meta-list"><div><dt>{en ? 'Area' : 'エリア'}</dt><dd>{entry.area}</dd></div><div><dt>{en ? 'Start' : '出発地点'}</dt><dd>{entry.start}</dd></div><div><dt>{en ? 'Complete when' : '完了条件'}</dt><dd>{entry.completion}</dd></div></dl><ul>{entry.prerequisites.map((item) => <li>{item}</li>)}</ul></section>
+{entry.safeImageIds.map((id) => <EvidenceImage id={id} locale={locale}/>)}<RouteSteps entry={entry}/><Checklist locale={locale}/><SourceList locale={locale} ids={entry.sourceIds}/>
+</article><aside class="margin-note"><EditorialStatus locale={locale} entry={entry} original={original} originalHref={path('en', `exploration/${entry.slug}`)} checkedAt={entry.checkedAt} server={entry.server} build={entry.build}/></aside></div></div></Base>

@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+<rect width="1200" height="630" fill="#f5f2eb"/>
+<rect x="884" width="316" height="630" fill="#193c35"/>
+<path d="M924 86H1160M924 544H1160" stroke="#6b8779"/>
+<path d="M1042 164L1165 315L1042 466L919 315Z" fill="none" stroke="#c7b388" stroke-width="2"/>
+<path d="M1042 211L1127 315L1042 419L957 315Z" fill="none" stroke="#698577"/>
+<circle cx="1042" cy="315" r="23" fill="none" stroke="#c7b388" stroke-width="2"/>
+<path d="M1042 275V355M1002 315H1082" stroke="#c7b388"/>
+<path d="M64 82H820" stroke="#d8d8cc"/>
+<text x="64" y="66" font-family="Arial, sans-serif" font-size="17" letter-spacing="2.3" fill="#986b43">SILVERPALACEGUIDE.COM</text>
+<text x="60" y="238" font-family="Georgia, serif" font-size="92" fill="#193c35">Silver Palace</text>
+<text x="60" y="332" font-family="Georgia, serif" font-size="92" fill="#193c35">Guide</text>
+<path d="M64 379H135" stroke="#986b43" stroke-width="3"/>
+<text x="64" y="432" font-family="Arial, Hiragino Sans, sans-serif" font-size="28" fill="#24372f">Case notes. Exploration. A little direction.</text>
+<text x="64" y="541" font-family="Arial, Hiragino Sans, sans-serif" font-size="15" letter-spacing="1.4" fill="#667169">AN INDEPENDENT SILVER PALACE FIELD GUIDE</text>
+<path d="M64 563H820" stroke="#d8d8cc"/>
+</svg>

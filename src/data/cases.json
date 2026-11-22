@@ -1,0 +1,134 @@
+[
+  {
+    "translationId": "fixture-case",
+    "slug": "fixture-case",
+    "title": "Development fixture — not game content",
+    "summary": "Private template. No game facts established.",
+    "status": "draft",
+    "revision": 1,
+    "sourceRevision": 1,
+    "checkedRevision": 1,
+    "updatedAt": "2026-11-22",
+    "checkedAt": "2026-11-22",
+    "server": "Not verified",
+    "build": "Not verified",
+    "verification": "unverified",
+    "sourceIds": [],
+    "prerequisites": [],
+    "id": "en/fixture-case",
+    "locale": "en",
+    "safeImageIds": [],
+    "stages": [
+      {
+        "id": "first",
+        "title": "First fixture stage",
+        "objective": "Private template stage; not a game objective.",
+        "clueIds": [
+          "fixture-clue"
+        ],
+        "hints": [
+          {
+            "text": "PRIVATE_HINT_SENTINEL: development nudge. spghintzzqx",
+            "imageIds": []
+          },
+          {
+            "text": "PRIVATE_CLUE_SENTINEL: development clue. spgcluezzqx",
+            "imageIds": []
+          },
+          {
+            "text": "PRIVATE_ANSWER_SENTINEL: development answer. spganswerzzqx",
+            "imageIds": []
+          }
+        ]
+      },
+      {
+        "id": "second",
+        "title": "Second fixture stage",
+        "objective": "Private template stage; not a game objective.",
+        "clueIds": [
+          "fixture-clue"
+        ],
+        "hints": [
+          {
+            "text": "PRIVATE_HINT_SENTINEL: development nudge. spghintzzqx",
+            "imageIds": []
+          },
+          {
+            "text": "PRIVATE_CLUE_SENTINEL: development clue. spgcluezzqx",
+            "imageIds": []
+          },
+          {
+            "text": "PRIVATE_ANSWER_SENTINEL: development answer. spganswerzzqx",
+            "imageIds": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "translationId": "fixture-case",
+    "slug": "fixture-case",
+    "title": "Development fixture — not game content",
+    "summary": "Private template. No game facts established.",
+    "status": "draft",
+    "revision": 1,
+    "sourceRevision": 1,
+    "checkedRevision": 1,
+    "updatedAt": "2026-11-22",
+    "checkedAt": "2026-11-22",
+    "server": "Not verified",
+    "build": "Not verified",
+    "verification": "unverified",
+    "sourceIds": [],
+    "prerequisites": [],
+    "id": "ja/fixture-case",
+    "locale": "ja",
+    "safeImageIds": [],
+    "stages": [
+      {
+        "id": "first",
+        "title": "First fixture stage",
+        "objective": "Private template stage; not a game objective.",
+        "clueIds": [
+          "fixture-clue"
+        ],
+        "hints": [
+          {
+            "text": "PRIVATE_HINT_SENTINEL: development nudge. spghintzzqx",
+            "imageIds": []
+          },
+          {
+            "text": "PRIVATE_CLUE_SENTINEL: development clue. spgcluezzqx",
+            "imageIds": []
+          },
+          {
+            "text": "PRIVATE_ANSWER_SENTINEL: development answer. spganswerzzqx",
+            "imageIds": []
+          }
+        ]
+      },
+      {
+        "id": "second",
+        "title": "Second fixture stage",
+        "objective": "Private template stage; not a game objective.",
+        "clueIds": [
+          "fixture-clue"
+        ],
+        "hints": [
+          {
+            "text": "PRIVATE_HINT_SENTINEL: development nudge. spghintzzqx",
+            "imageIds": []
+          },
+          {
+            "text": "PRIVATE_CLUE_SENTINEL: development clue. spgcluezzqx",
+            "imageIds": []
+          },
+          {
+            "text": "PRIVATE_ANSWER_SENTINEL: development answer. spganswerzzqx",
+            "imageIds": []
+          }
+        ]
+      }
+    ]
+  }
+]

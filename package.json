@@ -9,10 +9,11 @@
   "scripts": {
     "dev": "astro dev --host 127.0.0.1",
     "check": "astro check",
-    "build": "astro build && pagefind --site dist && node scripts/verify-build.mjs",
+    "build": "npm run verify:content && astro build && pagefind --site dist && node scripts/verify-build.mjs",
     "preview": "astro preview --host 127.0.0.1",
     "test": "tsx --test tests/*.test.ts",
-    "verify:deployment": "node scripts/verify-deployment.mjs"
+    "verify:deployment": "node scripts/verify-deployment.mjs",
+    "verify:content": "tsx scripts/verify-content.ts"
   },
   "dependencies": {
     "@astrojs/sitemap": "3.7.6",

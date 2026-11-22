@@ -49,3 +49,11 @@
 - 桌面页头、页脚显示新字标，副标识为 INDEPENDENT GUIDE；原始白边由展示视口处理，不重绘 logo。
 - 320px 英语与日语、390px 日语 iframe 复核通过，实际 305px / 375px 内容宽度与滚动宽度一致；最窄日语页头的字标与操作区仍有约 12px 间隔。
 - 本次截图：`artifacts/screenshots/logo-home-en.jpg`、`artifacts/screenshots/logo-mobile-en-ja.jpg`。临时响应式测试文件不进入源码或部署。
+
+
+## 2026-11-22 分享封面
+
+- `public/images/social/default-en.jpg`、`default-ja.jpg`：各 1200×630，本站原生排版，包含英文品牌、语言说明和非官方身份；不使用未经核验的游戏内截图。
+- 可编辑 SVG 源文件：`assets/social/default-en.svg`、`default-ja.svg`。
+- 全站默认 OG/Twitter 大图按页面语言选择；规范 URL 使用正式域名。域名 DNS 生效前，平台无法完成这些正式 URL 的图片抓取验收。
+- 后续攻略截图使用独立台账 `src/data/evidence-images.json`，发布前必须记录来源、版本、尺寸、英日说明和剧透级别。现有装饰配图不作为玩法证据。

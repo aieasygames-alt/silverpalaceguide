@@ -1,0 +1,37 @@
+---
+import EvidenceImage from './EvidenceImage.astro';
+import type { ExplorationRoute } from '../lib/game-schema';
+import { routeNoteId } from '../lib/progress';
+interface Props { entry: ExplorationRoute; }
+const { entry } = Astro.props;
+const en = entry.locale === 'en';
+---
+<section class="route-steps" data-locale={entry.locale} data-pagefind-ignore>
+  <div class="panel-title"><h2>{en ? 'Follow the route' : 'ルートの手順'}</h2><button class="button secondary" type="button" data-add-route>{en ? 'Add route to my notes' : 'ルートをノートに追加'}</button></div>
+  <p class="tiny">{en ? 'Each step is added once. Existing notes and completed steps are kept.' : '各手順は一度だけ追加されます。既存のメモと完了状態は保持されます。'}</p>
+  <p class="status-message" role="status" aria-live="polite" data-route-status></p>
+  <ol class="route-step-list">{entry.steps.map((step, i) => <li id={`step-${step.id}`} data-note-id={routeNoteId(entry.translationId, step.id)} data-note-text={step.checklistText}>
+    <span class="eyebrow">{String(i + 1).padStart(2, '0')}</span><h3>{step.title}</h3><p>{step.instruction}</p>{step.imageIds.map((id) => <EvidenceImage id={id} locale={entry.locale}/>)}
+  </li>)}</ol>
+</section>
+<script>
+  import { addRouteNotes, validateNotes, NOTES_KEY } from '../lib/progress';
+  import { readLocal, saveLocal } from '../lib/local-data';
+  document.querySelectorAll<HTMLElement>('.route-steps').forEach((root) => {
+    const en = root.dataset.locale === 'en';
+    root.querySelector('[data-add-route]')?.addEventListener('click', () => {
+      const status = root.querySelector<HTMLElement>('[data-route-status]')!;
+      try {
+        const stored = readLocal(NOTES_KEY);
+        const current = stored === null ? { type: 'spg-field-notes' as const, schemaVersion: 1 as const, items: [] } : validateNotes(stored);
+        const additions = Array.from(root.querySelectorAll<HTMLElement>('[data-note-id]'), (item) => ({ id: item.dataset.noteId!, text: item.dataset.noteText! }));
+        const result = addRouteNotes(current, additions);
+        if (!saveLocal(NOTES_KEY, result.notes)) { status.textContent = en ? 'Browser storage is unavailable. The route could not be saved.' : 'ブラウザーの保存機能を利用できません。ルートを保存できませんでした。'; return; }
+        document.dispatchEvent(new CustomEvent('spg:notes-updated'));
+        status.textContent = result.added ? (en ? `${result.added} steps added to your field notes.` : `${result.added}件の手順をノートに追加しました。`) : (en ? 'This route is already in your notes. Completed steps are kept.' : 'このルートは追加済みです。完了状態は保持されています。');
+      } catch (error) {
+        status.textContent = error instanceof Error && error.message === 'limit' ? (en ? 'Your notebook would exceed 200 notes. Remove some notes first.' : '追加すると200件を超えます。先にメモを整理してください。') : (en ? 'Saved notes could not be read. Restore a valid backup before adding this route.' : '保存済みメモを読み取れません。有効なバックアップを復元してから追加してください。');
+      }
+    });
+  });
+</script>

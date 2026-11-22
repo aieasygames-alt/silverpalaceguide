@@ -1,0 +1,9 @@
+---
+import { evidenceImages } from '../lib/game-content';
+import type { Locale } from '../lib/i18n';
+interface Props { id: string; locale: Locale; }
+const { id, locale } = Astro.props;
+const image = evidenceImages.find((entry) => entry.id === id);
+if (!image) throw new Error(`Missing evidence image: ${id}`);
+---
+<figure class="evidence-image" data-pagefind-ignore><img src={image.src} alt={image.alt[locale]} width={image.width} height={image.height} loading="lazy" decoding="async"/><figcaption>{image.alt[locale]} · {image.build} · {image.checkedAt}</figcaption></figure>

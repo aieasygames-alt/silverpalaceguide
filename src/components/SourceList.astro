@@ -1,0 +1,7 @@
+---
+import sources from '../data/sources.json';
+import type { Locale } from '../lib/i18n';
+interface Props { locale: Locale; ids: string[]; }
+const { locale, ids } = Astro.props;
+---
+<section class="source-block" data-pagefind-ignore><h2>{locale === 'en' ? 'Sources & verification' : '出典と確認状況'}</h2><ol class="source-list">{sources.filter((source) => ids.includes(source.id)).map((source) => <li><a href={source.url} rel="noopener noreferrer" target="_blank">{source.title}</a><p>{source.publisher} · {source.checkedAt}</p></li>)}</ol></section>

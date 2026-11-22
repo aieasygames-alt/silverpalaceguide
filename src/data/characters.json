@@ -1,0 +1,72 @@
+[
+  {
+    "translationId": "fixture-character",
+    "slug": "fixture-character",
+    "title": "Development fixture — not game content",
+    "summary": "Private template. No game facts established.",
+    "status": "draft",
+    "revision": 1,
+    "sourceRevision": 1,
+    "checkedRevision": 1,
+    "updatedAt": "2026-11-22",
+    "checkedAt": "2026-11-22",
+    "server": "Not verified",
+    "build": "Not verified",
+    "verification": "unverified",
+    "sourceIds": [],
+    "prerequisites": [],
+    "id": "en/fixture-character",
+    "locale": "en",
+    "characterId": "fixture-character",
+    "intervals": [
+      {
+        "id": "first",
+        "label": "Private interval (unknown cost)",
+        "from": 1,
+        "to": 2,
+        "costs": [
+          {
+            "materialId": "fixture-material",
+            "amount": null
+          }
+        ],
+        "costsComplete": false
+      }
+    ]
+  },
+  {
+    "translationId": "fixture-character",
+    "slug": "fixture-character",
+    "title": "Development fixture — not game content",
+    "summary": "Private template. No game facts established.",
+    "status": "draft",
+    "revision": 1,
+    "sourceRevision": 1,
+    "checkedRevision": 1,
+    "updatedAt": "2026-11-22",
+    "checkedAt": "2026-11-22",
+    "server": "Not verified",
+    "build": "Not verified",
+    "verification": "unverified",
+    "sourceIds": [],
+    "prerequisites": [],
+    "id": "ja/fixture-character",
+    "locale": "ja",
+    "characterId": "fixture-character",
+    "intervals": [
+      {
+        "id": "first",
+        "label": "Private interval (unknown cost)",
+        "from": 1,
+        "to": 2,
+        "costs": [
+          {
+            "materialId": "fixture-material",
+            "amount": null
+          }
+        ],
+        "costsComplete": false
+      }
+    ]
+  }
+]

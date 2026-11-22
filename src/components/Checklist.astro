@@ -1,11 +1,15 @@
 ---
 import Icon from './Icon.astro';
+import { publishedRoutes } from '../lib/game-content';
+import { routeNoteId } from '../lib/progress';
+import type { ExplorationRoute } from '../lib/game-schema';
 import type { Locale } from '../lib/i18n';
-interface Props { locale: Locale; }
-const { locale } = Astro.props;
+interface Props { locale: Locale; routeEntries?: ExplorationRoute[]; }
+const { locale, routeEntries } = Astro.props;
 const en = locale === 'en';
+const routeLabels = Object.fromEntries((routeEntries ?? publishedRoutes(locale)).flatMap((route) => route.steps.map((step) => [routeNoteId(route.translationId, step.id), step.checklistText])));
 ---
-<section class="panel" id="field-notes" data-locale={locale} data-pagefind-ignore aria-label={en ? 'Personal exploration checklist' : '自分用の探索チェックリスト'}>
+<section class="panel" id="field-notes" data-locale={locale} data-route-labels={JSON.stringify(routeLabels)} data-pagefind-ignore aria-label={en ? 'Personal exploration checklist' : '自分用の探索チェックリスト'}>
   <div class="panel-title"><h2>{en ? 'Your field notes' : '自分だけの探索ノート'}</h2><Icon name="compass" size={26}/></div>
   <p>{en ? 'A place to remember your own discoveries, unfinished tasks and places to revisit.' : '気づいたこと、まだ終えていないこと、後で訪れたい場所を書き留めましょう。'}</p>
   <form class="checklist-form" id="note-form"><label class="sr-only" for="note-input">{en ? 'A place or task to remember' : '覚えておきたい場所や目標'}</label><input id="note-input" name="note" maxlength="200" required placeholder={en ? 'What would you like to remember?' : '覚えておきたいことは？'} autocomplete="off"/><button class="button" type="submit"><Icon name="plus" size={16}/>{en ? 'Add' : '追加'}</button></form>
@@ -22,6 +26,7 @@ const en = locale === 'en';
   const root = document.querySelector<HTMLElement>('#field-notes');
   if (root) {
     const en = root.dataset.locale === 'en';
+    const routeLabels: Record<string, string> = JSON.parse(root.dataset.routeLabels || '{}');
     const status = root.querySelector<HTMLElement>('#notes-status')!;
     const list = root.querySelector<HTMLElement>('#notes-list')!;
     const input = root.querySelector<HTMLInputElement>('#note-input')!;
@@ -41,8 +46,8 @@ const en = locale === 'en';
         const li = document.createElement('li'); li.className = 'checklist-item';
         const label = document.createElement('label'); const checkbox = document.createElement('input'); checkbox.type = 'checkbox'; checkbox.checked = item.done;
         checkbox.addEventListener('change', () => { item.done = checkbox.checked; const focusId = item.id; render(); persist(); document.getElementById(`note-${focusId}`)?.focus(); }); checkbox.id = `note-${item.id}`;
-        const span = document.createElement('span'); span.textContent = item.text; label.append(checkbox, span);
-        const remove = document.createElement('button'); remove.className = 'remove-row'; remove.type = 'button'; remove.textContent = '×'; remove.setAttribute('aria-label', `${en ? 'Remove note' : 'メモを削除'}: ${item.text}`);
+        const span = document.createElement('span'); span.textContent = routeLabels[item.id] ?? item.text; label.append(checkbox, span);
+        const remove = document.createElement('button'); remove.className = 'remove-row'; remove.type = 'button'; remove.textContent = '×'; remove.setAttribute('aria-label', `${en ? 'Remove note' : 'メモを削除'}: ${routeLabels[item.id] ?? item.text}`);
         remove.addEventListener('click', () => { notes.items = notes.items.filter((entry) => entry.id !== item.id); render(); persist(); input.focus(); });
         li.append(label, remove); list.append(li);
       }
@@ -61,6 +66,9 @@ const en = locale === 'en';
       finally { fileInput.value = ''; }
     });
     root.querySelector('#clear-notes')?.addEventListener('click', () => { if (window.confirm(en ? 'Clear all field notes in this browser? Export a backup first if you need it.' : 'このブラウザーのメモをすべて消去しますか？必要であれば先に書き出してください。')) { notes = { type: 'spg-field-notes', schemaVersion: 1, items: [] }; render(); persist(); } });
+    function reloadNotes() { try { const stored = readLocal(NOTES_KEY); if (stored !== null) { notes = validateNotes(stored); render(); } } catch { /* Keep the current notebook if another tab wrote invalid data. */ } }
+    document.addEventListener('spg:notes-updated', reloadNotes);
+    window.addEventListener('storage', (event) => { if (event.key === NOTES_KEY) reloadNotes(); });
     render(); status.textContent = warning || (en ? 'Personal notes, stored on this device. Export a backup for safekeeping.' : 'メモはこの端末に保存されます。書き出しでバックアップを残せます。');
     if (!warning) { try { const probe = `${NOTES_KEY}:probe`; localStorage.setItem(probe, '1'); localStorage.removeItem(probe); } catch { status.textContent = en ? 'Browser storage is unavailable. You can use this notebook, then export it.' : '保存機能を利用できません。使用後に書き出してメモを残してください。'; } }
   }

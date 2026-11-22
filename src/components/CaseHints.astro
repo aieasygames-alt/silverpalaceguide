@@ -1,0 +1,43 @@
+---
+import Icon from './Icon.astro';
+import EvidenceImage from './EvidenceImage.astro';
+import type { GameCase } from '../lib/game-schema';
+interface Props { entry: GameCase; }
+const { entry } = Astro.props;
+const en = entry.locale === 'en';
+const labels = en ? ['A gentle nudge', 'A closer look', 'The full explanation'] : ['小さなヒント', 'もう少し詳しく', '詳しい解説'];
+---
+<section class="case-hints" data-locale={entry.locale} data-pagefind-ignore>
+  <label class="field-label" for="case-stage">{en ? 'Choose your current stage' : '現在の段階を選ぶ'}</label>
+  <select id="case-stage" class="stage-select field">{entry.stages.map((stage) => <option value={stage.id}>{stage.title}</option>)}</select>
+  {entry.stages.map((stage, i) => <section data-case-stage={stage.id} hidden={i !== 0} aria-label={stage.title}>
+    <h2>{stage.title}</h2><p>{stage.objective}</p>
+    {stage.hints.map((hint, level) => <details class="hint-step" data-level={level + 1}><summary><span>0{level + 1}</span><span>{labels[level]}</span>{level === 2 && <span class="tiny">{en ? 'Spoilers' : 'ネタバレ'}</span>}<Icon name="plus" size={18}/></summary><div class="hint-content"><p>{hint.text}</p>{hint.imageIds.map((id) => <EvidenceImage id={id} locale={entry.locale}/>)}</div></details>)}
+  </section>)}
+  <div class="button-row"><button class="text-link" type="button" data-hide-case-hints>{en ? 'Hide all hints' : 'すべてのヒントを隠す'}<Icon name="x" size={15}/></button></div>
+  <p class="status-message" role="status" aria-live="polite" data-hint-status></p>
+  <dialog class="confirm-dialog" data-answer-dialog aria-labelledby="answer-dialog-title"><h2 id="answer-dialog-title">{en ? 'Reveal the full explanation?' : '詳しい解説を表示しますか？'}</h2><p>{en ? 'This opens the complete answer and any solution images for the current stage.' : '現在の段階の答えと解答画像を表示します。'}</p><div class="button-row"><button class="button secondary" type="button" data-cancel-answer autofocus>{en ? 'Keep it hidden' : 'まだ表示しない'}</button><button class="button" type="button" data-reveal-answer>{en ? 'Reveal answer' : '答えを表示'}</button></div></dialog>
+</section>
+<script>
+  document.querySelectorAll<HTMLElement>('.case-hints').forEach((root) => {
+    const en = root.dataset.locale === 'en';
+    const status = root.querySelector<HTMLElement>('[data-hint-status]')!;
+    const close = () => root.querySelectorAll<HTMLDetailsElement>('details').forEach((detail) => detail.open = false);
+    root.querySelector('[data-hide-case-hints]')?.addEventListener('click', () => { close(); status.textContent = en ? 'All hints are hidden.' : 'すべてのヒントを隠しました。'; });
+    root.querySelector<HTMLSelectElement>('#case-stage')?.addEventListener('change', (event) => {
+      close(); const id = (event.target as HTMLSelectElement).value;
+      root.querySelectorAll<HTMLElement>('[data-case-stage]').forEach((stage) => stage.hidden = stage.dataset.caseStage !== id);
+      status.textContent = en ? 'Stage changed. All hints start closed.' : '段階を切り替えました。ヒントは閉じた状態です。';
+    });
+    const dialog = root.querySelector<HTMLDialogElement>('[data-answer-dialog]')!;
+    let pending: HTMLDetailsElement | null = null;
+    root.querySelector('[data-cancel-answer]')?.addEventListener('click', () => dialog.close());
+    root.querySelector('[data-reveal-answer]')?.addEventListener('click', () => { if (pending) pending.open = true; dialog.close(); });
+    dialog.addEventListener('close', () => { pending = null; });
+    root.querySelectorAll<HTMLDetailsElement>('details[data-level="3"]').forEach((detail) => detail.querySelector('summary')?.addEventListener('click', (event) => {
+      event.preventDefault();
+      if (detail.open) detail.open = false;
+      else { pending = detail; dialog.showModal(); }
+    }));
+  });
+</script>

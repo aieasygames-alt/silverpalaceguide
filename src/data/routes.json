@@ -1,0 +1,80 @@
+[
+  {
+    "translationId": "fixture-route",
+    "slug": "fixture-route",
+    "title": "Development fixture — not game content",
+    "summary": "Private template. No game facts established.",
+    "status": "draft",
+    "revision": 1,
+    "sourceRevision": 1,
+    "checkedRevision": 1,
+    "updatedAt": "2026-11-22",
+    "checkedAt": "2026-11-22",
+    "server": "Not verified",
+    "build": "Not verified",
+    "verification": "unverified",
+    "sourceIds": [],
+    "prerequisites": [],
+    "id": "en/fixture-route",
+    "locale": "en",
+    "area": "Private template area",
+    "start": "Not a real location",
+    "completion": "Private completion condition",
+    "safeImageIds": [],
+    "steps": [
+      {
+        "id": "first",
+        "title": "First test step",
+        "instruction": "Private route instruction. Not game data.",
+        "checklistText": "Private fixture: First test step",
+        "imageIds": []
+      },
+      {
+        "id": "second",
+        "title": "Second test step",
+        "instruction": "Private route instruction. Not game data.",
+        "checklistText": "Private fixture: Second test step",
+        "imageIds": []
+      }
+    ]
+  },
+  {
+    "translationId": "fixture-route",
+    "slug": "fixture-route",
+    "title": "Development fixture — not game content",
+    "summary": "Private template. No game facts established.",
+    "status": "draft",
+    "revision": 1,
+    "sourceRevision": 1,
+    "checkedRevision": 1,
+    "updatedAt": "2026-11-22",
+    "checkedAt": "2026-11-22",
+    "server": "Not verified",
+    "build": "Not verified",
+    "verification": "unverified",
+    "sourceIds": [],
+    "prerequisites": [],
+    "id": "ja/fixture-route",
+    "locale": "ja",
+    "area": "Private template area",
+    "start": "Not a real location",
+    "completion": "Private completion condition",
+    "safeImageIds": [],
+    "steps": [
+      {
+        "id": "first",
+        "title": "First test step",
+        "instruction": "Private route instruction. Not game data.",
+        "checklistText": "Private fixture: First test step",
+        "imageIds": []
+      },
+      {
+        "id": "second",
+        "title": "Second test step",
+        "instruction": "Private route instruction. Not game data.",
+        "checklistText": "Private fixture: Second test step",
+        "imageIds": []
+      }
+    ]
+  }
+]

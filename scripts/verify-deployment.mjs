@@ -13,7 +13,7 @@ async function request(path) {
   return { path, response, body: await response.text() };
 }
 
-const routes = ['/', '/en/', '/ja/', '/en/search/', '/en/characters/', '/robots.txt', '/sitemap-index.xml', '/__deployment_check_missing__/'];
+const routes = ['/', '/en/', '/ja/', '/en/search/', '/en/characters/', '/robots.txt', '/sitemap-index.xml', '/__deployment_check_missing__/', '/images/social/default-en.jpg', '/images/social/default-ja.jpg', '/en/cases/fixture-case/', '/en/exploration/fixture-route/', '/en/qa-preview/'];
 const results = await Promise.allSettled(routes.map(request));
 const failures = [];
 for (let index = 0; index < results.length; index++) {
@@ -24,7 +24,7 @@ for (let index = 0; index < results.length; index++) {
     if (path === '/') {
       assert.equal(response.status, 302);
       assert.equal(new URL(response.headers.get('location'), base).pathname, '/en/');
-    } else if (path === '/__deployment_check_missing__/') {
+    } else if (path === '/__deployment_check_missing__/' || path.includes('fixture-') || path === '/en/qa-preview/') {
       assert.equal(response.status, 404, 'Missing paths must return a real 404');
       assert.ok(body.includes('Silver Palace Guide'), 'Use the custom 404 page');
     } else {
@@ -38,10 +38,13 @@ for (let index = 0; index < results.length; index++) {
       assert.equal(/<meta\b[^>]*name="robots"[^>]*content="[^"]*noindex/.test(body), preview, 'Indexing metadata does not match the environment');
       assert.ok(response.headers.get('content-security-policy')?.includes("script-src 'self' 'wasm-unsafe-eval'"), 'Pages CSP missing');
       assert.equal(response.headers.get('x-content-type-options'), 'nosniff');
+      assert.ok(body.includes(`property="og:image" content="${canonical}/images/social/default-${language}.jpg"`), 'Localized share image missing');
+      assert.ok(body.includes('name="twitter:card" content="summary_large_image"'));
       for (const script of body.matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script>/gi)) {
         assert.ok(/\bsrc=["']/i.test(script[1]) || /\btype=["']application\/(?:ld\+)?json["']/i.test(script[1]) || !script[2].trim(), 'Executable inline script blocked by CSP');
       }
     }
+    if (path.startsWith('/images/social/')) assert.ok(response.headers.get('content-type')?.includes('image/jpeg'), 'Share image MIME type');
     if (path === '/en/search/' || path === '/en/characters/') assert.ok(body.includes('content="noindex, follow"'));
     if (path === '/robots.txt') {
       if (preview) assert.match(body, /User-agent: \*\s+Disallow: \//);
