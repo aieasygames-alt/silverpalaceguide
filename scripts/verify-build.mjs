@@ -11,6 +11,7 @@ const files = await filesIn('dist');
 const htmlFiles = files.filter((file) => extname(file) === '.html');
 const site = 'https://silverpalaceguide.com';
 const failures = [];
+const isPreview = process.env.PREVIEW_NOINDEX === '1' || (process.env.CF_PAGES === '1' && process.env.CF_PAGES_BRANCH !== 'main');
 for (const file of htmlFiles) {
   const html = await readFile(file, 'utf8');
   const route = '/' + file.replace(/^dist\//, '').replace(/index\.html$/, '');
@@ -45,7 +46,13 @@ for (const file of files.filter((file) => file.endsWith('.pf_fragment'))) {
   assert.ok(!/PRIVATE_(?:HINT|CLUE|ANSWER)_SENTINEL|spg(?:hint|clue|answer)zzqx|fixture-(?:case|route|character)/.test(fragment), `${file}: private or spoiler content in search index`);
 }
 const sitemap = (await Promise.all(files.filter((file) => /sitemap.*\.xml$/.test(file)).map((file) => readFile(file, 'utf8')))).join('');
-assert.ok(!sitemap.includes('/characters/') && !sitemap.includes('/search/'), 'Noindex routes in sitemap');
+assert.ok(!sitemap.includes('/search/'), 'Noindex search routes in sitemap');
+for (const locale of ['en', 'ja']) {
+  assert.ok(sitemap.includes(`/${locale}/characters/`), 'Substantive character directory missing from sitemap');
+  const roster = await readFile(`dist/${locale}/characters/index.html`, 'utf8');
+  assert.equal(roster.includes('name="robots" content="noindex'), isPreview, 'Character indexing does not match the deployment environment');
+  assert.equal((roster.match(/data-profile-card/g) || []).length, 20, 'Character dossier missing');
+}
 const sourceIds = new Set(JSON.parse(await readFile('src/data/sources.json', 'utf8')).map((source) => source.id));
 for (const term of JSON.parse(await readFile('src/data/glossary.json', 'utf8'))) assert.ok(term.kind === 'site-interface' || sourceIds.has(term.sourceId), `Unknown glossary source: ${term.id}`);
 for (const file of files.filter((file) => /\.(?:js|json)$/.test(file) && !file.includes('/pagefind/'))) {

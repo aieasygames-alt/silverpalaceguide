@@ -55,5 +55,33 @@
     ],
     "limitations": "Dynamic site was partly still loading. No opening hour, regional download availability or gameplay costs verified.",
     "assets": "Link only."
+  },
+  {
+    "id": "official-roles-en",
+    "title": "Silver Palace — official character introductions (EN)",
+    "url": "https://silverpalace.elementagames.com/en-us/roles",
+    "publisher": "Elementa",
+    "checkedAt": "2026-11-22",
+    "kind": "official-website",
+    "facts": [
+      "21 displayed entries: two Detective identities and 19 other named characters.",
+      "Official localized names, titles, introductory biographies and qualitative equipment/combat descriptions."
+    ],
+    "limitations": "Pre-release character introductions. Names and descriptions may change. No rarity, launch availability, complete skill kit, numerical scaling, acquisition rules or progression costs established. Some entries have only a name, title and introductory line in EN/JA.",
+    "assets": "Small official character portraits used for identification; copyright remains with the game rights holders. Text is independently summarized."
+  },
+  {
+    "id": "official-roles-ja",
+    "title": "Silver Palace — official character introductions (JA)",
+    "url": "https://silverpalace.elementagames.com/ja-jp/roles",
+    "publisher": "Elementa",
+    "checkedAt": "2026-11-22",
+    "kind": "official-website",
+    "facts": [
+      "21 displayed entries: two Detective identities and 19 other named characters.",
+      "Official localized names, titles, introductory biographies and qualitative equipment/combat descriptions."
+    ],
+    "limitations": "Pre-release character introductions. Names and descriptions may change. No rarity, launch availability, complete skill kit, numerical scaling, acquisition rules or progression costs established. Some entries have only a name, title and introductory line in EN/JA.",
+    "assets": "Small official character portraits used for identification; copyright remains with the game rights holders. Text is independently summarized."
   }
 ]

@@ -1,0 +1,10 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+interface Props { id: string; size?: number; }
+const { id, size = 76 } = Astro.props;
+const portraits = import.meta.glob<{ default: ImageMetadata }>('../assets/characters/*.png', { eager: true });
+const image = portraits[`../assets/characters/${id}.png`]?.default;
+if (!image) throw new Error(`Missing official portrait: ${id}`);
+---
+<Image src={image} alt="" width={size} height={size} format="webp" loading="lazy" decoding="async" class="character-portrait"/>

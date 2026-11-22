@@ -1,0 +1,11 @@
+---
+import type { CharacterProfile } from '../lib/character-profiles';
+import type { Locale } from '../lib/i18n';
+interface Props { profile: CharacterProfile; locale: Locale; }
+const { profile, locale } = Astro.props;
+const en = locale === 'en';
+---
+<dl class="profile-facts">
+  <div><dt>{en ? 'Equipment in the introduction' : '公式紹介の装備・道具'}</dt><dd>{profile.equipment?.[locale] ?? (en ? 'Not specified in the introduction checked here.' : '今回確認した公式紹介には明記されていません。')}</dd></div>
+  <div><dt>{en ? 'Combat information' : '戦闘について'}</dt><dd>{profile.combat?.[locale] ?? (en ? 'No specific kit or combat role established by this introduction.' : 'この紹介からは、具体的なスキル構成や戦闘ロールを確認できません。')}</dd></div>
+</dl>

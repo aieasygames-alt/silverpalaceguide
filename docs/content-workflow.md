@@ -47,3 +47,7 @@
 `tests/fixtures/preview.astro.txt` 是仅供开发的页面模板。临时复制至 `src/pages/[locale]/qa-preview.astro`，运行 `npx astro build && npx pagefind --site dist` 后在本地检查。该页使用开发数据，包含明确的私有提示。
 
 **完成后必须移除临时页面并重新运行 `npm run build`。** 正式构建检查会拒绝私有样例标记、样例路由或浏览器脚本中的样例数据，防止误发布。生产产物仍应只有当前实际公开的页面。
+
+## Official character introductions
+
+Descriptive official profiles live in `src/data/character-profiles.json`, separately from verified progression in `characters.json`. Keep both English and Japanese names, titles and editorial summaries. Reference registered official website sources, check identity/title/portrait counts, and use null for unavailable equipment or combat information. `npm run verify:content` validates source references and portrait files. Do not publish rarity, acquisition, element, launch availability or numerical costs inferred from icons, occupation, marketing prose or this directory's existence. Official descriptive profiles do not require a gameplay-record source; numerical presets continue to use the existing gameplay verification gate.

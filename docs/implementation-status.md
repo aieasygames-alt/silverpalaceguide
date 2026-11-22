@@ -102,3 +102,7 @@
 - 最终代码检查 51 文件无错误/警告/提示，17 项测试通过，构建 30 页、Pagefind 24 页；20 项正式域名部署检查通过。修复经 GitHub 推送触发 Pages 发布，代码提交 `f69e691` 和 `4a8d735` 的部署均成功。
 
 详细问题、来源、测量条件、全部报告和后续资料依赖见 [第三阶段质量记录](phase3-quality-report.md)。此前“完整性能审查尚未完成”的段落是历史状态；真实内容里程碑仍未完成。
+
+## Official character expansion — 22 November 2026
+
+20 bilingual official dossiers (21 displayed identities) replace the character placeholder. Added 21 source-matched portraits, bilingual name search, qualitative combat/equipment notes, and a shareable three-profile comparison tool. Optional planner character reference preserves the v1 worksheet and quantities. EN/JA character pages are now indexable and in the sitemap. Official-profile data and verified numerical progression remain separate. Full source scope and validation are recorded in `docs/official-character-research.md`.

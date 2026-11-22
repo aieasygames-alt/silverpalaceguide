@@ -70,3 +70,10 @@
 - 本地检查：48 个 Astro 文件无错误/警告/提示，16 项既有测试通过，构建 30 个页面、Pagefind 24 页。新图片共生成 21 个资源版本，资源路径、固有尺寸及英日替代文字已检查。
 - 浏览器复核：320px iframe 实际内容宽/滚动宽均为 305px，390px iframe 均为 375px；角色页和提示指南的英日页面无横向溢出。两张图片完整呈现，英日图注正常。
 - 私有测试页面只用于本地检查，已从构建目录移除，不提交仓库。截图保存在 `artifacts/private/new-images-*.jpg`，发布沿用 GitHub → Cloudflare Pages。
+
+
+## Official character portraits — 22 November 2026
+
+Added 21 small identification portraits from Elementa’s official character page: two Detective identities and 19 other characters. Mapping follows the page’s character ID / portrait references, rather than visual guesses from the owner-supplied illustrations. Original URLs, local paths and SHA-256 hashes are recorded in `docs/official-character-portraits.json`.
+
+Astro generates 76×76 WebP derivatives (roughly 2–3 KB each) with explicit dimensions and lazy loading. Used next to visible names in the EN/JA directory and profile comparison. Portraits have empty alt text because the adjacent heading supplies the identity. Copyright remains with the respective game rights holders. These illustrations are not gameplay evidence.

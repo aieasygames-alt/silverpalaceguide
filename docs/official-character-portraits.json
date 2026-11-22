@@ -1,0 +1,149 @@
+[
+  {
+    "id": "detective-claws",
+    "sourceUrl": "https://silverpalace.elementagames.com/_nuxt/char_avatar_0.BZ0-kDxp.png",
+    "localPath": "src/assets/characters/detective-claws.png",
+    "sha256": "f93ff8125aef607a04a63582e137428a5e05623a6eb08ac6f12cb6cfdb0ba2df",
+    "checkedAt": "2026-11-22"
+  },
+  {
+    "id": "detective-beak",
+    "sourceUrl": "https://silverpalace.elementagames.com/_nuxt/char_avatar_1.B6jT_Eaq.png",
+    "localPath": "src/assets/characters/detective-beak.png",
+    "sha256": "81652b5507d0fe381eb6e27be711719a54dcb5d751cb2925d1bc5a185ff2b6d5",
+    "checkedAt": "2026-11-22"
+  },
+  {
+    "id": "alf",
+    "sourceUrl": "https://silverpalace.elementagames.com/_nuxt/char_avatar_2.dLIV1OzQ.png",
+    "localPath": "src/assets/characters/alf.png",
+    "sha256": "52104209da06cd0e91b43626c5f34adccbe86e97696b670736ad581fdc14d07e",
+    "checkedAt": "2026-11-22"
+  },
+  {
+    "id": "argos",
+    "sourceUrl": "https://silverpalace.elementagames.com/_nuxt/char_avatar_3.BuJVHaW_.png",
+    "localPath": "src/assets/characters/argos.png",
+    "sha256": "7cebc645dbb6c26225e7ecce194a8c7a08d4578939df72de35fe44fd4a7cd528",
+    "checkedAt": "2026-11-22"
+  },
+  {
+    "id": "cinderella",
+    "sourceUrl": "https://silverpalace.elementagames.com/_nuxt/char_avatar_4.DmxszYUP.png",
+    "localPath": "src/assets/characters/cinderella.png",
+    "sha256": "c881bc69d6a9539ff0b2bad86f5ba65cd0fe29685b3f4bb9ce842060c9188e70",
+    "checkedAt": "2026-11-22"
+  },
+  {
+    "id": "cynthia-ii",
+    "sourceUrl": "https://silverpalace.elementagames.com/_nuxt/char_avatar_5.b4q62fU7.png",
+    "localPath": "src/assets/characters/cynthia-ii.png",
+    "sha256": "17dabf9a9fae53111b777e7d467d3fb1be21fcd9898297d61cefe6f6f80bf63a",
+    "checkedAt": "2026-11-22"
+  },
+  {
+    "id": "firtho",
+    "sourceUrl": "https://silverpalace.elementagames.com/_nuxt/char_avatar_6.D1huW33M.png",
+    "localPath": "src/assets/characters/firtho.png",
+    "sha256": "96e5dffa34f2c291cb058c261262845f875c33e3e4a8c8ae42e66c90dcd431bf",
+    "checkedAt": "2026-11-22"
+  },
+  {
+    "id": "lorin",
+    "sourceUrl": "https://silverpalace.elementagames.com/_nuxt/char_avatar_7.1UWBWFae.png",
+    "localPath": "src/assets/characters/lorin.png",
+    "sha256": "61317c6324844afcadfa752ded007bbded20e054fc38531fabb0b301ba306415",
+    "checkedAt": "2026-11-22"
+  },
+  {
+    "id": "red-rose",
+    "sourceUrl": "https://silverpalace.elementagames.com/_nuxt/char_avatar_8.DxzG8jvh.png",
+    "localPath": "src/assets/characters/red-rose.png",
+    "sha256": "11bee15b65a2439bb5640240b158118e78187833f4b9e0f0b92833438cb6b04b",
+    "checkedAt": "2026-11-22"
+  },
+  {
+    "id": "gratia",
+    "sourceUrl": "https://silverpalace.elementagames.com/_nuxt/char_avatar_9.B4t25PrS.png",
+    "localPath": "src/assets/characters/gratia.png",
+    "sha256": "bb2dcda46321a17899ec2fc772259be4f106a4bd0ac1e2b766860d6e56bcd844",
+    "checkedAt": "2026-11-22"
+  },
+  {
+    "id": "rex",
+    "sourceUrl": "https://silverpalace.elementagames.com/_nuxt/char_avatar_10.CildvPpc.png",
+    "localPath": "src/assets/characters/rex.png",
+    "sha256": "05d1bac546ba45ab04136e2a09b17f5a96601b252031ee25c2feb4aca5952039",
+    "checkedAt": "2026-11-22"
+  },
+  {
+    "id": "bentham",
+    "sourceUrl": "https://silverpalace.elementagames.com/_nuxt/char_avatar_11.mUa5Ow0l.png",
+    "localPath": "src/assets/characters/bentham.png",
+    "sha256": "4e34719bbf21396d25f8fdc02d43085633b0b0ad214df00461dd3ee2d9e63288",
+    "checkedAt": "2026-11-22"
+  },
+  {
+    "id": "grimm",
+    "sourceUrl": "https://silverpalace.elementagames.com/_nuxt/char_avatar_12.998u-Cgy.png",
+    "localPath": "src/assets/characters/grimm.png",
+    "sha256": "84c815fdd536fc2d63510dcae5f1cb07b777ed369e25f5ef0ee57a6626f4f9c4",
+    "checkedAt": "2026-11-22"
+  },
+  {
+    "id": "captain-kaboom",
+    "sourceUrl": "https://silverpalace.elementagames.com/_nuxt/char_avatar_13.Duk6F9wW.png",
+    "localPath": "src/assets/characters/captain-kaboom.png",
+    "sha256": "91ed61c4c578e561cbe29a6e36f28b2e67b7c4bad57766f3a983e7a4d0c84cc8",
+    "checkedAt": "2026-11-22"
+  },
+  {
+    "id": "gucia",
+    "sourceUrl": "https://silverpalace.elementagames.com/_nuxt/char_avatar_14.uFJLrMud.png",
+    "localPath": "src/assets/characters/gucia.png",
+    "sha256": "e41bd21515380e4047cdcbc828bf30dff2372b47b37677a3cfb70c0880fbb991",
+    "checkedAt": "2026-11-22"
+  },
+  {
+    "id": "morgane",
+    "sourceUrl": "https://silverpalace.elementagames.com/_nuxt/char_avatar_15.C7pZ7kgh.png",
+    "localPath": "src/assets/characters/morgane.png",
+    "sha256": "46ee91e471d4b6d56ef329236c068bffddc47f8aa417b7f0d90038149b5d68bb",
+    "checkedAt": "2026-11-22"
+  },
+  {
+    "id": "cordelia",
+    "sourceUrl": "https://silverpalace.elementagames.com/_nuxt/char_avatar_16.CK5RYbwG.png",
+    "localPath": "src/assets/characters/cordelia.png",
+    "sha256": "04974f2ddb58eb8fdb389603fc0a0c862f84dc263c78ab8aac20aeff28e31346",
+    "checkedAt": "2026-11-22"
+  },
+  {
+    "id": "susan",
+    "sourceUrl": "https://silverpalace.elementagames.com/_nuxt/char_avatar_17.w985Utsj.png",
+    "localPath": "src/assets/characters/susan.png",
+    "sha256": "adb560e7314e80c1eeec99319d0ad7c92f76eab87c912f7a0d08c24882147842",
+    "checkedAt": "2026-11-22"
+  },
+  {
+    "id": "feys",
+    "sourceUrl": "https://silverpalace.elementagames.com/_nuxt/char_avatar_18.Bz6k2jM8.png",
+    "localPath": "src/assets/characters/feys.png",
+    "sha256": "6b81f33e786933872a3f115239d4da9b96ba10404852c43c1a9bfa22562e338b",
+    "checkedAt": "2026-11-22"
+  },
+  {
+    "id": "skink",
+    "sourceUrl": "https://silverpalace.elementagames.com/_nuxt/char_avatar_19.Cmtx-1_u.png",
+    "localPath": "src/assets/characters/skink.png",
+    "sha256": "7ec3d1c4800c2b27b847bb4b596ae428c767fe5070ab50ef87f479dec7184a7e",
+    "checkedAt": "2026-11-22"
+  },
+  {
+    "id": "tinsley",
+    "sourceUrl": "https://silverpalace.elementagames.com/_nuxt/char_avatar_20.Cx3UGiaN.png",
+    "localPath": "src/assets/characters/tinsley.png",
+    "sha256": "2bc193b66a96cc4686c115911a341df3b81a87c74e1f5cc5dffefc8da59444e3",
+    "checkedAt": "2026-11-22"
+  }
+]

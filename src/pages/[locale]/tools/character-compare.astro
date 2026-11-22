@@ -1,0 +1,65 @@
+---
+import Base from '../../../layouts/Base.astro';
+import PageHeading from '../../../components/PageHeading.astro';
+import CharacterPortrait from '../../../components/CharacterPortrait.astro';
+import ProfileFacts from '../../../components/ProfileFacts.astro';
+import SourceList from '../../../components/SourceList.astro';
+import { characterProfiles } from '../../../lib/character-profiles';
+import { locales, path, type Locale } from '../../../lib/i18n';
+import '../../../styles/characters.css';
+export const getStaticPaths = () => locales.map((locale) => ({ params: { locale } }));
+const locale = Astro.params.locale as Locale;
+const en = locale === 'en';
+---
+<Base locale={locale} title={en ? 'Character profile comparison' : 'キャラクター資料の比較'} description={en ? 'Compare official Silver Palace character introductions, English and Japanese names, equipment and announced combat details side by side.' : '白銀の城の公式人物紹介を比較。英日公式名、装備、発表済みの戦闘情報を並べて確認できます。'} section="tools">
+<div class="shell" id="profile-comparison" data-locale={locale} data-pagefind-body>
+  <PageHeading locale={locale} eyebrow={en ? 'THE WORKBENCH / CHARACTER PROFILES' : '探偵の作業机 / 人物資料'} title={en ? 'Get to know your options.' : '気になる人物を、見比べる。'} description={en ? 'Put up to three official introductions side by side. Compare the information that has been announced, with unknown details kept visible.' : '公式の人物紹介を最大3件まで並べて、発表されている情報を比較できます。未確認の項目も明示します。'}/>
+  <p class="notice">{en ? 'Compare announced traits. The three-column layout is for reading profiles; party size and final builds are not established here.' : '発表済みの特徴を見比べるツールです。3列は資料の表示用で、パーティー人数や正式版の育成方針を示すものではありません。'}</p>
+  <div class="compare-selectors" data-pagefind-ignore>{['a', 'b', 'c'].map((slot, index) => <div><label class="field-label" for={`compare-${slot}`}>{en ? `Character ${index + 1}` : `人物 ${index + 1}`}</label><select class="field" id={`compare-${slot}`} data-compare-select={slot}><option value="">{en ? 'Choose a character' : '人物を選択'}</option>{characterProfiles.map((profile) => <option value={profile.id}>{profile.name[locale]}</option>)}</select></div>)}</div>
+  <p class="tiny" id="comparison-status" role="status" aria-live="polite" data-pagefind-ignore></p>
+  <div class="comparison-grid" data-pagefind-ignore>{['a', 'b', 'c'].map((slot, index) => <section class="comparison-slot" data-compare-slot={slot} aria-label={en ? `Character ${index + 1} details` : `人物 ${index + 1}の資料`}>
+    <p class="compare-placeholder">{en ? 'Choose a character above to view their official profile.' : '上で人物を選ぶと、公式紹介の要約を表示します。'}</p>
+  </section>)}</div>
+  <div class="compare-actions" data-pagefind-ignore><button class="button secondary" type="button" id="share-comparison">{en ? 'Copy comparison link' : '比較リンクをコピー'}</button><a class="text-link" id="comparison-language" href={path(en ? 'ja' : 'en', 'tools/character-compare')} lang={en ? 'ja' : 'en'}>{en ? 'View in Japanese' : '英語で見る'}</a><p class="tiny" id="share-status" role="status" aria-live="polite"></p></div>
+  <section class="roster-next panel"><h2>{en ? 'How to read this comparison' : '比較の読み方'}</h2><p>{en ? 'Names and titles follow the official English and Japanese introductions, which sometimes use different wording. Equipment descriptions are qualitative: a shield does not establish a tank role, and a doctor is not automatically a healer. All profiles were checked on 22 November 2026. Official pages may contain additional story details.' : '名前と称号は公式の英語・日本語紹介に従い、言語ごとの表現の違いを保持しています。装備の記述は数値データではありません。盾の所持だけでタンク、医者という肩書きだけでヒーラーとは判断できません。確認日は2026年11月22日です。公式ページには、ここで省いた物語の詳細が含まれる場合があります。'}</p><a class="text-link" href={path(locale, 'characters')}>{en ? 'Browse all character dossiers →' : '人物資料一覧へ →'}</a></section>
+  <SourceList locale={locale} ids={['official-roles-en', 'official-roles-ja']}/>
+  {characterProfiles.map((profile) => <template data-pagefind-ignore data-comparison-profile={profile.id}><article class="character-card"><header><div class="portrait-pair">{profile.portraitIds.map((id) => <CharacterPortrait id={id}/>)}</div></header><h2>{profile.name[locale]}</h2><p class="alternate-name" lang={en ? 'ja' : 'en'}>{profile.name[en ? 'ja' : 'en']}</p><p class="character-title">{profile.titles[locale].join(' / ')}</p><p>{profile.summary[locale]}</p><ProfileFacts profile={profile} locale={locale}/><dl class="profile-facts"><div><dt>{en ? 'Skills & progression costs' : 'スキル詳細・育成費用'}</dt><dd>{en ? 'Not established by this official introduction. No numerical preset available.' : 'この公式紹介では確認できません。数値の自動入力は利用できません。'}</dd></div></dl><div class="character-links"><a class="text-link" href={`${path(locale, 'tools/material-planner')}?character=${profile.id}`}>{en ? 'Open material worksheet →' : '素材計画を開く →'}</a><a class="tiny" href={`${path(locale, 'characters')}#${profile.id}`}>{en ? 'Source & dossier' : '出典・人物資料'}</a></div></article></template>)}
+  <noscript><p class="notice">{en ? 'Enable JavaScript for comparison, or read the full character directory linked above.' : '比較にはJavaScriptが必要です。上のリンクから人物資料一覧を読むこともできます。'}</p></noscript>
+</div>
+</Base>
+<script>
+  import { readComparison, comparisonQuery } from '../../../lib/profile-comparison';
+  const root = document.querySelector<HTMLElement>('#profile-comparison');
+  if (root) {
+    const en = root.dataset.locale === 'en';
+    const templates = [...root.querySelectorAll<HTMLTemplateElement>('[data-comparison-profile]')];
+    const validIds = templates.map((template) => template.dataset.comparisonProfile!);
+    const selects = [...root.querySelectorAll<HTMLSelectElement>('[data-compare-select]')];
+    const slots = [...root.querySelectorAll<HTMLElement>('[data-compare-slot]')];
+    const placeholders = slots.map((slot) => slot.firstElementChild!.cloneNode(true));
+    const initial = readComparison(new URLSearchParams(location.search), validIds);
+    selects.forEach((select, i) => select.value = initial[i]);
+    function render() {
+      const selected = selects.map((select) => select.value);
+      selects.forEach((select) => [...select.options].forEach((option) => option.disabled = !!option.value && option.value !== select.value && selected.includes(option.value)));
+      slots.forEach((slot, i) => {
+        const template = templates.find((template) => template.dataset.comparisonProfile === selected[i]);
+        slot.replaceChildren(template ? template.content.cloneNode(true) : placeholders[i].cloneNode(true));
+      });
+      const query = comparisonQuery(selected);
+      history.replaceState(null, '', location.pathname + query);
+      const otherLanguage = root!.querySelector<HTMLAnchorElement>('#comparison-language')!;
+      otherLanguage.search = query;
+      const languageSwitch = document.querySelector<HTMLAnchorElement>('.language-switch');
+      if (languageSwitch) languageSwitch.search = query;
+      root!.querySelector<HTMLElement>('#comparison-status')!.textContent = en ? `${selected.filter(Boolean).length} of 3 profiles selected.` : `3枠中${selected.filter(Boolean).length}件を選択中。`;
+    }
+    selects.forEach((select) => select.addEventListener('change', render));
+    root.querySelector('#share-comparison')?.addEventListener('click', async () => {
+      const output = root.querySelector<HTMLElement>('#share-status')!;
+      try { await navigator.clipboard.writeText(location.href); output.textContent = en ? 'Comparison link copied. It contains only the selected character IDs.' : '比較リンクをコピーしました。選択した人物のIDだけを含みます。'; }
+      catch { output.textContent = en ? 'Copy the URL from your address bar to share this comparison.' : 'アドレスバーのURLをコピーして、この比較を共有できます。'; }
+    });
+    render();
+  }
+</script>

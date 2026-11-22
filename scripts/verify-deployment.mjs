@@ -13,7 +13,7 @@ async function request(path) {
   return { path, response, body: await response.text() };
 }
 
-const routes = ['/', '/en/', '/ja/', '/en/search/', '/en/characters/', '/robots.txt', '/sitemap-index.xml', '/sitemap-0.xml', '/__deployment_check_missing__/', '/images/social/default-en.jpg', '/images/social/default-ja.jpg', '/en/cases/fixture-case/', '/en/exploration/fixture-route/', '/en/qa-preview/'];
+const routes = ['/', '/en/', '/ja/', '/en/search/', '/en/characters/', '/ja/characters/', '/en/tools/character-compare/', '/ja/tools/character-compare/', '/robots.txt', '/sitemap-index.xml', '/sitemap-0.xml', '/__deployment_check_missing__/', '/images/social/default-en.jpg', '/images/social/default-ja.jpg', '/en/cases/fixture-case/', '/en/exploration/fixture-route/', '/en/qa-preview/'];
 const results = await Promise.allSettled(routes.map(request));
 const failures = [];
 for (let index = 0; index < results.length; index++) {
@@ -49,7 +49,12 @@ for (let index = 0; index < results.length; index++) {
       }
     }
     if (path.startsWith('/images/social/')) assert.ok(response.headers.get('content-type')?.includes('image/jpeg'), 'Share image MIME type');
-    if (path === '/en/search/' || path === '/en/characters/') assert.ok(body.includes('content="noindex, follow"'));
+    if (path === '/en/search/') assert.ok(body.includes('content="noindex, follow"'));
+    if (/^\/(en|ja)\/characters\/$/.test(path)) {
+      assert.equal((body.match(/data-profile-card/g) || []).length, 20);
+      assert.equal(body.includes('content="noindex, follow"'), preview);
+    }
+    if (path.includes('/tools/character-compare/')) assert.ok(body.includes('data-comparison-profile="alf"'));
     if (path === '/robots.txt') {
       if (preview) assert.match(body, /User-agent: \*\s+Disallow: \//);
       else assert.ok(body.includes('Allow: /') && body.includes(`Sitemap: ${canonical}/sitemap-index.xml`));

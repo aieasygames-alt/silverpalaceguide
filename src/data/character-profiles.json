@@ -1,0 +1,641 @@
+[
+  {
+    "id": "detective",
+    "name": {
+      "en": "Detective",
+      "ja": "探偵"
+    },
+    "titles": {
+      "en": [
+        "The Raven's Claws",
+        "The Raven's Beak"
+      ],
+      "ja": [
+        "大鴉の鉤爪",
+        "大鴉の白嘴"
+      ]
+    },
+    "summary": {
+      "en": "The protagonist returns to Silvernia after three years away, investigating the death of a loved one. The official introduction emphasizes observation, analysis and decisive action. Both displayed identities share this background.",
+      "ja": "身近な人物の死を調べるため、3年ぶりにシルバニアへ戻った本作の主人公。公式紹介では、観察眼と分析力、的確な行動力が特徴として挙げられています。2つの姿には共通の背景紹介が掲載されています。"
+    },
+    "equipment": null,
+    "combat": null,
+    "coverage": "profile",
+    "portraitIds": [
+      "detective-claws",
+      "detective-beak"
+    ],
+    "sourceIds": [
+      "official-roles-en",
+      "official-roles-ja"
+    ],
+    "checkedAt": "2026-11-22"
+  },
+  {
+    "id": "alf",
+    "name": {
+      "en": "Alf (Maid)",
+      "ja": "フウ・メイド"
+    },
+    "titles": {
+      "en": [
+        "A Story Truly Yours"
+      ],
+      "ja": [
+        "あなただけのおとぎ話"
+      ]
+    },
+    "summary": {
+      "en": "A maid who puts protecting her employer first. Everyday housework may trouble Alf, but the official profile describes her as dependable in a fight.",
+      "ja": "主人を守ることを第一に考えるメイド。家事は不器用でも、戦闘では頼りになる人物として公式に紹介されています。"
+    },
+    "equipment": {
+      "en": "Shotgun; a back-mounted Reactor changes it into a flamethrower.",
+      "ja": "ショットガン。背中のリアクターを起動すると火炎放射器に切り替わります。"
+    },
+    "combat": {
+      "en": "The profile explicitly describes a weapon change during combat. It does not provide damage values, durations or cooldowns.",
+      "ja": "公式紹介には戦闘中の武器切り替えが明記されています。ダメージ、持続時間、クールタイムの数値は確認できません。"
+    },
+    "coverage": "profile",
+    "portraitIds": [
+      "alf"
+    ],
+    "sourceIds": [
+      "official-roles-en",
+      "official-roles-ja"
+    ],
+    "checkedAt": "2026-11-22"
+  },
+  {
+    "id": "argos",
+    "name": {
+      "en": "Argos (Bartender)",
+      "ja": "アーガス・バーテンダー"
+    },
+    "titles": {
+      "en": [
+        "The Eye of Argos"
+      ],
+      "ja": [
+        "アルゴスの目"
+      ]
+    },
+    "summary": {
+      "en": "A bartender who works among all kinds of customers and keeps a cane gun close at hand. His introduction connects his bartending to supporting companions in battle.",
+      "ja": "さまざまな客が集まるバーで働き、トラブルに備えて仕込み杖を携帯するバーテンダー。公式紹介では、飲み物を通じて戦場の仲間を支える人物とされています。"
+    },
+    "equipment": {
+      "en": "Cane gun and cocktail shaker.",
+      "ja": "仕込み杖とカクテルシェーカー。"
+    },
+    "combat": {
+      "en": "The profile describes support for partners and drinks with therapeutic properties. Healing amounts and targeting rules are not specified.",
+      "ja": "仲間の支援と、疲れた心身を癒すカクテルが紹介されています。回復量や対象の選び方は明記されていません。"
+    },
+    "coverage": "profile",
+    "portraitIds": [
+      "argos"
+    ],
+    "sourceIds": [
+      "official-roles-en",
+      "official-roles-ja"
+    ],
+    "checkedAt": "2026-11-22"
+  },
+  {
+    "id": "cinderella",
+    "name": {
+      "en": "Cinderella",
+      "ja": "『シンデレラ』"
+    },
+    "titles": {
+      "en": [
+        "The Vengeful Ant"
+      ],
+      "ja": [
+        "復讐の蟻"
+      ]
+    },
+    "summary": {
+      "en": "A secretive, observant woman whose introduction centers on carefully planned revenge. This summary keeps later developments in her official biography out of view.",
+      "ja": "秘密を抱え、鋭い洞察力を持つ復讐者。公式紹介では緻密な計画性が描かれています。ここでは人物像の紹介にとどめ、経歴の後半に触れる記述を省いています。"
+    },
+    "equipment": null,
+    "combat": null,
+    "coverage": "profile",
+    "portraitIds": [
+      "cinderella"
+    ],
+    "sourceIds": [
+      "official-roles-en",
+      "official-roles-ja"
+    ],
+    "checkedAt": "2026-11-22"
+  },
+  {
+    "id": "cynthia-ii",
+    "name": {
+      "en": "Cynthia II (Luna's Scion)",
+      "ja": "シンシア2世・令嬢"
+    },
+    "titles": {
+      "en": [
+        "The Goldbud"
+      ],
+      "ja": [
+        "未熟な令嬢"
+      ]
+    },
+    "summary": {
+      "en": "A young aristocrat of House Luna and the Detective’s landlady. Playful but perceptive, she is accompanied by loyal bread kitty toys.",
+      "ja": "ルナ家の令嬢で、探偵事務所の家主。いたずら好きな一方、状況を読む判断力も備えています。忠実なおもちゃの猫たちがそばにいます。"
+    },
+    "equipment": {
+      "en": "Bread kitty toys described as her loyal entourage.",
+      "ja": "忠実な家来として紹介される、おもちゃの猫たち。"
+    },
+    "combat": {
+      "en": "The toys are described as protecting Cynthia. The introduction does not establish summon limits, scaling or a formal combat role.",
+      "ja": "おもちゃの猫がシンシアを守ると紹介されています。召喚数、能力の伸び方、正式な戦闘ロールは確認できません。"
+    },
+    "coverage": "profile",
+    "portraitIds": [
+      "cynthia-ii"
+    ],
+    "sourceIds": [
+      "official-roles-en",
+      "official-roles-ja"
+    ],
+    "checkedAt": "2026-11-22"
+  },
+  {
+    "id": "firtho",
+    "name": {
+      "en": "Firtho (Doctor)",
+      "ja": "ファソ・医者"
+    },
+    "titles": {
+      "en": [
+        "The Medical Lancet"
+      ],
+      "ja": [
+        "科学のランセット"
+      ]
+    },
+    "summary": {
+      "en": "A doctor who conducts medical research in her clinic. Her official profile describes both her sharp manner and the life-sustaining device she must wear.",
+      "ja": "クリニックで医学研究を続ける、冷淡で辛辣な医者。先天性の病のため生命維持装置を着用する背景も、公式に紹介されています。"
+    },
+    "equipment": {
+      "en": "A life-sustaining device; the profile does not identify a weapon.",
+      "ja": "生命維持装置。武器名は公式紹介に記載されていません。"
+    },
+    "combat": {
+      "en": "Medical knowledge is explicitly applied in combat. Being a doctor alone does not establish a healing kit.",
+      "ja": "医学知識を実戦に応用すると明記されています。医者という肩書きだけでは、回復スキルの所持は判断できません。"
+    },
+    "coverage": "profile",
+    "portraitIds": [
+      "firtho"
+    ],
+    "sourceIds": [
+      "official-roles-en",
+      "official-roles-ja"
+    ],
+    "checkedAt": "2026-11-22"
+  },
+  {
+    "id": "lorin",
+    "name": {
+      "en": "Lorin (Chief Inspector)",
+      "ja": "ローレン・警視長"
+    },
+    "titles": {
+      "en": [
+        "The Indispensable"
+      ],
+      "ja": [
+        "欠かせない存在"
+      ]
+    },
+    "summary": {
+      "en": "A dutiful Chief Inspector of the River Constabulary who seeks the Detective’s help. His introduction focuses on the difficulty of building a reliable system of law enforcement.",
+      "ja": "リバーサイド警察の職務に忠実な人物で、探偵に協力を求めます。公式紹介では、新しい警察組織を安定した仕組みに育てる難しさが描かれています。"
+    },
+    "equipment": {
+      "en": "Electric boxing glove, deliberately set to non-lethal output.",
+      "ja": "致命傷を避けるよう出力を抑えた電撃グローブ。"
+    },
+    "combat": {
+      "en": "The electric glove is confirmed in the profile. It does not establish stun chances, elemental multipliers or team bonuses.",
+      "ja": "電撃グローブの使用は明記されています。スタン確率、属性倍率、編成ボーナスの数値は確認できません。"
+    },
+    "coverage": "profile",
+    "portraitIds": [
+      "lorin"
+    ],
+    "sourceIds": [
+      "official-roles-en",
+      "official-roles-ja"
+    ],
+    "checkedAt": "2026-11-22"
+  },
+  {
+    "id": "red-rose",
+    "name": {
+      "en": "Red Rose (Dancer)",
+      "ja": "レッドローズ・ダンサー"
+    },
+    "titles": {
+      "en": [
+        "The Rose as an Engine of War"
+      ],
+      "ja": [
+        "バラこそが武器"
+      ]
+    },
+    "summary": {
+      "en": "The master of the Midsummer Night’s Ballroom, introduced as a dancer, hunter and assassin. Her official profile uses rose imagery to describe a harsh personal history.",
+      "ja": "ミッドサマーナイト・ボールルームの主。ダンサー、狩人、殺し屋として紹介されています。公式紹介では、薔薇のイメージとともに過酷な背景が描かれています。"
+    },
+    "equipment": null,
+    "combat": null,
+    "coverage": "profile",
+    "portraitIds": [
+      "red-rose"
+    ],
+    "sourceIds": [
+      "official-roles-en",
+      "official-roles-ja"
+    ],
+    "checkedAt": "2026-11-22"
+  },
+  {
+    "id": "gratia",
+    "name": {
+      "en": "Gratia (Knight)",
+      "ja": "クラティ・騎士"
+    },
+    "titles": {
+      "en": [
+        "Her Majesty's Protégé"
+      ],
+      "ja": [
+        "女王の寵児"
+      ]
+    },
+    "summary": {
+      "en": "A knight devoted to the Queen. Her introduction emphasizes loyalty, courage, a sword and a shield; it does not define her as a gameplay class.",
+      "ja": "女王に強い忠誠を捧げる、勇猛で愚直な騎士。公式紹介では剣と盾を携える姿が描かれていますが、ゲーム上のクラス名までは示されていません。"
+    },
+    "equipment": {
+      "en": "Sword and shield.",
+      "ja": "剣と盾。"
+    },
+    "combat": {
+      "en": "Sword-and-shield combat is described. Shield use alone does not confirm taunt, damage reduction or a tank role.",
+      "ja": "剣と盾で戦うと紹介されています。盾の使用だけで、挑発、ダメージ軽減、タンク役とは断定できません。"
+    },
+    "coverage": "profile",
+    "portraitIds": [
+      "gratia"
+    ],
+    "sourceIds": [
+      "official-roles-en",
+      "official-roles-ja"
+    ],
+    "checkedAt": "2026-11-22"
+  },
+  {
+    "id": "rex",
+    "name": {
+      "en": "Rex (Superintendent)",
+      "ja": "レックス・監察官"
+    },
+    "titles": {
+      "en": [
+        "The Scales of Black and White"
+      ],
+      "ja": [
+        "黒白の天秤"
+      ]
+    },
+    "summary": {
+      "en": "A young superintendent whose dedication to order leaves little room for compromise. His official introduction centers on strict enforcement of the law.",
+      "ja": "秩序への強い執着を持つ若き監察官。公式紹介では、妥協を許さない法の執行者として描かれています。"
+    },
+    "equipment": null,
+    "combat": null,
+    "coverage": "profile",
+    "portraitIds": [
+      "rex"
+    ],
+    "sourceIds": [
+      "official-roles-en",
+      "official-roles-ja"
+    ],
+    "checkedAt": "2026-11-22"
+  },
+  {
+    "id": "bentham",
+    "name": {
+      "en": "Bentham (Secretary)",
+      "ja": "ベリンダ・秘書"
+    },
+    "titles": {
+      "en": [
+        "The Quartz Net"
+      ],
+      "ja": [
+        "クォーツの網"
+      ]
+    },
+    "summary": {
+      "en": "Secretary of the UMI Board Office. Polite and professional in public, she is described as holding substantial influence behind the scenes.",
+      "ja": "ユナイテッド・ミネラル社の秘書。表向きは穏やかで礼儀正しい一方、会社の陰で実権を握る人物として紹介されています。"
+    },
+    "equipment": null,
+    "combat": null,
+    "coverage": "profile",
+    "portraitIds": [
+      "bentham"
+    ],
+    "sourceIds": [
+      "official-roles-en",
+      "official-roles-ja"
+    ],
+    "checkedAt": "2026-11-22"
+  },
+  {
+    "id": "grimm",
+    "name": {
+      "en": "Grimm (Journalist)",
+      "ja": "グリム・記者"
+    },
+    "titles": {
+      "en": [
+        "Silver-tongued Headliner"
+      ],
+      "ja": [
+        "鉄のペンと毒舌"
+      ]
+    },
+    "summary": {
+      "en": "A sharp, ambitious young journalist from the lower levels of society. He records modern life and believes that the truth deserves to be heard.",
+      "ja": "下層出身の、鋭く野心的な若い記者。時代を記録し、真実を伝える力を信じる人物として紹介されています。"
+    },
+    "equipment": null,
+    "combat": null,
+    "coverage": "profile",
+    "portraitIds": [
+      "grimm"
+    ],
+    "sourceIds": [
+      "official-roles-en",
+      "official-roles-ja"
+    ],
+    "checkedAt": "2026-11-22"
+  },
+  {
+    "id": "captain-kaboom",
+    "name": {
+      "en": "Captain Kaboom (Technician)",
+      "ja": "クランク隊長・修理工"
+    },
+    "titles": {
+      "en": [
+        "Of Tinkers and Tunes"
+      ],
+      "ja": [
+        "レンチと童謡"
+      ]
+    },
+    "summary": {
+      "en": "A technician associated with the industrious Kaboom Team. The official introduction describes children who work around Silvernia’s Spinotrodes and value their companions.",
+      "ja": "クランク隊の修理工。公式紹介では、街のスパイナル・ノードを巡って働き、仲間とのつながりを大切にする子どもたちの姿が描かれています。"
+    },
+    "equipment": null,
+    "combat": null,
+    "coverage": "profile",
+    "portraitIds": [
+      "captain-kaboom"
+    ],
+    "sourceIds": [
+      "official-roles-en",
+      "official-roles-ja"
+    ],
+    "checkedAt": "2026-11-22"
+  },
+  {
+    "id": "gucia",
+    "name": {
+      "en": "Gucia (Apprentice)",
+      "ja": "グシア・見習い"
+    },
+    "titles": {
+      "en": [
+        "From the Ivory Tower"
+      ],
+      "ja": [
+        "象牙の塔より"
+      ]
+    },
+    "summary": {
+      "en": "A quiet, studious researcher drawn to unknown organisms, supernatural beings and forbidden mysteries. Those subjects bring out an otherwise shy personality.",
+      "ja": "未知の生物、神秘的な存在、禁忌に関心を持つ研究者。普段は静かで内気ですが、未知の話題になると熱心に語る人物として紹介されています。"
+    },
+    "equipment": null,
+    "combat": null,
+    "coverage": "profile",
+    "portraitIds": [
+      "gucia"
+    ],
+    "sourceIds": [
+      "official-roles-en",
+      "official-roles-ja"
+    ],
+    "checkedAt": "2026-11-22"
+  },
+  {
+    "id": "morgane",
+    "name": {
+      "en": "Morgane (Gravekeeper)",
+      "ja": "モルガーヌ・墓守"
+    },
+    "titles": {
+      "en": [
+        "The Mind Witch"
+      ],
+      "ja": [
+        "心を覗く魔女"
+      ]
+    },
+    "summary": {
+      "en": "Introduced as a gravekeeper with the official title “The Mind Witch.” Detailed combat information is not established by the English or Japanese introduction checked here.",
+      "ja": "墓守として登場する人物。公式の称号は「心を覗く魔女」です。今回確認した英語・日本語の紹介では、戦闘の詳細は確認できません。"
+    },
+    "equipment": null,
+    "combat": null,
+    "coverage": "introduction",
+    "portraitIds": [
+      "morgane"
+    ],
+    "sourceIds": [
+      "official-roles-en",
+      "official-roles-ja"
+    ],
+    "checkedAt": "2026-11-22"
+  },
+  {
+    "id": "cordelia",
+    "name": {
+      "en": "Cordelia (Delinquent)",
+      "ja": "コーディリア・不良生徒"
+    },
+    "titles": {
+      "en": [
+        "Hard Times"
+      ],
+      "ja": [
+        "ハード・タイムズ"
+      ]
+    },
+    "summary": {
+      "en": "Introduced as a delinquent with the official title “Hard Times.” Her introductory line invites the Detective to leave a graffiti mark.",
+      "ja": "不良生徒として登場し、公式の称号は「ハード・タイムズ」。紹介の台詞では、探偵を壁への落書きに誘います。"
+    },
+    "equipment": null,
+    "combat": null,
+    "coverage": "introduction",
+    "portraitIds": [
+      "cordelia"
+    ],
+    "sourceIds": [
+      "official-roles-en",
+      "official-roles-ja"
+    ],
+    "checkedAt": "2026-11-22"
+  },
+  {
+    "id": "susan",
+    "name": {
+      "en": "Susan (Messenger)",
+      "ja": "スーザン・メッセンジャー"
+    },
+    "titles": {
+      "en": [
+        "The Songless Bird, Lost"
+      ],
+      "ja": [
+        "迷える鳴かぬ鳥"
+      ]
+    },
+    "summary": {
+      "en": "A messenger introduced under the title “The Songless Bird, Lost.” Her introductory line is about letters carrying feelings and making their recipients happy.",
+      "ja": "メッセンジャーとして登場し、公式の称号は「迷える鳴かぬ鳥」。紹介の台詞では、手紙に託す気持ちと、受け取る人の喜びを語ります。"
+    },
+    "equipment": null,
+    "combat": null,
+    "coverage": "introduction",
+    "portraitIds": [
+      "susan"
+    ],
+    "sourceIds": [
+      "official-roles-en",
+      "official-roles-ja"
+    ],
+    "checkedAt": "2026-11-22"
+  },
+  {
+    "id": "feys",
+    "name": {
+      "en": "Feys (Host)",
+      "ja": "フェイス・受付係"
+    },
+    "titles": {
+      "en": [
+        "A Ship Adrift"
+      ],
+      "ja": [
+        "河に繋がれぬ舟"
+      ]
+    },
+    "summary": {
+      "en": "Introduced as a host with the title “A Ship Adrift.” The Japanese introduction uses 受付係, so both official names are retained in this directory.",
+      "ja": "受付係として登場し、公式の称号は「河に繋がれぬ舟」。英語では「Feys (Host)」と紹介されているため、両言語の公式名を併記します。"
+    },
+    "equipment": null,
+    "combat": null,
+    "coverage": "introduction",
+    "portraitIds": [
+      "feys"
+    ],
+    "sourceIds": [
+      "official-roles-en",
+      "official-roles-ja"
+    ],
+    "checkedAt": "2026-11-22"
+  },
+  {
+    "id": "skink",
+    "name": {
+      "en": "Skink (Strategist)",
+      "ja": "ブルータング・参謀"
+    },
+    "titles": {
+      "en": [
+        "The Honeyed Tongue"
+      ],
+      "ja": [
+        "蜜舌の刃"
+      ]
+    },
+    "summary": {
+      "en": "Introduced as a strategist with the official title “The Honeyed Tongue.” His introductory line contrasts dangerous words with a blade in the dark.",
+      "ja": "参謀として登場する人物。公式の称号は「蜜舌の刃」で、紹介の台詞では悪意のある言葉と刃の危険性を語ります。"
+    },
+    "equipment": null,
+    "combat": null,
+    "coverage": "introduction",
+    "portraitIds": [
+      "skink"
+    ],
+    "sourceIds": [
+      "official-roles-en",
+      "official-roles-ja"
+    ],
+    "checkedAt": "2026-11-22"
+  },
+  {
+    "id": "tinsley",
+    "name": {
+      "en": "Tinsley (Star Student)",
+      "ja": "ティンズリー・優等生"
+    },
+    "titles": {
+      "en": [
+        "Great Expectations"
+      ],
+      "ja": [
+        "遠大なる前途"
+      ]
+    },
+    "summary": {
+      "en": "A star student introduced under the title “Great Expectations.” Her introductory line frames a perfect design as only the beginning of becoming a great inventor.",
+      "ja": "優等生として登場し、公式の称号は「遠大なる前途」。紹介の台詞では、完璧な設計も偉大な発明家になるための始まりにすぎないと語ります。"
+    },
+    "equipment": null,
+    "combat": null,
+    "coverage": "introduction",
+    "portraitIds": [
+      "tinsley"
+    ],
+    "sourceIds": [
+      "official-roles-en",
+      "official-roles-ja"
+    ],
+    "checkedAt": "2026-11-22"
+  }
+]

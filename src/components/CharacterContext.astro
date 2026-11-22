@@ -1,0 +1,33 @@
+---
+import { characterProfiles } from '../lib/character-profiles';
+import { path, type Locale } from '../lib/i18n';
+import '../styles/characters.css';
+interface Props { locale: Locale; }
+const { locale } = Astro.props;
+const en = locale === 'en';
+---
+<section class="panel character-context" id="character-context" data-pagefind-ignore>
+  <label class="field-label" for="planning-character">{en ? 'Character reference (optional)' : '参考にする人物（任意）'}</label>
+  <select class="field" id="planning-character"><option value="">{en ? 'General material plan' : '人物を指定しない計画'}</option>{characterProfiles.map((profile) => <option value={profile.id}>{profile.name[locale]}</option>)}</select>
+  <p class="tiny">{en ? 'Keep an official profile nearby while planning. Selecting a character only changes this reference link; it does not fill costs, replace your worksheet or save a character to your backup.' : '公式の人物資料を参照しながら計画できます。選択すると参照リンクだけが変わります。必要数の入力、計画表の置き換え、バックアップへの人物情報の保存は行いません。'}</p>
+  <a id="planning-profile" class="text-link" href={path(locale, 'characters')}>{en ? 'Read the character directory →' : '人物資料一覧を読む →'}</a>
+</section>
+<script>
+  const select = document.querySelector<HTMLSelectElement>('#planning-character');
+  const link = document.querySelector<HTMLAnchorElement>('#planning-profile');
+  if (select && link) {
+    const initial = new URLSearchParams(location.search).get('character');
+    if ([...select.options].some((option) => option.value === initial)) select.value = initial ?? '';
+    function updateReference() {
+      const value = select!.value;
+      link!.hash = value;
+      const url = new URL(location.href);
+      if (value) url.searchParams.set('character', value); else url.searchParams.delete('character');
+      history.replaceState(null, '', url.pathname + url.search + url.hash);
+      const languageSwitch = document.querySelector<HTMLAnchorElement>('.language-switch');
+      if (languageSwitch) languageSwitch.search = value ? `?character=${encodeURIComponent(value)}` : '';
+    }
+    select.addEventListener('change', updateReference);
+    updateReference();
+  }
+</script>
