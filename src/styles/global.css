@@ -106,8 +106,9 @@
   .feature.illustrated:hover .game-image { transform: scale(1.025); }
   .feature-content { padding: 25px 29px 26px; display: flex; flex-direction: column; flex: 1; }
   .sidebar-art { margin: -28px -28px 24px; background: var(--paper-deep); }
-  .sidebar-art figcaption, .article-art figcaption { padding: 10px 14px; font-size: 10px; color: var(--muted); line-height: 1.65; }
+  .sidebar-art figcaption, .article-art figcaption, .dossier-art figcaption { padding: 10px 14px; font-size: 10px; color: var(--muted); line-height: 1.65; }
   .article-art { max-width: 596px; margin-bottom: 30px; border: 1px solid var(--line); background: var(--paper-deep); }
+  .dossier-art { width: 100%; max-width: 360px; justify-self: center; border: 1px solid var(--line); border-top: 3px solid var(--green); background: var(--paper-deep); }
   .split-section { display: grid; grid-template-columns: 1.65fr 1fr; gap: 48px; border-top: 1px solid var(--line); }
   .guide-list { border-top: 1px solid var(--line); }
   .guide-row { display: grid; grid-template-columns: 38px 1fr 24px; gap: 16px; align-items: center; text-decoration: none; border-bottom: 1px solid var(--line); padding: 21px 0; }
