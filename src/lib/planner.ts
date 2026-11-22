@@ -2,6 +2,26 @@ export interface MaterialRow { id: string; name: string; materialId?: string; re
 export interface MaterialPlan { type: 'spg-material-plan'; schemaVersion: 1; rows: MaterialRow[]; }
 export const PLAN_KEY = 'spg:material-plan:v1';
 export const MAX_QUANTITY = 1_000_000_000;
+export type PlanField = 'name' | 'required' | 'owned';
+export interface PlanIssue { rowId: string; field: PlanField; reason: 'name' | 'duplicate' | 'quantity'; }
+// Validate the editable rows without normalizing or discarding a user's unfinished input.
+export function planIssues(rows: MaterialRow[]): PlanIssue[] {
+  const issues: PlanIssue[] = [];
+  const names = new Map<string, MaterialRow[]>();
+  for (const row of rows) {
+    const name = row.name.trim().normalize('NFC').toLocaleLowerCase('en-US');
+    if (!name || row.name.length > 60) issues.push({ rowId: row.id, field: 'name', reason: 'name' });
+    else names.set(name, [...(names.get(name) ?? []), row]);
+    for (const field of ['required', 'owned'] as const) {
+      const value = row[field];
+      if (!Number.isSafeInteger(value) || value < 0 || value > MAX_QUANTITY) issues.push({ rowId: row.id, field, reason: 'quantity' });
+    }
+  }
+  for (const group of names.values()) {
+    if (group.length > 1) for (const row of group) issues.push({ rowId: row.id, field: 'name', reason: 'duplicate' });
+  }
+  return issues;
+}
 export function shortage(required: number, owned: number) {
   if (![required, owned].every((value) => Number.isSafeInteger(value) && value >= 0 && value <= MAX_QUANTITY)) throw new Error('quantity');
   return Math.max(required - owned, 0);

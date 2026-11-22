@@ -40,6 +40,8 @@ for (let index = 0; index < results.length; index++) {
       assert.equal(/<meta\b[^>]*name="robots"[^>]*content="[^"]*noindex/.test(body), preview, 'Indexing metadata does not match the environment');
       assert.ok(response.headers.get('content-security-policy')?.includes("script-src 'self' 'wasm-unsafe-eval'"), 'Pages CSP missing');
       assert.equal(response.headers.get('x-content-type-options'), 'nosniff');
+      assert.ok(response.headers.get('cache-control')?.includes('no-transform'), 'HTML must prevent automatic analytics injection');
+      assert.ok(!body.includes('static.cloudflareinsights.com/beacon'), 'Unexpected analytics script injected into HTML');
       assert.ok(body.includes(`property="og:image" content="${canonical}/images/social/default-${language}.jpg"`), 'Localized share image missing');
       assert.ok(body.includes('name="twitter:card" content="summary_large_image"'));
       for (const script of body.matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script>/gi)) {

@@ -1,0 +1,11 @@
+---
+import type { Locale } from '../lib/i18n';
+interface Props { locale: Locale; titleId: string; }
+const { locale, titleId } = Astro.props;
+const en = locale === 'en';
+---
+<dialog class="confirm-dialog" data-answer-dialog aria-labelledby={titleId}>
+  <h2 id={titleId}>{en ? 'Reveal the full explanation?' : '詳しい解説を表示しますか？'}</h2>
+  <p>{en ? 'This opens the complete answer and any solution images for the current question.' : '現在の問いの答えと解答画像を表示します。'}</p>
+  <div class="button-row"><button class="button secondary" type="button" data-cancel-answer autofocus>{en ? 'Keep it hidden' : 'まだ表示しない'}</button><button class="button" type="button" data-reveal-answer>{en ? 'Reveal answer' : '答えを表示'}</button></div>
+</dialog>

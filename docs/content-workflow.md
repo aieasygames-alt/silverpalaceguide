@@ -19,6 +19,8 @@
 
 ## 接入第一组实测内容
 
+先运行 `npm run capture:new -- case <稳定ID>`、`route <稳定ID>` 或 `interval <稳定ID>` 创建独立采集包。输出在已忽略的 `artifacts/private/captures/`，包含记录表、未知值为 `null` 的 manifest、图片台账 CSV 和原图目录。已有同名采集包会被拒绝覆盖。原始账号信息、个人笔记和未脱敏录像不进入 GitHub。模板位于 [案件](capture-kit/case.md)、[路线](capture-kit/route.md)、[完整材料区间](capture-kit/interval.md)。这些记录表不是待发布数据，不能直接并入 `src/data/`。
+
 1. 从开发草稿复制结构，保持 `status: draft`，换成真实条目的稳定 ID。不要把开发样例直接改成已发布。
 2. 在来源台账中记录可复查的实测记录，`kind` 设为 `gameplay-record`，明确服务器、版本、采集日期和能够证明的事实。官方发行公告不能代替案件步骤或成本记录。
 3. 原始截图留在采集档案中；网站用图放进 `public/images/evidence/`。在图片台账填写文件、真实尺寸、英日替代文字、来源、服务器、版本、日期和 `spoiler`：`safe` / `hint` / `answer`。

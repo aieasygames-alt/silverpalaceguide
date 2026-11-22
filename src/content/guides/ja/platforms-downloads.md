@@ -8,17 +8,17 @@ category: preparation
 status: published
 verification: official-announcement
 gameVersion: リリース前の公式発表
-updatedAt: '2026-11-21'
-revision: 1
+updatedAt: '2026-11-22'
+revision: 2
 sourceRevision: 1
-sourceIds: [elementa-launch-20261031, official-global]
+sourceIds: [elementa-launch-20261031, official-global, official-ja-web]
 order: 2
 ---
 ## 公式のストアページから始めましょう
 
 2026年10月31日のグローバルリリース発表では、PC、PlayStation 5、iOS、Androidへの対応が案内されています。掲載されているリンクは次のとおりです。
 
-- [公式サイト・PC向け情報](https://silverpalace.elementagames.com/en-us/)
+- [公式サイト・PC向け情報](https://silverpalace.elementagames.com/ja-jp/)
 - [Epic Games Store](https://store.epicgames.com/p/silver-palace-9c18fb)
 - [PlayStation Store](https://store.playstation.com/en-us/concept/10015692)
 - [App Store](https://apps.apple.com/app/id6758292278)

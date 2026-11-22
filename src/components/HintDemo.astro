@@ -1,5 +1,6 @@
 ---
 import Icon from './Icon.astro';
+import AnswerConfirmation from './AnswerConfirmation.astro';
 import type { Locale } from '../lib/i18n';
 interface Props { locale: Locale; }
 const { locale } = Astro.props;
@@ -21,8 +22,10 @@ const labels = en ? ['A gentle nudge', 'A closer look', 'The full explanation'] 
   {stages.map((stage, i) => <div data-stage={i} hidden={i !== 0}>{[stage.hint, stage.evidence, stage.solution].map((content, j) => <details class="hint-step" data-level={j + 1}><summary><span>0{j + 1}</span><span>{labels[j]}</span>{j === 2 && <span class="tiny">{en ? 'Spoilers' : 'ネタバレ'}</span>}<Icon name="plus" size={18}/></summary><div class="hint-content">{content}</div></details>)}</div>)}
   <div class="button-row"><button type="button" class="text-link" id="hide-hints">{en ? 'Hide all hints' : 'すべてのヒントを隠す'}<Icon name="x" size={15}/></button></div>
   <p class="status-message" id="hint-status" role="status" aria-live="polite"></p>
+  <AnswerConfirmation locale={locale} titleId="exercise-answer-title"/>
 </section>
 <script>
+  import { setupAnswerConfirmation } from '../lib/answer-confirmation';
   const root = document.querySelector<HTMLElement>('#hint-demo');
   if (root) {
     const en = root.dataset.locale === 'en';
@@ -35,8 +38,6 @@ const labels = en ? ['A gentle nudge', 'A closer look', 'The full explanation'] 
       root.querySelectorAll<HTMLElement>('[data-stage]').forEach((stage) => stage.hidden = stage.dataset.stage !== selected);
       status.textContent = en ? 'Question changed. Hints start closed.' : '問いを切り替えました。ヒントは閉じた状態です。';
     });
-    root.querySelectorAll<HTMLDetailsElement>('details[data-level="3"]').forEach((detail) => {
-      detail.querySelector('summary')?.addEventListener('click', (event) => { event.preventDefault(); if (detail.open) detail.open = false; else if (window.confirm(en ? 'Reveal the complete explanation for this exercise?' : 'この練習問題の答えと解説を表示しますか？')) detail.open = true; });
-    });
+    setupAnswerConfirmation(root);
   }
 </script>

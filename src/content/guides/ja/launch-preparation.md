@@ -8,17 +8,17 @@ category: preparation
 status: published
 verification: official-announcement
 gameVersion: リリース前の公式発表
-updatedAt: '2026-11-21'
-revision: 1
+updatedAt: '2026-11-22'
+revision: 2
 sourceRevision: 1
-sourceIds: [elementa-launch-20261031, official-global, official-ja]
+sourceIds: [elementa-launch-20261031, official-global, official-ja, official-ja-web]
 order: 1
 ---
 ## 日付と詳細を確認しましょう
 
 Elementaが2026年10月31日に公開した発表によると、**白銀の城のグローバルリリースは2026年12月14日（UTC+8）を予定しています**。この発表には具体的な開始時刻が記載されていません。日付だけをもとに、午前0時開始と判断しないようにしましょう。
 
-プレイの予定を立てる前に、[公式サイト](https://silverpalace.elementagames.com/en-us/)や日本語の公式アカウントで、開始時刻、事前ダウンロード、地域ごとの案内を確認してください。
+プレイの予定を立てる前に、[公式サイト](https://silverpalace.elementagames.com/ja-jp/)や日本語の公式アカウントで、開始時刻、事前ダウンロード、地域ごとの案内を確認してください。
 
 ## プラットフォームを選ぶ
 

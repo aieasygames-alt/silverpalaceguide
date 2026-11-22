@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { shortage, validatePlan } from '../src/lib/planner.ts';
+import { shortage, validatePlan, planIssues } from '../src/lib/planner.ts';
 import { validateNotes } from '../src/lib/progress.ts';
 
 test('shortages match hand-worked costs and never become negative', () => {
@@ -11,6 +11,18 @@ test('shortages match hand-worked costs and never become negative', () => {
   for (const value of [-1, NaN, Infinity, .5, 1_000_000_001]) assert.throws(() => shortage(value, 0));
 });
 const valid = () => ({ type: 'spg-material-plan', schemaVersion: 1, rows: [{ id: 'mat-1', name: 'A material', required: 120, owned: 35 }] });
+test('editable row errors identify every affected field without changing valid saved data', () => {
+  const saved = valid();
+  const rows = [{ ...saved.rows[0], name: ' Café ', required: NaN }, { id: 'mat-2', name: 'CAFE\u0301', required: 0, owned: -1 }, { id: 'mat-3', name: '', required: .5, owned: 0 }];
+  const issues = planIssues(rows);
+  assert.ok(issues.some((issue) => issue.rowId === 'mat-1' && issue.field === 'required'));
+  assert.ok(issues.some((issue) => issue.rowId === 'mat-2' && issue.field === 'owned'));
+  assert.equal(issues.filter((issue) => issue.reason === 'duplicate').length, 2);
+  assert.ok(issues.some((issue) => issue.rowId === 'mat-3' && issue.reason === 'name'));
+  assert.equal(saved.rows[0].required, 120);
+  assert.deepEqual(planIssues(saved.rows), []);
+  assert.throws(() => validatePlan({ ...saved, rows }));
+});
 test('material backups round-trip and preserve a zero requirement', () => {
   assert.deepEqual(validatePlan(JSON.parse(JSON.stringify(valid()))), valid());
   const plan = valid(); plan.rows[0].required = 0;

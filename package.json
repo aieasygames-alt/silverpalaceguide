@@ -13,7 +13,8 @@
     "preview": "astro preview --host 127.0.0.1",
     "test": "tsx --test tests/*.test.ts",
     "verify:deployment": "node scripts/verify-deployment.mjs",
-    "verify:content": "tsx scripts/verify-content.ts"
+    "verify:content": "tsx scripts/verify-content.ts",
+    "capture:new": "node scripts/new-capture.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "3.7.6",

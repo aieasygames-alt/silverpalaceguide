@@ -23,7 +23,6 @@ const presetMaterials = (materialCatalog ?? materials).filter((material) => used
     <p class="tiny">{en ? 'Verified intervals replace requirements and retain matching owned stock. Unknown costs cannot be calculated.' : '区間を適用すると必要数を置き換え、対応する素材の所持数を保持します。未確認の必要数は計算できません。'}</p>
     {entries.map((entry) => <div data-preset-info={entry.characterId} hidden><EditorialStatus locale={locale} entry={entry} original={characters.find((original) => original.characterId === entry.characterId && original.locale === 'en')} checkedAt={entry.checkedAt} server={entry.server} build={entry.build}/><SourceList locale={locale} ids={entry.sourceIds}/></div>)}
   </section>
-  <div class="tool-row tool-labels" aria-hidden="true" style="margin-top:24px"><span>{en ? 'Material' : '素材名'}</span><span>{en ? 'Required' : '必要数'}</span><span>{en ? 'Owned' : '所持数'}</span><span>{en ? 'Need' : '不足数'}</span><span></span></div>
   <div id="material-rows"></div>
   <div class="button-row"><button id="add-material" class="text-link" type="button"><Icon name="plus" size={17}/>{en ? 'Add a material' : '素材を追加'}</button></div>
   <div class="tool-summary"><span>{en ? 'Material types still needed' : '不足している素材の種類数'}</span><strong id="material-total" aria-live="polite">0</strong></div>
@@ -34,7 +33,7 @@ const presetMaterials = (materialCatalog ?? materials).filter((material) => used
   <noscript><p class="notice">{en ? 'Enable JavaScript to calculate and save your plan.' : '計算と保存にはJavaScriptを有効にしてください。'}</p></noscript>
 </section>
 <script>
-  import { validatePlan, applyMaterialPreset, type PresetCost, type PresetMaterial, shortage, PLAN_KEY, MAX_QUANTITY, type MaterialPlan } from '../lib/planner';
+  import { validatePlan, planIssues, applyMaterialPreset, type PresetCost, type PresetMaterial, shortage, PLAN_KEY, MAX_QUANTITY, type MaterialPlan } from '../lib/planner';
   import { readLocal, saveLocal, downloadJSON, parseBackup } from '../lib/local-data';
   const root = document.querySelector<HTMLElement>('#material-planner');
   if (root) {
@@ -55,6 +54,23 @@ const presetMaterials = (materialCatalog ?? materials).filter((material) => used
     let initialMessage = '';
     try { const stored = readLocal(PLAN_KEY); if (stored !== null) plan = validatePlan(stored); } catch { initialMessage = labels.recovered; }
     function recalculate(persist = true) {
+      const issues = planIssues(plan.rows);
+      for (const row of plan.rows) {
+        const displayName = presetMaterials.find((material) => material.id === row.materialId)?.name ?? row.name;
+        const output = document.getElementById(`need-${row.id}`);
+        output?.setAttribute('aria-label', en ? `Missing ${displayName}` : `${displayName}の不足数`);
+        document.getElementById(`remove-${row.id}`)?.setAttribute('aria-label', `${labels.remove} ${displayName || plan.rows.indexOf(row) + 1}`);
+        for (const field of ['name', 'required', 'owned'] as const) {
+          const input = document.getElementById(`${field}-${row.id}`);
+          const error = document.getElementById(`error-${field}-${row.id}`)!;
+          const issue = issues.find((issue) => issue.rowId === row.id && issue.field === field);
+          input?.setAttribute('aria-invalid', String(!!issue));
+          error.hidden = !issue;
+          error.textContent = !issue ? '' : issue.reason === 'duplicate' ? labels.duplicate : issue.reason === 'name'
+            ? (en ? 'Enter a material name (up to 60 characters).' : '素材名を60文字以内で入力してください。')
+            : (en ? 'Enter a whole number from 0 to 1,000,000,000.' : '0〜1,000,000,000の整数を入力してください。');
+        }
+      }
       try {
         const valid = validatePlan(plan);
         plan.rows.forEach((row) => { const output = document.getElementById(`need-${row.id}`); if (output) output.textContent = shortage(row.required, row.owned).toLocaleString(en ? 'en' : 'ja'); });
@@ -64,7 +80,7 @@ const presetMaterials = (materialCatalog ?? materials).filter((material) => used
       } catch (error) {
         rowsElement.querySelectorAll('output').forEach((output) => output.textContent = '—');
         total.textContent = '—'; exportButton.disabled = true;
-        status.textContent = error instanceof Error && error.message === 'duplicate' ? labels.duplicate : labels.invalid;
+        status.textContent = `${error instanceof Error && error.message === 'duplicate' ? labels.duplicate : labels.invalid} ${en ? 'Changes have not been saved. Fix the marked fields to save or export.' : '変更は保存していません。保存・書き出しの前に、エラーがある欄を修正してください。'}`;
       }
     }
     function render() {
@@ -73,15 +89,22 @@ const presetMaterials = (materialCatalog ?? materials).filter((material) => used
         const line = document.createElement('div'); line.className = 'tool-row';
         const displayName = presetMaterials.find((material) => material.id === row.materialId)?.name ?? row.name;
         for (const field of ['name', 'required', 'owned'] as const) {
+          const wrapper = document.createElement('div'); wrapper.className = 'material-field';
+          const label = document.createElement('label'); label.htmlFor = `${field}-${row.id}`; label.textContent = labels[field]; label.className = 'field-label';
           const input = document.createElement('input'); input.type = field === 'name' ? 'text' : 'number';
+          input.id = `${field}-${row.id}`; input.setAttribute('aria-describedby', `error-${field}-${row.id}`);
           input.setAttribute('aria-label', `${labels[field]} ${plan.rows.indexOf(row) + 1}`); input.value = field === 'name' ? displayName : String(row[field]);
           if (field === 'name') { input.maxLength = 60; input.placeholder = en ? 'Material name' : '素材名'; }
           else { input.min = '0'; input.max = String(MAX_QUANTITY); input.step = '1'; input.inputMode = 'numeric'; }
           input.addEventListener('input', () => { if (field === 'name') { row.name = input.value; delete row.materialId; } else row[field] = input.value === '' ? NaN : Number(input.value); recalculate(); });
-          line.append(input);
+          const error = document.createElement('span'); error.id = `error-${field}-${row.id}`; error.className = 'field-error'; error.hidden = true;
+          wrapper.append(label, input, error); line.append(wrapper);
         }
-        const output = document.createElement('output'); output.id = `need-${row.id}`; output.setAttribute('aria-label', en ? `Missing ${displayName}` : `${displayName}の不足数`); line.append(output);
+        const result = document.createElement('div'); result.className = 'material-result';
+        const resultLabel = document.createElement('label'); resultLabel.className = 'field-label'; resultLabel.htmlFor = `need-${row.id}`; resultLabel.textContent = en ? 'Need' : '不足数';
+        const output = document.createElement('output'); output.id = `need-${row.id}`; output.htmlFor.value = `required-${row.id} owned-${row.id}`; output.setAttribute('aria-label', en ? `Missing ${displayName}` : `${displayName}の不足数`); result.append(resultLabel, output); line.append(result);
         const remove = document.createElement('button'); remove.type = 'button'; remove.className = 'remove-row'; remove.textContent = '×'; remove.setAttribute('aria-label', `${labels.remove} ${displayName || plan.rows.indexOf(row) + 1}`);
+        remove.id = `remove-${row.id}`;
         remove.addEventListener('click', () => { plan.rows = plan.rows.filter((item) => item.id !== row.id); render(); recalculate(); root?.querySelector<HTMLButtonElement>('#add-material')?.focus(); });
         line.append(remove); rowsElement.append(line);
       }

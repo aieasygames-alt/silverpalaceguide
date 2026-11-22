@@ -56,7 +56,7 @@ const isPreview = import.meta.env.PREVIEW_NOINDEX === '1' || (import.meta.env.CF
         <span class="masthead-note">{locale === 'en' ? 'A little direction.\nA lot to discover.' : '少しのヒントで、\nもっと遠くへ。'}</span>
         <div class="masthead-actions"><a class="search-link" href={path(locale, 'search')} aria-label={t.search}><Icon name="search" size={18}/><span>{t.search}</span><kbd>/</kbd></a><a class="language-switch" href={path(t.otherLocale, alternatePath ?? suffix)} lang={t.otherLocale} aria-label={t.otherLanguage}>{t.otherLanguage}<span aria-hidden="true">↗</span></a><button class="menu-toggle" aria-expanded="false" aria-controls="main-nav">{t.menu}<Icon name="plus" size={18}/></button></div>
       </div>
-      <div class="nav-wrap"><nav id="main-nav" class="shell main-nav" aria-label={locale === 'en' ? 'Main navigation' : 'メインナビゲーション'}><a class:list={['home-link', { active: !section }]} href={path(locale)} aria-current={!section ? 'page' : undefined}>{t.home}</a><div class="nav-sections">{navPaths.map((navPath, i) => <a href={path(locale, navPath)} class:list={{ active: section === navPath }} aria-current={section === navPath ? 'page' : undefined}>{t.nav[i]}</a>)}</div><a class="official-link" href="https://silverpalace.elementagames.com/en-us/" target="_blank" rel="noopener noreferrer">{t.official}<Icon name="diagonal" size={13}/></a></nav></div>
+      <div class="nav-wrap"><nav id="main-nav" class="shell main-nav" aria-label={locale === 'en' ? 'Main navigation' : 'メインナビゲーション'}><a class:list={['home-link', { active: !section }]} href={path(locale)} aria-current={!section ? 'page' : undefined}>{t.home}</a><div class="nav-sections">{navPaths.map((navPath, i) => <a href={path(locale, navPath)} class:list={{ active: section === navPath }} aria-current={section === navPath ? 'page' : undefined}>{t.nav[i]}</a>)}</div><a class="official-link" href={`https://silverpalace.elementagames.com/${locale === 'en' ? 'en-us' : 'ja-jp'}/`} target="_blank" rel="noopener noreferrer">{t.official}<Icon name="diagonal" size={13}/></a></nav></div>
     </header>
     <main id="main"><slot /></main>
     <footer data-pagefind-ignore><div class="shell footer-top"><SiteBrand locale={locale} footer/><p>{t.footer}</p><div><a href={path(locale, 'about')}>{t.about}</a><a href={path(locale, 'privacy')}>{t.privacy}</a></div></div><div class="shell footer-bottom"><p>{t.disclaimer}</p><span>© 2026 Silver Palace Guide</span></div></footer>
@@ -65,8 +65,12 @@ const isPreview = import.meta.env.PREVIEW_NOINDEX === '1' || (import.meta.env.CF
       menu?.addEventListener('click', () => { const expanded = menu.getAttribute('aria-expanded') === 'true'; menu.setAttribute('aria-expanded', String(!expanded)); document.querySelector('.nav-wrap')?.classList.toggle('is-open', !expanded); });
       document.addEventListener('keydown', (event) => {
         const target = event.target as HTMLElement;
-        if (event.key === '/' && !event.metaKey && !event.ctrlKey && !target.closest('input, textarea, select, [contenteditable="true"]')) { event.preventDefault(); document.querySelector<HTMLAnchorElement>('.search-link')?.click(); }
-        if (event.key === 'Escape') { menu?.setAttribute('aria-expanded', 'false'); document.querySelector('.nav-wrap')?.classList.remove('is-open'); }
+        if (event.key === '/' && !event.metaKey && !event.ctrlKey && !event.altKey && !target.closest('input, textarea, select, [contenteditable="true"], dialog[open]')) { event.preventDefault(); document.querySelector<HTMLAnchorElement>('.search-link')?.click(); }
+        if (event.key === 'Escape' && menu?.getAttribute('aria-expanded') === 'true') {
+          const focusWasInNavigation = document.querySelector('.nav-wrap')?.contains(document.activeElement);
+          menu.setAttribute('aria-expanded', 'false'); document.querySelector('.nav-wrap')?.classList.remove('is-open');
+          if (focusWasInNavigation) menu.focus();
+        }
       });
     </script>
   </body>

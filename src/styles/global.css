@@ -8,7 +8,7 @@
   button { cursor: pointer; }
 }
 @layer base {
-  :root { --paper: #f5f2eb; --paper-deep: #eae5d9; --white: #fcfbf7; --ink: #24372f; --muted: #667169; --green: #193c35; --copper: #986b43; --line: #d8d8cc; --serif: 'Cormorant Garamond', 'Yu Mincho', 'Hiragino Mincho ProN', Georgia, serif; --sans: 'DM Sans', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', sans-serif; }
+  :root { --paper: #f5f2eb; --paper-deep: #eae5d9; --white: #fcfbf7; --ink: #24372f; --muted: #56645a; --green: #193c35; --copper: #875b35; --line: #d8d8cc; --serif: 'Cormorant Garamond', 'Yu Mincho', 'Hiragino Mincho ProN', Georgia, serif; --sans: 'DM Sans', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', sans-serif; }
   html { scroll-behavior: smooth; scroll-padding-top: 2rem; }
   body { background: var(--paper); color: var(--ink); font: 400 15px/1.65 var(--sans); }
   :lang(ja) { line-break: strict; }
@@ -269,3 +269,18 @@ button:disabled, select:disabled { cursor: not-allowed; opacity: .6; }
 .confirm-dialog::backdrop { background: rgb(15 35 29 / 65%); }
 .confirm-dialog h2 { font-size: 2rem; margin-bottom: 16px; }
 .confirm-dialog .button-row { margin-top: 24px; }
+.material-field { min-width: 0; }
+.material-field .field-label, .material-result .field-label { font-size: 10px; margin-bottom: 4px; }
+.material-result output { display: block; min-height: 42px; padding-block: 9px; overflow-wrap: anywhere; }
+#material-rows .tool-row { align-items: start; margin-top: 22px; }
+#material-rows .remove-row { margin-top: 23px; }
+.field-error { display: block; margin-top: 6px; font-size: 11px; color: #8b3426; line-height: 1.5; }
+.field-error[hidden] { display: none; }
+input[aria-invalid="true"] { border-color: #8b3426; }
+@media (max-width: 600px) {
+  #material-rows .tool-row { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) 34px; padding-top: 16px; border-top: 1px solid var(--line); gap: 12px; }
+  .material-field:first-child { grid-column: 1 / 3; }
+  #material-rows .remove-row { grid-column: 3; grid-row: 1; width: 34px; height: 40px; }
+  .material-result { grid-column: 1 / -1; display: flex; align-items: baseline; gap: 12px; }
+  .material-result output { min-height: 0; padding: 0; }
+}

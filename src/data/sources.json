@@ -5,9 +5,14 @@
     "url": "https://www.gamespress.com/Silver-Palace-Sets-Global-Launch-Date-for-December-14-2026",
     "publisher": "Elementa via Games Press",
     "publishedAt": "2026-10-31",
-    "checkedAt": "2026-11-21",
+    "checkedAt": "2026-11-22",
     "kind": "official-press-release",
-    "facts": ["Global launch announced for 14 December 2026 (UTC+8); no opening hour specified.", "Announced platforms: PC, PlayStation 5, iOS and Android.", "Twelve text languages announced; this does not establish regional player shares.", "Detective investigations, open-world exploration and real-time character switching are described."],
+    "facts": [
+      "Global launch announced for 14 December 2026 (UTC+8); no opening hour specified.",
+      "Announced platforms: PC, PlayStation 5, iOS and Android.",
+      "Twelve text languages announced; this does not establish regional player shares.",
+      "Detective investigations, open-world exploration and real-time character switching are described."
+    ],
     "limitations": "Announcement, not a live-service verification. Confirm region-specific availability and opening times on official channels. No numerical progression data established.",
     "assets": "Factual reference only. No third-party images or article prose copied."
   },
@@ -16,9 +21,11 @@
     "title": "Silver Palace — official global website",
     "url": "https://silverpalace.elementagames.com/en-us/",
     "publisher": "Elementa",
-    "checkedAt": "2026-11-21",
+    "checkedAt": "2026-11-22",
     "kind": "official-website",
-    "facts": ["Official global information and regional links."],
+    "facts": [
+      "Official global information and regional links."
+    ],
     "limitations": "Dynamic page. Recheck announcements before publishing new launch details.",
     "assets": "Link only."
   },
@@ -29,8 +36,24 @@
     "publisher": "Elementa",
     "checkedAt": "2026-11-21",
     "kind": "official-social",
-    "facts": ["Official Japanese game title: 白銀の城. Account uses はくぎんのしろ and シルパレ."],
+    "facts": [
+      "Official Japanese game title: 白銀の城. Account uses はくぎんのしろ and シルパレ."
+    ],
     "limitations": "Used for title verification, not gameplay or material requirements.",
+    "assets": "Link only."
+  },
+  {
+    "id": "official-ja-web",
+    "title": "白銀の城 — 公式日本語サイト",
+    "url": "https://silverpalace.elementagames.com/ja-jp/",
+    "publisher": "Elementa",
+    "checkedAt": "2026-11-22",
+    "kind": "official-website",
+    "facts": [
+      "Official Japanese title: 白銀の城.",
+      "The Japanese page title announces a simultaneous global release on 14 December 2026."
+    ],
+    "limitations": "Dynamic site was partly still loading. No opening hour, regional download availability or gameplay costs verified.",
     "assets": "Link only."
   }
 ]
