@@ -2,6 +2,8 @@
 
 此表是采集模板，未知项留空。填写后按 `docs/content-workflow.md` 接入现有模型；不直接发布此文件。
 
+将结构化英日草稿填入同包 `content.json`；原图和录像留在 `originals/`，脱敏用图放入 `assets/` 并登记 `evidence.csv`。用 `capture:check` 检查，完成复现和双语/剧透审查后才能 `capture:prepare` 生成私有草稿审查包。
+
 - 英语官方名称、出处：
 - 日语官方名称、出处（缺失时保持未知）：
 - 服务器 / 地区：

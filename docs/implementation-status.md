@@ -114,3 +114,11 @@ Implemented the approved event → combat → deduction → glossary/region sequ
 Added crosslinks from the homepage, guides, characters, cases, exploration and tool directory. All gameplay summaries identify their official source and scope; July test mechanics are not treated as launch verification. Existing material and exploration save formats remain compatible.
 
 Local acceptance: 65 checked files without diagnostics, 26 passing tests, production and noindex preview builds, 44 HTML pages and 40 searchable pages. Browser tests cover selection gates, duplicate quantities, persistence across languages, backup download, deadline conversion, bilingual search and 16 responsive combinations. Expanded production checks include all new pages, XML/calendar MIME, sitemap membership and private-route 404s. See [release acceptance](official-content-release.md) and [source/scope plan](official-content-expansion-plan.md).
+
+## Private capture intake and draft review — 22 November 2026
+
+Extended the capture generator with structured bilingual `content.json`, reviewed assets and a separate interval cost worksheet. Added read-only `capture:status` / `capture:check` commands and `capture:prepare` for private draft review bundles. The workflow reuses existing content models and validates scope, localized IDs/revisions, spoiler boundaries, image hash/dimensions/metadata and step/manual/preset cost agreement. Symlink escapes and replacement of existing capture/evidence files are rejected.
+
+Prepared bundles contain draft JSON and candidate images only, with no original recordings or private notes. They do not modify site data or public assets. The three existing legacy intake packages correctly remain incomplete; every existing file hash was unchanged after queue/check execution. Private reports list missing fields.
+
+Acceptance: 68 checked files without diagnostics, 37 passing tests, production build with 44 HTML and 40 searchable pages. No UI or save-format changes. The official news/deduction source was reviewed again and still does not establish a complete solution, route or cost interval. Real P3-03–05 content remains pending actual recordings and reproduction. See [capture workflow acceptance](capture-intake-release.md) and the updated [next-phase plan](next-phase-plan.md).

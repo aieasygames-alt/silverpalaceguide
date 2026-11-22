@@ -51,12 +51,24 @@ npm run preview
 
 `build` 会生成静态 HTML、英日 Pagefind 索引，并检查内部链接、规范地址、语言、草稿排除和来源引用。构建结果在 `dist/`。搜索需在完成构建后通过 `preview` 验证。
 
+实测内容接入命令：
+
+```sh
+npm run capture:new -- case <稳定ID>
+npm run capture:status
+npm run capture:check -- case-<稳定ID>
+npm run capture:prepare -- case-<稳定ID>
+```
+
+类型也支持 `route` 和 `interval`。采集包及审查包只写入 Git 已忽略的 `artifacts/private/`；检查通过后仍须编辑查看实测记录并手动合并草稿，不自动发布。字段和验收步骤见 [攻略内容流程](docs/content-workflow.md)，本轮结果见 [采集工具验收](docs/capture-intake-release.md)。
+
 ## 已实现的开发基线
 
 - 英日双语首页、导航、资料页面和全文搜索。
 - 分层提示交互，使用明确标记的原创练习；游戏事件攻略等待核验后发布。
 - 本地探索清单，支持进度、备份导入导出及格式校验。
 - 手输入素材规划器，计算缺口并保存；角色自动预设等待可靠数据。
+- 20 组英日官方角色资料、三角色对比、官方活动奖励规划、机制指南和英日术语检索；官方定性介绍与实测数值分开。
 - 官方来源台账 `src/data/sources.json`、英日术语表 `src/data/glossary.json`、有发布门槛的内容集合。
 - 本地托管的游戏配图、原创 SVG 图案和本地字体，无远程图片、字体或解析服务依赖。游戏图经 Astro 生成响应式 AVIF/WebP/JPEG，来源与用途见 [图片台账](docs/image-register.md)。
 - 英日编辑方针页提供 GitHub 公开纠错入口，仓库包含双语纠错模板。

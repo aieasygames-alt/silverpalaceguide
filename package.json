@@ -14,7 +14,10 @@
     "test": "tsx --test tests/*.test.ts",
     "verify:deployment": "node scripts/verify-deployment.mjs",
     "verify:content": "tsx scripts/verify-content.ts",
-    "capture:new": "node scripts/new-capture.mjs"
+    "capture:new": "tsx scripts/capture.ts new",
+    "capture:check": "tsx scripts/capture.ts check",
+    "capture:prepare": "tsx scripts/capture.ts prepare",
+    "capture:status": "tsx scripts/capture.ts status"
   },
   "dependencies": {
     "@astrojs/sitemap": "3.7.6",
@@ -25,6 +28,7 @@
   "devDependencies": {
     "@astrojs/check": "0.9.12",
     "pagefind": "1.6.0",
+    "sharp": "0.35.5",
     "tsx": "4.23.15",
     "typescript": "6.0.3"
   }
