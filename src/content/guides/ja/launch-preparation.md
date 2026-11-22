@@ -9,9 +9,9 @@ status: published
 verification: official-announcement
 gameVersion: リリース前の公式発表
 updatedAt: '2026-11-22'
-revision: 2
-sourceRevision: 1
-sourceIds: [elementa-launch-20261031, official-global, official-ja, official-ja-web]
+revision: 3
+sourceRevision: 2
+sourceIds: [official-overture-en, official-overture-ja, elementa-launch-20261031, official-global, official-ja, official-ja-web]
 order: 1
 ---
 ## 日付と詳細を確認しましょう
@@ -43,3 +43,7 @@ Elementaが2026年10月31日に公開した発表によると、**白銀の城�
 ## この情報だけでは確認できないこと
 
 正式版の素材必要数、ドロップ率、リセマラの推奨手順、キャラクターの評価順位は、この発表からは確認できません。それぞれ別の検証が必要です。現在の素材プランナーは、未確認のキャラクターデータではなく、ご自身で入力した必要数を使って計算します。
+
+## 事前イベントの報酬を準備
+
+公式「難事件発生」の抽選は2026年12月13日23:59（UTC+8）まで。正式サービス開始後の受け取り期限は別に設定され、2026年12月29日10:00（UTC+8）です。[イベントガイド](../mystery-unveiled/)でルールを確認し、[報酬選択プランナー](../../tools/event-rewards/)で獲得済みから最大6点の候補を整理できます。実際の受け取りは公式サイトで手動で行ってください。

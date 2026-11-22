@@ -8,10 +8,10 @@ category: preparation
 status: published
 verification: official-announcement
 gameVersion: Pre-launch announcement
-updatedAt: '2026-11-21'
-revision: 1
-sourceRevision: 1
-sourceIds: [elementa-launch-20261031, official-global]
+updatedAt: '2026-11-22'
+revision: 2
+sourceRevision: 2
+sourceIds: [official-overture-en, official-overture-ja, elementa-launch-20261031, official-global]
 order: 1
 ---
 ## Mark the date, check the details
@@ -43,3 +43,7 @@ Silver Palace Guide begins with English and Japanese. Its language selector chan
 ## What remains unverified here
 
 We have not established final launch-version material costs, drop rates, reroll recommendations or character rankings from this announcement. Those need separate evidence. Our current material planner uses requirements you enter yourself, rather than unverified character presets.
+
+## Prepare your web-event rewards
+
+The official Mystery Unveiled event has a draw deadline of 13 December 2026, 23:59 (UTC+8), and a separate post-launch claim deadline of 29 December 2026, 10:00 (UTC+8). Read the [event guide](../mystery-unveiled/) for the rules, then use the [reward worksheet](../../tools/event-rewards/) to plan up to six drawn entries. Claiming happens manually on the official event site.

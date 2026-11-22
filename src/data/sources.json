@@ -83,5 +83,129 @@
     ],
     "limitations": "Pre-release character introductions. Names and descriptions may change. No rarity, launch availability, complete skill kit, numerical scaling, acquisition rules or progression costs established. Some entries have only a name, title and introductory line in EN/JA.",
     "assets": "Small official character portraits used for identification; copyright remains with the game rights holders. Text is independently summarized."
+  },
+  {
+    "id": "official-overture-en",
+    "title": "Mystery Unveiled — official event rules (EN)",
+    "url": "https://silverpalace.elementagames.com/special/overture/",
+    "publisher": "Elementa",
+    "checkedAt": "2026-11-22",
+    "kind": "official-website",
+    "facts": [
+      "Current public event Rules dialog, English selected. Draw period, task and currency limits, ten in-game pool entries, selection of at most six drawn entries, manual one-time claim and deadline."
+    ],
+    "limitations": "Select English in the event language menu. No player account, draw result, item value, probability or progression cost verified.",
+    "assets": "Factual reference and independently written summaries. No article images or prose reproduced."
+  },
+  {
+    "id": "official-overture-ja",
+    "title": "難事件発生 — 公式イベントルール（日本語）",
+    "url": "https://silverpalace.elementagames.com/special/overture/",
+    "publisher": "Elementa",
+    "checkedAt": "2026-11-22",
+    "kind": "official-website",
+    "facts": [
+      "Current public event rules with Japanese selected. Official Japanese event, pool, currency and reward names match the English rules."
+    ],
+    "limitations": "Select 日本語 in the event language menu. The shared URL does not force a language. Same factual limits as the English rules.",
+    "assets": "Factual reference and independently written summaries. No article images or prose reproduced."
+  },
+  {
+    "id": "official-combat-en",
+    "title": "The Science of All Things — Combat Edition (EN)",
+    "url": "https://silverpalace.elementagames.com/en-us/newsDetail?id=93",
+    "publisher": "Elementa",
+    "checkedAt": "2026-11-22",
+    "kind": "official-website",
+    "facts": [
+      "Beta-period explanations of parries, executions, synchronised combat, weakened states, resonance and Casual Mode."
+    ],
+    "limitations": "Historical test description, not launch-version verification. No damage formula, final bindings, timing windows or complete character kits.",
+    "assets": "Factual reference and independently written summaries. No article images or prose reproduced.",
+    "publishedAt": "2026-07-22"
+  },
+  {
+    "id": "official-combat-ja",
+    "title": "『万物の研究』戦闘編（日本語）",
+    "url": "https://silverpalace.elementagames.com/ja-jp/newsDetail?id=94",
+    "publisher": "Elementa",
+    "checkedAt": "2026-11-22",
+    "kind": "official-website",
+    "facts": [
+      "Japanese counterpart of the official combat article and localized mechanism names."
+    ],
+    "limitations": "Historical test description; final launch behavior and numeric data require new evidence.",
+    "assets": "Factual reference and independently written summaries. No article images or prose reproduced.",
+    "publishedAt": "2026-07-22"
+  },
+  {
+    "id": "official-deductions-en",
+    "title": "The Science of All Things — Curious Deductions Edition (EN)",
+    "url": "https://silverpalace.elementagames.com/en-us/newsDetail?id=99",
+    "publisher": "Elementa",
+    "checkedAt": "2026-11-22",
+    "kind": "official-website",
+    "facts": [
+      "Multiple endings, restarting Evidence Board progress and a truth-related collectable/achievement. Introduces The Resurrection Mystery."
+    ],
+    "limitations": "Test-era announcement; no complete walkthrough, ending count, reward list or launch-version verification.",
+    "assets": "Factual reference and independently written summaries. No article images or prose reproduced.",
+    "publishedAt": "2026-07-26"
+  },
+  {
+    "id": "official-deductions-ja",
+    "title": "『万物の研究』奇事件編（日本語）",
+    "url": "https://silverpalace.elementagames.com/ja-jp/newsDetail?id=98",
+    "publisher": "Elementa",
+    "checkedAt": "2026-11-22",
+    "kind": "official-website",
+    "facts": [
+      "Japanese official terms 奇事件の再演, 捜査ボード, 再推理 and 死者蘇生の謎."
+    ],
+    "limitations": "Same scope and limits as the English article; not a tested case solution.",
+    "assets": "Factual reference and independently written summaries. No article images or prose reproduced.",
+    "publishedAt": "2026-07-26"
+  },
+  {
+    "id": "official-morgue-en",
+    "title": "The Science of All Things — Local Edition: Morgue Street (EN)",
+    "url": "https://silverpalace.elementagames.com/en-us/newsDetail?id=71",
+    "publisher": "Elementa",
+    "checkedAt": "2026-11-22",
+    "kind": "official-website",
+    "facts": [
+      "Morgue Street within High Peers, landmark functions and qualitative hostile-faction background."
+    ],
+    "limitations": "Article states work in progress. No map coordinates, routes, collectible totals, drops or enemy weaknesses established.",
+    "assets": "Factual reference and independently written summaries. No article images or prose reproduced.",
+    "publishedAt": "2026-07-14"
+  },
+  {
+    "id": "official-morgue-ja",
+    "title": "『万物の研究』地域編 モーグ街区（日本語）",
+    "url": "https://silverpalace.elementagames.com/ja-jp/newsDetail?id=72",
+    "publisher": "Elementa",
+    "checkedAt": "2026-11-22",
+    "kind": "official-website",
+    "facts": [
+      "Official Japanese area names and counterpart region/landmark descriptions."
+    ],
+    "limitations": "Development-period background, not verified exploration steps or launch enemy data.",
+    "assets": "Factual reference and independently written summaries. No article images or prose reproduced.",
+    "publishedAt": "2026-07-14"
+  },
+  {
+    "id": "official-beta-feedback-en",
+    "title": "Silvernia News — Dichotomy Beta Test Feedback and Optimization",
+    "url": "https://silverpalace.elementagames.com/en-us/newsDetail?id=107",
+    "publisher": "Elementa",
+    "checkedAt": "2026-11-22",
+    "kind": "official-website",
+    "facts": [
+      "Further branching deduction content and planned improvements to combat guidance, dialogue history, environments and Silverium Pegasus movement."
+    ],
+    "limitations": "Future plans must not be reported as completed launch features.",
+    "assets": "Factual reference and independently written summaries. No article images or prose reproduced.",
+    "publishedAt": "2026-08-22"
   }
 ]

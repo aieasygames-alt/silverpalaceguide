@@ -4,7 +4,14 @@ import { cases, routes, characters, materials, evidenceImages } from '../src/lib
 import { validatePublicationSet, validateGameReferences } from '../src/lib/publication-check';
 import sources from '../src/data/sources.json';
 import { characterProfiles, profileReferenceErrors } from '../src/lib/character-profiles';
-const errors = [...validatePublicationSet([cases, routes, characters], sources), ...validateGameReferences(cases, routes, characters, materials, evidenceImages), ...profileReferenceErrors];
+import { referenceErrors } from '../src/lib/references';
+import { rewardEvent, rewardSlots } from '../src/lib/event-rewards';
+const errors = [...validatePublicationSet([cases, routes, characters], sources), ...validateGameReferences(cases, routes, characters, materials, evidenceImages), ...profileReferenceErrors, ...referenceErrors];
+for (const id of rewardEvent.sourceIds) {
+  if (!sources.some(source => source.id === id && source.kind === 'official-website')) errors.push(`Event reward rules: unknown official source ${id}`);
+}
+if (rewardSlots.length !== 10 || rewardEvent.selectionLimit !== 6 || new Set(rewardSlots.map(slot => slot.id)).size !== rewardSlots.length) errors.push('Event reward pool or claim limit differs from the checked rules');
+if (!(Date.parse(rewardEvent.drawStartsAt) < Date.parse(rewardEvent.drawEndsAt) && Date.parse(rewardEvent.drawEndsAt) < Date.parse(rewardEvent.claimEndsAt))) errors.push('Invalid official event deadline order');
 for (const profile of characterProfiles) {
   for (const id of profile.portraitIds) {
     try { await access(`src/assets/characters/${id}.png`); } catch { errors.push(`Profile ${profile.id}: missing portrait ${id}`); }

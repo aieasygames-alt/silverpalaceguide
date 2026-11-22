@@ -8,6 +8,7 @@ import PageHeading from '../../../components/PageHeading.astro';
 import { publishedGuides } from '../../../lib/content';
 import sources from '../../../data/sources.json';
 import { text, type Locale } from '../../../lib/i18n';
+import '../../../styles/reference.css';
 export async function getStaticPaths() { return (await publishedGuides()).map((guide) => ({ params: { locale: guide.data.locale, slug: guide.data.slug }, props: { guide } })); }
 const { guide } = Astro.props;
 const locale = guide.data.locale as Locale;
@@ -15,7 +16,14 @@ const en = locale === 'en';
 const { Content } = await render(guide);
 const original = (await publishedGuides('en')).find((entry) => entry.data.translationId === guide.data.translationId);
 const references = sources.filter((source) => guide.data.sourceIds.includes(source.id));
+const combatTracks = en ? [
+  { label: 'Responding to an attack', steps: ['Watch the yellow cue', 'Parry to reduce damage and counter'] },
+  { label: 'When an enemy is Stunned', steps: ['Perform an Execution', 'Follow up during temporary weakness'] },
+] : [
+  { label: '敵の攻撃に対応する', steps: ['黄色い攻撃予兆を見る', 'パリィで被ダメージを抑え、反撃する'] },
+  { label: '敵が気絶したとき', steps: ['致命攻撃を行う', '一時的な虚弱中に追撃する'] },
+];
 ---
-<Base locale={locale} title={guide.data.title} description={guide.data.summary} section="guides"><div class="shell"><div data-pagefind-body><PageHeading locale={locale} eyebrow={en ? 'FIELD GUIDE' : 'フィールドガイド'} title={guide.data.title} description={guide.data.summary}/><div class="page-grid"><article class="prose">{guide.data.slug === 'launch-preparation' && <figure class="article-art" data-pagefind-ignore><GameImage image="launch" locale={locale} sizes="(max-width: 600px) calc(100vw - 36px), (max-width: 800px) 596px, (max-width: 1100px) calc(100vw - 346px), 596px"/><figcaption>{en ? 'Global launch promotional artwork. See the announcement below for the date and timezone.' : 'グローバルリリースの宣伝ビジュアル。日付とタイムゾーンは本文の公式発表をご確認ください。'}</figcaption></figure>}<Content /></article><aside data-pagefind-ignore>
+<Base locale={locale} title={guide.data.title} description={guide.data.summary} section="guides"><div class="shell"><div data-pagefind-body><PageHeading locale={locale} eyebrow={en ? 'FIELD GUIDE' : 'フィールドガイド'} title={guide.data.title} description={guide.data.summary}/><div class="page-grid"><article class="prose">{guide.data.slug === 'launch-preparation' && <figure class="article-art" data-pagefind-ignore><GameImage image="launch" locale={locale} sizes="(max-width: 600px) calc(100vw - 36px), (max-width: 800px) 596px, (max-width: 1100px) calc(100vw - 346px), 596px"/><figcaption>{en ? 'Global launch promotional artwork. See the announcement below for the date and timezone.' : 'グローバルリリースの宣伝ビジュアル。日付とタイムゾーンは本文の公式発表をご確認ください。'}</figcaption></figure>}{guide.data.slug === 'combat-basics' && <figure class="flow-diagram" aria-label={en ? 'Two announced combat interactions' : '発表された2つの戦闘の仕組み'}><figcaption>{en ? 'Two combat interactions · July 2026 test reference' : '公式紹介の2つの戦闘の仕組み · 2026年7月テスト資料'}</figcaption><div class="combat-tracks">{combatTracks.map(track => <div><strong>{track.label}</strong><ol>{track.steps.map((step,index) => <li><span aria-hidden="true">{String(index+1).padStart(2,'0')}</span>{step}</li>)}</ol></div>)}</div></figure>}<Content /></article><aside data-pagefind-ignore>
   {guide.data.slug === 'reading-case-hints' && <figure class="article-art"><GameImage image="closeup" locale={locale} sizes="(max-width: 600px) calc(100vw - 38px), (max-width: 652px) calc(100vw - 58px), (max-width: 800px) 594px, (max-width: 1100px) 258px, 298px"/><figcaption>{en ? 'A closer look at the world of Silver Palace.' : '白銀の城の世界を、少し近くから。'}</figcaption></figure>}
   <EditorialStatus locale={locale} entry={guide.data} original={original?.data} originalHref={path('en', `guides/${guide.data.slug}`)}/><div class="panel"><span class="pill">{guide.data.verification === 'official-announcement' ? (en ? 'Official announcement' : '公式発表に基づく情報') : (en ? 'Editorial guide' : 'サイトの使い方')}</span><hr class="rule"/><dl class="meta-list"><div><dt>{en ? 'Scope' : '対象'}</dt><dd>{guide.data.gameVersion}</dd></div><div><dt>{en ? 'Updated' : '更新日'}</dt><dd><time datetime={guide.data.updatedAt}>{guide.data.updatedAt}</time></dd></div><div><dt>{en ? 'Edition' : '版'}</dt><dd>{en ? 'Global / International' : 'グローバル版'}</dd></div></dl><hr class="rule"/><h3 style="font-size:1.4rem">{text[locale].sources}</h3><ol class="source-list">{references.map((source) => <li><a href={source.url} target="_blank" rel="noopener noreferrer">{source.title}</a><br/>{text[locale].checked}: {source.checkedAt}</li>)}</ol></div></aside></div></div></div></Base>

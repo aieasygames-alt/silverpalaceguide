@@ -106,3 +106,11 @@
 ## Official character expansion — 22 November 2026
 
 20 bilingual official dossiers (21 displayed identities) replace the character placeholder. Added 21 source-matched portraits, bilingual name search, qualitative combat/equipment notes, and a shareable three-profile comparison tool. Optional planner character reference preserves the v1 worksheet and quantities. EN/JA character pages are now indexable and in the sitemap. Official-profile data and verified numerical progression remain separate. Full source scope and validation are recorded in `docs/official-character-research.md`.
+
+## Official event, mechanics and reference expansion — 22 November 2026
+
+Implemented the approved event → combat → deduction → glossary/region sequence: 4 bilingual guides and 2 bilingual tools, adding 12 public pages. Mystery Unveiled includes ten independent reward entries, up to six planned selections, duplicate-item totals, timezone conversion, two calendar deadlines and an isolated local backup format. The reference library combines 30 official terms with the 20 existing character dossiers.
+
+Added crosslinks from the homepage, guides, characters, cases, exploration and tool directory. All gameplay summaries identify their official source and scope; July test mechanics are not treated as launch verification. Existing material and exploration save formats remain compatible.
+
+Local acceptance: 65 checked files without diagnostics, 26 passing tests, production and noindex preview builds, 44 HTML pages and 40 searchable pages. Browser tests cover selection gates, duplicate quantities, persistence across languages, backup download, deadline conversion, bilingual search and 16 responsive combinations. Expanded production checks include all new pages, XML/calendar MIME, sitemap membership and private-route 404s. See [release acceptance](official-content-release.md) and [source/scope plan](official-content-expansion-plan.md).

@@ -13,7 +13,8 @@ async function request(path) {
   return { path, response, body: await response.text() };
 }
 
-const routes = ['/', '/en/', '/ja/', '/en/search/', '/en/characters/', '/ja/characters/', '/en/tools/character-compare/', '/ja/tools/character-compare/', '/robots.txt', '/sitemap-index.xml', '/sitemap-0.xml', '/__deployment_check_missing__/', '/images/social/default-en.jpg', '/images/social/default-ja.jpg', '/en/cases/fixture-case/', '/en/exploration/fixture-route/', '/en/qa-preview/'];
+const referenceRoutes = ['en', 'ja'].flatMap(locale => ['guides/mystery-unveiled', 'guides/combat-basics', 'guides/curious-deductions', 'guides/morgue-street', 'tools/event-rewards', 'tools/glossary'].map(suffix => `/${locale}/${suffix}/`));
+const routes = ['/', '/en/', '/ja/', '/en/search/', '/en/characters/', '/ja/characters/', '/en/tools/character-compare/', '/ja/tools/character-compare/', ...referenceRoutes, '/en/events/mystery-unveiled.ics', '/ja/events/mystery-unveiled.ics', '/robots.txt', '/sitemap-index.xml', '/sitemap-0.xml', '/__deployment_check_missing__/', '/images/social/default-en.jpg', '/images/social/default-ja.jpg', '/en/cases/fixture-case/', '/en/exploration/fixture-route/', '/en/qa-preview/'];
 const results = await Promise.allSettled(routes.map(request));
 const failures = [];
 for (let index = 0; index < results.length; index++) {
@@ -55,15 +56,35 @@ for (let index = 0; index < results.length; index++) {
       assert.equal(body.includes('content="noindex, follow"'), preview);
     }
     if (path.includes('/tools/character-compare/')) assert.ok(body.includes('data-comparison-profile="alf"'));
+    if (referenceRoutes.includes(path)) {
+      assert.ok(response.headers.get('content-type')?.includes('text/html'));
+      assert.ok(body.includes(`rel="canonical" href="${canonical}${path}"`));
+      assert.equal(/name="robots" content="[^"]*noindex/.test(body), preview);
+      if (path.includes('/tools/event-rewards/')) assert.equal((body.match(/data-reward-card=/g) || []).length, 10);
+      if (path.includes('/tools/glossary/')) assert.equal((body.match(/data-term-card/g) || []).length, 50);
+    }
+    if (path.endsWith('.ics')) {
+      assert.ok(response.headers.get('content-type')?.includes('text/calendar'), 'Calendar MIME type');
+      assert.ok(response.headers.get('content-disposition')?.includes('attachment'), 'Calendar download header');
+      assert.match(body, /^BEGIN:VCALENDAR\r\n/);
+      assert.equal((body.match(/BEGIN:VEVENT/g) || []).length, 2);
+      assert.ok(body.includes('DTSTART:20261213T155900Z') && body.includes('DTSTART:20261229T020000Z'));
+    }
     if (path === '/robots.txt') {
       if (preview) assert.match(body, /User-agent: \*\s+Disallow: \//);
       else assert.ok(body.includes('Allow: /') && body.includes(`Sitemap: ${canonical}/sitemap-index.xml`));
+    }
+    if (path.endsWith('.xml')) {
+      assert.ok(/(?:application|text)\/xml/.test(response.headers.get('content-type') || ''), 'Sitemap XML MIME type');
+      assert.match(body, /^<\?xml/);
     }
     if (path === '/sitemap-index.xml') assert.ok(body.includes(`${canonical}/sitemap-0.xml`));
     if (path === '/sitemap-0.xml') {
       const locations = [...body.matchAll(/<loc>([^<]+)<\/loc>/g)].map(match => match[1]);
       assert.ok(locations.includes(`${canonical}/en/`) && locations.includes(`${canonical}/ja/`), 'Sitemap must include both homepages');
       assert.ok(locations.every(location => new URL(location).origin === canonical), 'Sitemap URLs must use the canonical domain');
+      for (const route of referenceRoutes) assert.ok(locations.includes(`${canonical}${route}`), `Sitemap missing ${route}`);
+      assert.ok(!locations.some(location => location.endsWith('.ics')), 'Calendar files must not appear as pages');
     }
     console.log(`PASS ${path} (${response.status})`);
   } catch (error) { failures.push(`${path}: ${error.message}`); }

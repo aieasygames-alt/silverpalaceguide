@@ -11,3 +11,9 @@
   Cache-Control: public, max-age=0, must-revalidate, no-transform
 /404.html
   Cache-Control: public, max-age=0, must-revalidate, no-transform
+/en/events/mystery-unveiled.ics
+  Content-Type: text/calendar; charset=utf-8
+  Content-Disposition: attachment; filename="silver-palace-event-deadlines.ics"
+/ja/events/mystery-unveiled.ics
+  Content-Type: text/calendar; charset=utf-8
+  Content-Disposition: attachment; filename="silver-palace-event-deadlines.ics"

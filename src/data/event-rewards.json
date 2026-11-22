@@ -1,0 +1,77 @@
+{
+  "id": "mystery-unveiled-2026",
+  "name": {
+    "en": "Mystery Unveiled",
+    "ja": "難事件発生"
+  },
+  "checkedAt": "2026-11-22",
+  "sourceIds": [
+    "official-overture-en",
+    "official-overture-ja"
+  ],
+  "officialUrl": "https://silverpalace.elementagames.com/special/overture/",
+  "drawStartsAt": "2026-10-31T12:00:00+08:00",
+  "drawEndsAt": "2026-12-13T23:59:00+08:00",
+  "claimEndsAt": "2026-12-29T10:00:00+08:00",
+  "selectionLimit": 6,
+  "items": [
+    {
+      "id": "curiosity-mystery",
+      "name": {
+        "en": "The Curiosity Mystery",
+        "ja": "探求者の謎"
+      },
+      "amount": 1,
+      "copies": 1,
+      "note": {
+        "en": "4-star Motive; further equipment details are not established here.",
+        "ja": "★4モーティヴ。装備の詳細は、このルールからは確認できません。"
+      }
+    },
+    {
+      "id": "simulation-shot",
+      "name": {
+        "en": "Simulation Shot",
+        "ja": "推理弾"
+      },
+      "amount": 1,
+      "copies": 1
+    },
+    {
+      "id": "science-volume-i",
+      "name": {
+        "en": "The Science of All Things: Volume I",
+        "ja": "『万物の研究』入門"
+      },
+      "amount": 10,
+      "copies": 2
+    },
+    {
+      "id": "paper-bookmark",
+      "name": {
+        "en": "Paper Bookmark of Conspiracy",
+        "ja": "策謀の紙しおり"
+      },
+      "amount": 10,
+      "copies": 2
+    },
+    {
+      "id": "heros-instinct",
+      "name": {
+        "en": "Hero’s Instinct",
+        "ja": "英雄の本能"
+      },
+      "amount": 10,
+      "copies": 2
+    },
+    {
+      "id": "ounce",
+      "name": {
+        "en": "Ounce",
+        "ja": "オンス"
+      },
+      "amount": 20000,
+      "copies": 2
+    }
+  ]
+}

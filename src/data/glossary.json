@@ -54,5 +54,527 @@
     "kind": "site-interface",
     "sourceId": null,
     "checkedAt": "2026-11-21"
+  },
+  {
+    "id": "parries",
+    "en": "Parries",
+    "ja": "パリィ",
+    "kind": "official",
+    "sourceId": "official-combat-en",
+    "sourceIds": [
+      "official-combat-en",
+      "official-combat-ja"
+    ],
+    "checkedAt": "2026-11-22",
+    "category": "combat",
+    "guide": "guides/combat-basics",
+    "definition": {
+      "en": "Reduce incoming damage and counter an attack using the announced yellow-circle cue.",
+      "ja": "黄色いリングの予兆に合わせ、被ダメージを軽減して反撃する仕組み。"
+    }
+  },
+  {
+    "id": "stunned",
+    "en": "Stunned",
+    "ja": "気絶",
+    "kind": "official",
+    "sourceId": "official-combat-en",
+    "sourceIds": [
+      "official-combat-en",
+      "official-combat-ja"
+    ],
+    "checkedAt": "2026-11-22",
+    "category": "combat",
+    "guide": "guides/combat-basics",
+    "definition": {
+      "en": "Enemy state described as allowing an Execution.",
+      "ja": "致命攻撃を行えると説明されている敵の状態。"
+    }
+  },
+  {
+    "id": "executions",
+    "en": "Executions",
+    "ja": "致命攻撃",
+    "kind": "official",
+    "sourceId": "official-combat-en",
+    "sourceIds": [
+      "official-combat-en",
+      "official-combat-ja"
+    ],
+    "checkedAt": "2026-11-22",
+    "category": "combat",
+    "guide": "guides/combat-basics",
+    "definition": {
+      "en": "An attack available against a Stunned enemy in the official test description.",
+      "ja": "公式テスト紹介で、気絶した敵に行えると説明されている攻撃。"
+    }
+  },
+  {
+    "id": "synchronised-combat",
+    "en": "Synchronised Combat",
+    "ja": "連携戦闘",
+    "kind": "official",
+    "sourceId": "official-combat-en",
+    "sourceIds": [
+      "official-combat-en",
+      "official-combat-ja"
+    ],
+    "checkedAt": "2026-11-22",
+    "category": "combat",
+    "guide": "guides/combat-basics",
+    "definition": {
+      "en": "Switch during a charged action and the outgoing character finishes it before leaving.",
+      "ja": "チャージ動作中に交代すると、元の人物が動作を完了してから退場する仕組み。"
+    }
+  },
+  {
+    "id": "charged-attack",
+    "en": "Charged Attack",
+    "ja": "チャージ攻撃",
+    "kind": "official",
+    "sourceId": "official-combat-en",
+    "sourceIds": [
+      "official-combat-en",
+      "official-combat-ja"
+    ],
+    "checkedAt": "2026-11-22",
+    "category": "combat",
+    "guide": "guides/combat-basics",
+    "definition": {
+      "en": "An action used in the official explanation of switching during combat.",
+      "ja": "公式の交代・連携戦闘の説明に登場する行動。"
+    }
+  },
+  {
+    "id": "charged-skill",
+    "en": "Charged Skill",
+    "ja": "チャージスキル",
+    "kind": "official",
+    "sourceId": "official-combat-en",
+    "sourceIds": [
+      "official-combat-en",
+      "official-combat-ja"
+    ],
+    "checkedAt": "2026-11-22",
+    "category": "combat",
+    "guide": "guides/combat-basics",
+    "definition": {
+      "en": "A skill action used to illustrate outgoing actions continuing after a switch.",
+      "ja": "交代後も元の動作が続く仕組みの例に使われているスキル。"
+    }
+  },
+  {
+    "id": "weakened-states",
+    "en": "Weakened States",
+    "ja": "虚弱状態",
+    "kind": "official",
+    "sourceId": "official-combat-en",
+    "sourceIds": [
+      "official-combat-en",
+      "official-combat-ja"
+    ],
+    "checkedAt": "2026-11-22",
+    "category": "combat",
+    "guide": "guides/combat-basics",
+    "definition": {
+      "en": "A temporary enemy state described as following an Execution.",
+      "ja": "致命攻撃の後に敵が一時的に陥ると紹介されている状態。"
+    }
+  },
+  {
+    "id": "resonance-effects",
+    "en": "Resonance Effects",
+    "ja": "共振効果",
+    "kind": "official",
+    "sourceId": "official-combat-en",
+    "sourceIds": [
+      "official-combat-en",
+      "official-combat-ja"
+    ],
+    "checkedAt": "2026-11-22",
+    "category": "combat",
+    "guide": "guides/combat-basics",
+    "definition": {
+      "en": "An effect triggered after building resonance through attacks, tied to a Reactor attribute.",
+      "ja": "攻撃で共振値を蓄積し、リアクターの属性に応じて発動する効果。"
+    }
+  },
+  {
+    "id": "reactor",
+    "en": "Reactor",
+    "ja": "リアクター",
+    "kind": "official",
+    "sourceId": "official-combat-en",
+    "sourceIds": [
+      "official-combat-en",
+      "official-combat-ja"
+    ],
+    "checkedAt": "2026-11-22",
+    "category": "combat",
+    "guide": "guides/combat-basics",
+    "definition": {
+      "en": "Referenced by the official combat article in relation to resonance effects; full attributes remain unverified here.",
+      "ja": "共振効果との関係が公式戦闘記事に記載されているもの。全属性は未確認です。"
+    }
+  },
+  {
+    "id": "casual-mode",
+    "en": "Casual Mode",
+    "ja": "シンプルモード",
+    "kind": "official",
+    "sourceId": "official-combat-en",
+    "sourceIds": [
+      "official-combat-en",
+      "official-combat-ja"
+    ],
+    "checkedAt": "2026-11-22",
+    "category": "combat",
+    "guide": "guides/combat-basics",
+    "definition": {
+      "en": "The announced test mode with easier combo input and a pre-hit slowdown prompt.",
+      "ja": "コンボ入力の補助と被弾直前のスロー・ヒントが紹介されたテスト時のモード。"
+    }
+  },
+  {
+    "id": "curious-deductions",
+    "en": "Curious Deductions",
+    "ja": "奇事件の再演",
+    "kind": "official",
+    "sourceId": "official-deductions-en",
+    "sourceIds": [
+      "official-deductions-en",
+      "official-deductions-ja"
+    ],
+    "checkedAt": "2026-11-22",
+    "category": "investigation",
+    "guide": "guides/curious-deductions",
+    "definition": {
+      "en": "A deduction mode introduced with multiple branching endings.",
+      "ja": "複数の結末に分岐すると紹介されている推理コンテンツ。"
+    }
+  },
+  {
+    "id": "evidence-board",
+    "en": "Evidence Board",
+    "ja": "捜査ボード",
+    "kind": "official",
+    "sourceId": "official-deductions-en",
+    "sourceIds": [
+      "official-deductions-en",
+      "official-deductions-ja"
+    ],
+    "checkedAt": "2026-11-22",
+    "category": "investigation",
+    "guide": "guides/curious-deductions",
+    "definition": {
+      "en": "The board whose progress the official Restart Deduction action can revert.",
+      "ja": "公式の「再推理」で進捗を戻せると説明されているボード。"
+    }
+  },
+  {
+    "id": "restart-deduction",
+    "en": "Restart Deduction",
+    "ja": "再推理",
+    "kind": "official",
+    "sourceId": "official-deductions-en",
+    "sourceIds": [
+      "official-deductions-en",
+      "official-deductions-ja"
+    ],
+    "checkedAt": "2026-11-22",
+    "category": "investigation",
+    "guide": "guides/curious-deductions",
+    "definition": {
+      "en": "An announced way to revisit the board after reaching an ending and pursue another conclusion.",
+      "ja": "結末の到達後、ボードを戻して別の結末を探すための操作。"
+    }
+  },
+  {
+    "id": "resurrection-mystery",
+    "en": "The Resurrection Mystery",
+    "ja": "死者蘇生の謎",
+    "kind": "official",
+    "sourceId": "official-deductions-en",
+    "sourceIds": [
+      "official-deductions-en",
+      "official-deductions-ja"
+    ],
+    "checkedAt": "2026-11-22",
+    "category": "investigation",
+    "guide": "guides/curious-deductions",
+    "definition": {
+      "en": "A named case in the official July preview; no complete solution is established here.",
+      "ja": "7月の公式紹介に登場した事件名。完全な解法は未確認です。"
+    }
+  },
+  {
+    "id": "morgue-street",
+    "en": "Morgue Street",
+    "ja": "モーグ街区",
+    "kind": "official",
+    "sourceId": "official-morgue-en",
+    "sourceIds": [
+      "official-morgue-en",
+      "official-morgue-ja"
+    ],
+    "checkedAt": "2026-11-22",
+    "category": "places",
+    "guide": "guides/morgue-street",
+    "definition": {
+      "en": "An area within High Peers, described as a meeting point for different districts and communities.",
+      "ja": "ハイ・ピアーズ地区にあり、複数の街区や人々を結ぶ場所。"
+    }
+  },
+  {
+    "id": "high-peers",
+    "en": "High Peers",
+    "ja": "ハイ・ピアーズ地区",
+    "kind": "official",
+    "sourceId": "official-morgue-en",
+    "sourceIds": [
+      "official-morgue-en",
+      "official-morgue-ja"
+    ],
+    "checkedAt": "2026-11-22",
+    "category": "places",
+    "guide": "guides/morgue-street",
+    "definition": {
+      "en": "The district containing Morgue Street in the official local preview.",
+      "ja": "公式地域紹介でモーグ街区が属するとされる地区。"
+    }
+  },
+  {
+    "id": "silverium",
+    "en": "Silverium",
+    "ja": "シルバーリキッド",
+    "kind": "official",
+    "sourceId": "official-morgue-en",
+    "sourceIds": [
+      "official-morgue-en",
+      "official-morgue-ja"
+    ],
+    "checkedAt": "2026-11-22",
+    "category": "places",
+    "guide": "guides/morgue-street",
+    "definition": {
+      "en": "A substance mentioned in the local preview in relation to Metal-Blooded transformations.",
+      "ja": "地域紹介でメタルブラッドの変異との関係が説明されている物質。"
+    }
+  },
+  {
+    "id": "metal-blooded",
+    "en": "Metal-Blooded",
+    "ja": "メタルブラッド",
+    "kind": "official",
+    "sourceId": "official-morgue-en",
+    "sourceIds": [
+      "official-morgue-en",
+      "official-morgue-ja"
+    ],
+    "checkedAt": "2026-11-22",
+    "category": "places",
+    "guide": "guides/morgue-street",
+    "definition": {
+      "en": "Creatures described as able to pass for citizens before exposure to high-purity Silverium.",
+      "ja": "高純度シルバーリキッドに触れるまでは一般人に偽装できると紹介される存在。"
+    }
+  },
+  {
+    "id": "mystery-unveiled",
+    "en": "Mystery Unveiled",
+    "ja": "難事件発生",
+    "kind": "official",
+    "sourceId": "official-overture-en",
+    "sourceIds": [
+      "official-overture-en",
+      "official-overture-ja"
+    ],
+    "checkedAt": "2026-11-22",
+    "category": "event",
+    "guide": "guides/mystery-unveiled",
+    "definition": {
+      "en": "The official pre-launch web event, with separate draw and reward-claim deadlines.",
+      "ja": "抽選終了と受け取り期限が別に設定された公式事前イベント。"
+    }
+  },
+  {
+    "id": "mind-lens",
+    "en": "Mind Lens",
+    "ja": "マインドレンズ",
+    "kind": "official",
+    "sourceId": "official-overture-en",
+    "sourceIds": [
+      "official-overture-en",
+      "official-overture-ja"
+    ],
+    "checkedAt": "2026-11-22",
+    "category": "event",
+    "guide": "guides/mystery-unveiled",
+    "definition": {
+      "en": "Used for the in-game item pool; account-wide earning cap of ten in this event.",
+      "ja": "アイテム抽選に使うもの。本イベントの獲得上限は1アカウント10個。"
+    }
+  },
+  {
+    "id": "evidence-key",
+    "en": "Evidence Key",
+    "ja": "証拠の鍵",
+    "kind": "official",
+    "sourceId": "official-overture-en",
+    "sourceIds": [
+      "official-overture-en",
+      "official-overture-ja"
+    ],
+    "checkedAt": "2026-11-22",
+    "category": "event",
+    "guide": "guides/mystery-unveiled",
+    "definition": {
+      "en": "Used for physical-prize draws; account-wide earning cap of eleven in this event.",
+      "ja": "グッズ抽選に使うもの。本イベントの獲得上限は1アカウント11個。"
+    }
+  },
+  {
+    "id": "clue-archives",
+    "en": "Clue Archives",
+    "ja": "手がかり",
+    "kind": "official",
+    "sourceId": "official-overture-en",
+    "sourceIds": [
+      "official-overture-en",
+      "official-overture-ja"
+    ],
+    "checkedAt": "2026-11-22",
+    "category": "event",
+    "guide": "guides/mystery-unveiled",
+    "definition": {
+      "en": "The ten-entry in-game pool. Selected drawn entries are claimed after launch.",
+      "ja": "全10点のゲームアイテム抽選。獲得済みから選び、正式サービス開始後に受け取ります。"
+    }
+  },
+  {
+    "id": "core-evidence",
+    "en": "Core Evidence",
+    "ja": "重要な証拠",
+    "kind": "official",
+    "sourceId": "official-overture-en",
+    "sourceIds": [
+      "official-overture-en",
+      "official-overture-ja"
+    ],
+    "checkedAt": "2026-11-22",
+    "category": "event",
+    "guide": "guides/mystery-unveiled",
+    "definition": {
+      "en": "The physical-prize pool; a prize is not guaranteed on every draw.",
+      "ja": "グッズ抽選。毎回の当選は保証されていません。"
+    }
+  },
+  {
+    "id": "item-curiosity-mystery",
+    "en": "The Curiosity Mystery",
+    "ja": "探求者の謎",
+    "kind": "official",
+    "sourceId": "official-overture-en",
+    "sourceIds": [
+      "official-overture-en",
+      "official-overture-ja"
+    ],
+    "checkedAt": "2026-11-22",
+    "category": "items",
+    "guide": "tools/event-rewards",
+    "definition": {
+      "en": "Listed in the event pool as ×1 per entry, with 1 pool entry. Upgrade costs are not established by the event rules.",
+      "ja": "イベントの1枠につき×1、全1枠。育成費用はイベントルールからは確認できません。"
+    }
+  },
+  {
+    "id": "item-simulation-shot",
+    "en": "Simulation Shot",
+    "ja": "推理弾",
+    "kind": "official",
+    "sourceId": "official-overture-en",
+    "sourceIds": [
+      "official-overture-en",
+      "official-overture-ja"
+    ],
+    "checkedAt": "2026-11-22",
+    "category": "items",
+    "guide": "tools/event-rewards",
+    "definition": {
+      "en": "Listed in the event pool as ×1 per entry, with 1 pool entry. Upgrade costs are not established by the event rules.",
+      "ja": "イベントの1枠につき×1、全1枠。育成費用はイベントルールからは確認できません。"
+    }
+  },
+  {
+    "id": "item-science-volume-i",
+    "en": "The Science of All Things: Volume I",
+    "ja": "『万物の研究』入門",
+    "kind": "official",
+    "sourceId": "official-overture-en",
+    "sourceIds": [
+      "official-overture-en",
+      "official-overture-ja"
+    ],
+    "checkedAt": "2026-11-22",
+    "category": "items",
+    "guide": "tools/event-rewards",
+    "definition": {
+      "en": "Listed in the event pool as ×10 per entry, with 2 pool entries. Upgrade costs are not established by the event rules.",
+      "ja": "イベントの1枠につき×10、全2枠。育成費用はイベントルールからは確認できません。"
+    }
+  },
+  {
+    "id": "item-paper-bookmark",
+    "en": "Paper Bookmark of Conspiracy",
+    "ja": "策謀の紙しおり",
+    "kind": "official",
+    "sourceId": "official-overture-en",
+    "sourceIds": [
+      "official-overture-en",
+      "official-overture-ja"
+    ],
+    "checkedAt": "2026-11-22",
+    "category": "items",
+    "guide": "tools/event-rewards",
+    "definition": {
+      "en": "Listed in the event pool as ×10 per entry, with 2 pool entries. Upgrade costs are not established by the event rules.",
+      "ja": "イベントの1枠につき×10、全2枠。育成費用はイベントルールからは確認できません。"
+    }
+  },
+  {
+    "id": "item-heros-instinct",
+    "en": "Hero’s Instinct",
+    "ja": "英雄の本能",
+    "kind": "official",
+    "sourceId": "official-overture-en",
+    "sourceIds": [
+      "official-overture-en",
+      "official-overture-ja"
+    ],
+    "checkedAt": "2026-11-22",
+    "category": "items",
+    "guide": "tools/event-rewards",
+    "definition": {
+      "en": "Listed in the event pool as ×10 per entry, with 2 pool entries. Upgrade costs are not established by the event rules.",
+      "ja": "イベントの1枠につき×10、全2枠。育成費用はイベントルールからは確認できません。"
+    }
+  },
+  {
+    "id": "item-ounce",
+    "en": "Ounce",
+    "ja": "オンス",
+    "kind": "official",
+    "sourceId": "official-overture-en",
+    "sourceIds": [
+      "official-overture-en",
+      "official-overture-ja"
+    ],
+    "checkedAt": "2026-11-22",
+    "category": "items",
+    "guide": "tools/event-rewards",
+    "definition": {
+      "en": "Listed in the event pool as ×20,000 per entry, with 2 pool entries. Upgrade costs are not established by the event rules.",
+      "ja": "イベントの1枠につき×20,000、全2枠。育成費用はイベントルールからは確認できません。"
+    }
   }
 ]

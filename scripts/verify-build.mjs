@@ -52,6 +52,17 @@ for (const locale of ['en', 'ja']) {
   const roster = await readFile(`dist/${locale}/characters/index.html`, 'utf8');
   assert.equal(roster.includes('name="robots" content="noindex'), isPreview, 'Character indexing does not match the deployment environment');
   assert.equal((roster.match(/data-profile-card/g) || []).length, 20, 'Character dossier missing');
+  for (const suffix of ['guides/mystery-unveiled', 'guides/combat-basics', 'guides/curious-deductions', 'guides/morgue-street', 'tools/event-rewards', 'tools/glossary']) {
+    const route = `/${locale}/${suffix}/`;
+    assert.ok(sitemap.includes(`<loc>${site}${route}</loc>`), `${route}: missing from sitemap`);
+    const html = await readFile(`dist${route}index.html`, 'utf8');
+    assert.equal(/name="robots" content="[^"]*noindex/.test(html), isPreview, `${route}: wrong indexing policy`);
+  }
+  const calendar = await readFile(`dist/${locale}/events/mystery-unveiled.ics`, 'utf8');
+  assert.match(calendar, /^BEGIN:VCALENDAR\r\n/);
+  assert.equal((calendar.match(/BEGIN:VEVENT/g) || []).length, 2);
+  assert.ok(calendar.includes('DTSTART:20261213T155900Z') && calendar.includes('DTSTART:20261229T020000Z'), 'Calendar deadlines must use the official UTC instants');
+  assert.ok(!sitemap.includes(`/${locale}/events/mystery-unveiled.ics`), 'Calendar downloads must not be indexed as pages');
 }
 const sourceIds = new Set(JSON.parse(await readFile('src/data/sources.json', 'utf8')).map((source) => source.id));
 for (const term of JSON.parse(await readFile('src/data/glossary.json', 'utf8'))) assert.ok(term.kind === 'site-interface' || sourceIds.has(term.sourceId), `Unknown glossary source: ${term.id}`);
