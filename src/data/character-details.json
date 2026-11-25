@@ -1,0 +1,71 @@
+[
+  {
+    "id": "lorin",
+    "revision": 1,
+    "updatedAt": "2026-11-24",
+    "sourceIds": ["official-roles-en", "official-roles-ja"],
+    "description": {
+      "en": "Meet Lorin, Chief Inspector of the River Constabulary: his partnership with the Detective, restrained use of an electric glove and official English–Japanese names.",
+      "ja": "リバーサイド警察のローレン・警視長を紹介。探偵に助力を求める背景、出力を抑えた電撃グローブ、英日公式名を出典とともに整理します。"
+    },
+    "organization": { "en": "River Constabulary", "ja": "リバーサイド警察" },
+    "sections": [
+      {
+        "id": "background",
+        "heading": { "en": "Who is Lorin in Silver Palace?", "ja": "ローレン・警視長はどんな人物？" },
+        "paragraphs": [
+          {
+            "en": "Lorin is the Chief Inspector of the River Constabulary. The English introduction presents him as dutiful and worn down by the job; the Japanese text emphasizes responsibility and an earnest disposition. Both describe someone trying to uphold the law inside a recently established police organization.",
+            "ja": "ローレンはリバーサイド警察本部の警視長です。日本語紹介では職務に忠実で責任感が強く、生真面目な人物として描かれます。英語紹介では仕事に疲れた一面も表現されています。両言語に共通するのは、新設された警察組織で法の執行に取り組む姿です。"
+          },
+          {
+            "en": "His official introduction also opens with an idea about allowing someone to make a mistake, then showing them a better way. Read alongside his concern for the constabulary, this gives context to his patient outlook. It is characterization, rather than a rule for a companion or mentoring system.",
+            "ja": "紹介の冒頭には、まず相手にやらせ、失敗したときに正しい道を示すという考えが置かれています。警察組織への思いと合わせると、その姿勢を知る手がかりになります。これは人物像の描写であり、仲間の育成や指導機能の仕様ではありません。"
+          }
+        ]
+      },
+      {
+        "id": "detective-partnership",
+        "heading": { "en": "Why does Lorin seek the Detective’s help?", "ja": "探偵に協力を求める理由" },
+        "paragraphs": [
+          {
+            "en": "The constabulary’s newness matters to his story. Enforcing the law has proved difficult, and Lorin approaches the Detective for a partnership while struggling with those conditions. The profile places their cooperation in that institutional problem; it does not give an unlock quest or a recruitment condition.",
+            "ja": "新しい警察組織では、法の執行に多くの困難が伴っていました。その現状に悩んだローレンは、探偵に助力を求めます。公式紹介で語られる協力の背景は、この組織上の課題です。加入クエストやキャラクターの入手条件までは示されていません。"
+          },
+          {
+            "en": "The biography contrasts the Detective’s exceptional talent with the longer-term need for a stable, sustainable system. Our reading is that Lorin’s importance lies in making everyday law enforcement work beyond the efforts of one remarkable individual. That is an interpretation of the introduction’s theme, without revealing a case outcome or later plot development.",
+            "ja": "紹介は、探偵のような天才的な個人と、長く機能する安定した仕組みを対比しています。当サイトでは、一人の英雄の活躍に頼り続けるのではなく、日々の法執行を支える点にローレンの重要性が描かれていると読み取っています。これは紹介文の主題についての解釈で、事件の結末や後の展開を示すものではありません。"
+          }
+        ]
+      },
+      {
+        "id": "electric-glove",
+        "heading": { "en": "What weapon does Lorin use?", "ja": "使用する武器と出力の制限" },
+        "paragraphs": [
+          {
+            "en": "Lorin confronts criminals with an electric boxing glove. The English biography specifies non-lethal voltage, while the Japanese text says he keeps its output down to avoid fatal injuries. The restraint is an explicit part of his introduction, alongside his commitment to police work.",
+            "ja": "犯罪者に立ち向かう際は電撃グローブを使います。日本語では致命傷を避けるため常に出力を抑えると説明され、英語でも非致死性の電圧設定が明記されています。武器の威力を制限する姿勢も、警察官としての人物像とともに紹介されています。"
+          },
+          {
+            "en": "This confirms an equipment description, but it supplies no stun probability, damage multiplier, Reactor attribute or full skill list. The word “electric” alone cannot establish a launch-build elemental classification or a crowd-control role. Use the combat reference for the separately announced parry, execution and resonance systems.",
+            "ja": "確認できるのは装備の説明で、スタン確率、ダメージ倍率、リアクターの属性、全スキル一覧は記載されていません。「電撃」という語だけで正式版の属性分類や行動阻害役を決めることはできません。パリィ、致命攻撃、共振については、別の公式戦闘紹介をまとめたガイドをご覧ください。"
+          }
+        ]
+      },
+      {
+        "id": "localized-names",
+        "heading": { "en": "Lorin, ローレン and the official title", "ja": "英語名Lorinと公式の称号" },
+        "paragraphs": [
+          {
+            "en": "The English page lists “Lorin (Chief Inspector)” and the epithet “The Indispensable.” The Japanese page uses ローレン・警視長 and 欠かせない存在. These are the same profile across the two official localizations, so searching only for a literal spelling of the English name can miss the Japanese entry.",
+            "ja": "英語ページの表記は「Lorin (Chief Inspector)」、称号は「The Indispensable」です。日本語の「ローレン・警視長」「欠かせない存在」に対応する同じ人物紹介です。英語名の発音をそのままカタカナにするのではなく、公式のローカライズ名で探すと照合しやすくなります。"
+          },
+          {
+            "en": "Chief Inspector is his occupation in the introduction, and The Indispensable is his epithet. Neither is a combat class or rarity. The directory also contains a separate profile for Rex (Superintendent); keep those identities distinct when following a translated character reference.",
+            "ja": "警視長は人物紹介上の役職、「欠かせない存在」は称号です。戦闘クラスやレアリティを表すものではありません。一覧には別の人物「レックス・監察官」も掲載されています。他言語の資料を読む際も、両者の名前を区別して参照してください。"
+          }
+        ]
+      }
+    ]
+  }
+]

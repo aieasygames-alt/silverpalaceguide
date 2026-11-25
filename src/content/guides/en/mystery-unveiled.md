@@ -2,19 +2,21 @@
 translationId: mystery-unveiled
 locale: en
 slug: mystery-unveiled
-title: 'Mystery Unveiled: draws, rewards and claiming'
-summary: 'How the official pre-launch event works, what the ten pool entries contain and how to prepare your six-item claim.'
+title: 'Silver Palace Mystery Unveiled: rewards & claim deadlines'
+summary: 'Check the separate draw and claim deadlines, count duplicate reward entries and prepare the one-time claim of up to six drawn entries on the official event site.'
 category: preparation
 status: published
 verification: official-announcement
 gameVersion: 'Official pre-launch event / checked 22 November 2026'
-updatedAt: '2026-11-22'
-revision: 1
-sourceRevision: 1
+updatedAt: '2026-11-23'
+revision: 2
+sourceRevision: 2
 sourceIds: [official-overture-en, official-overture-ja]
 order: 0
 ---
-## Keep the two deadlines separate
+<div class="guide-section-anchor" id="keep-the-two-deadlines-separate"></div>
+
+## When do Mystery Unveiled draws and reward claims end?
 
 **Mystery Unveiled** is the official pre-launch web event linked from the game website. Its published draw period is **31 October 2026, 12:00 to 13 December 2026, 23:59 (UTC+8)**. In-game reward claiming opens after the game launches and ends on **29 December 2026 at 10:00 (UTC+8)**. The event rules do not give an exact claim-opening hour.
 
@@ -50,7 +52,9 @@ Ten draws collect all ten entries. An item can appear under the same name twice 
 
 These quantities describe this event. They are separate from the global pre-registration milestone campaign. The rules do not establish item exchange values or complete equipment and upgrade systems.
 
-## Prepare up to six entries to claim
+<div class="guide-section-anchor" id="prepare-up-to-six-entries-to-claim"></div>
+
+## How do I claim my Mystery Unveiled rewards?
 
 The Event Inventory stores the items you have drawn. You may select **up to six entries** from it. Our [reward worksheet](../../tools/event-rewards/) helps record your drawn entries and totals your planned selection. It does not access your game account.
 
@@ -62,6 +66,18 @@ Before the official claim:
 4. Choose the character to receive them and review the final confirmation.
 
 **The official claim is available only once. After confirmation, neither the selected items nor the recipient character can be changed.** Complete the manual claim before the published claim deadline. Some English rule wording refers broadly to the “event period”; the dedicated duration and claiming sections explicitly give the post-launch claim period above. Recheck the official Rules dialog for updates.
+
+## Do duplicate rewards use more than one claim slot?
+
+**Yes. The limit is six drawn entries, not six different item names.** Two Ounce entries occupy two slots and total 40,000 Ounces; that leaves room for up to four other entries. A quantity shown inside one entry, such as ×10, still belongs to that single entry.
+
+In the [reward worksheet](../../tools/event-rewards/), mark the entries you actually drew before planning your selection. The worksheet totals quantities while keeping separately drawn copies distinct. It does not submit or reserve a claim.
+
+## Which six rewards should I choose?
+
+**The event rules do not establish one best selection for every player.** A comparison needs your drawn entries and the relevant items' confirmed uses. The rules alone do not supply complete upgrade costs or an exchange-value ranking, so this guide does not assign one.
+
+Before the one-time official confirmation, check the account, recipient character, selected copies and quantities. Recording a selection in our worksheet does not claim it; complete the manual step on the official event site and review its confirmation.
 
 ## Physical prizes have separate rules
 

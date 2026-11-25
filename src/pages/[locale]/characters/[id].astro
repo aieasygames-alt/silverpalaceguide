@@ -1,0 +1,51 @@
+---
+import Base from '../../../layouts/Base.astro';
+import PageHeading from '../../../components/PageHeading.astro';
+import CharacterPortrait from '../../../components/CharacterPortrait.astro';
+import SourceList from '../../../components/SourceList.astro';
+import { characterProfiles } from '../../../lib/character-profiles';
+import { characterDetails } from '../../../lib/character-details';
+import { locales, path, type Locale } from '../../../lib/i18n';
+import '../../../styles/characters.css';
+export function getStaticPaths() {
+  return locales.flatMap(locale => characterDetails.map(detail => ({ params: { locale, id: detail.id }, props: { detail } })));
+}
+const { detail } = Astro.props;
+const locale = Astro.params.locale as Locale;
+const en = locale === 'en';
+const profile = characterProfiles.find(profile => profile.id === detail.id)!;
+const other = en ? 'ja' : 'en';
+const title = en ? `${profile.name.en}: background & electric glove` : `${profile.name.ja}：人物像・電撃グローブ・英語名`;
+---
+<Base locale={locale} title={title} description={detail.description[locale]} section="characters">
+  <div class="shell" data-pagefind-body>
+    <PageHeading locale={locale} eyebrow={en ? 'THE CHARACTER ARCHIVE / DOSSIER' : 'キャラクター資料室 / 人物ファイル'} title={profile.name[locale]} description={detail.description[locale]}/>
+    <div class="dossier-layout">
+      <aside class="dossier-file panel" aria-label={en ? 'Profile at a glance' : '人物の基本情報'}>
+        <CharacterPortrait id={profile.portraitIds[0]}/>
+        <span class="eyebrow">{en ? 'OFFICIAL INTRODUCTION' : '公式紹介に基づく資料'}</span>
+        <p class="dossier-epithet">{profile.titles[locale].join(' / ')}</p>
+        <dl class="profile-facts">
+          <div><dt>{en ? 'Name in Japanese' : '英語名'}</dt><dd lang={other}>{profile.name[other]}</dd></div>
+          <div><dt>{en ? 'Organization' : '所属組織'}</dt><dd>{detail.organization[locale]}</dd></div>
+          <div><dt>{en ? 'Equipment' : '装備'}</dt><dd>{profile.equipment?.[locale]}</dd></div>
+          <div><dt>{en ? 'Official text checked' : '公式資料の確認日'}</dt><dd><time datetime={profile.checkedAt}>{profile.checkedAt}</time></dd></div>
+          <div><dt>{en ? 'Dossier updated' : '記事更新日'}</dt><dd><time datetime={detail.updatedAt}>{detail.updatedAt}</time> · {en ? 'Revision' : '第'} {detail.revision}{en ? '' : '版'}</dd></div>
+        </dl>
+        <a class="text-link" href={`${path(locale, 'characters')}#${profile.id}`}>{en ? '← Back to the directory entry' : '← 一覧の紹介へ'}</a>
+      </aside>
+      <article class="prose dossier-body" data-character-detail={profile.id}>
+        <p class="notice">{en ? 'Story scope: introductory background and equipment only. No case solutions or later story outcomes. This is an independent reading of official pre-release introductions, with editorial interpretation identified below.' : '物語の範囲：人物紹介と装備のみ。事件の解答や後の結末には触れません。リリース前の公式紹介を独自に整理し、当サイトの解釈は本文で区別しています。'}</p>
+        <nav class="dossier-contents" aria-label={en ? 'On this page' : 'この記事の内容'}><span class="eyebrow">{en ? 'IN THIS FILE' : 'ファイルの内容'}</span><ol>{detail.sections.map(section => <li><a href={`#${section.id}`}>{section.heading[locale]}</a></li>)}</ol></nav>
+        {detail.sections.map(section => <section><h2 id={section.id}>{section.heading[locale]}</h2>{section.paragraphs.map(paragraph => <p>{paragraph[locale]}</p>)}</section>)}
+        <div class="dossier-next" data-pagefind-ignore>
+          <h2>{en ? 'Continue from this profile' : '人物資料から次のページへ'}</h2>
+          <p>{en ? 'Compare the official introductions of Lorin and Rex, or follow the combat reference for the announced system mechanics.' : 'ローレンとレックスの公式紹介を見比べるか、戦闘ガイドで発表済みの仕組みを確認できます。'}</p>
+          <div class="button-row"><a class="button" href={`${path(locale, 'tools/character-compare')}?a=${profile.id}&b=rex`}>{en ? 'Compare Lorin & Rex →' : 'ローレンとレックスを比較 →'}</a><a class="text-link" href={path(locale, 'guides/combat-basics')}>{en ? 'Combat reference →' : '戦闘ガイド →'}</a><a class="text-link" href={`${path(locale, 'tools/material-planner')}?character=${profile.id}`}>{en ? 'Open a material worksheet →' : '素材の計画表へ →'}</a></div>
+          <p class="tiny">{en ? 'The worksheet takes your confirmed quantities. This profile does not supply a build, acquisition method or upgrade-cost preset.' : '計画表には確認済みの必要数を入力します。この人物紹介には、育成方針、入手方法、素材数のプリセットは含まれていません。'}</p>
+        </div>
+      </article>
+    </div>
+    <SourceList locale={locale} ids={detail.sourceIds}/>
+  </div>
+</Base>

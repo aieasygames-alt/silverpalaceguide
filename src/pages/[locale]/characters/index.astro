@@ -6,6 +6,7 @@ import CharacterPortrait from '../../../components/CharacterPortrait.astro';
 import ProfileFacts from '../../../components/ProfileFacts.astro';
 import SourceList from '../../../components/SourceList.astro';
 import { characterProfiles } from '../../../lib/character-profiles';
+import { characterDetails, characterHref } from '../../../lib/character-details';
 import { locales, path, type Locale } from '../../../lib/i18n';
 import '../../../styles/characters.css';
 export const getStaticPaths = () => locales.map((locale) => ({ params: { locale } }));
@@ -30,11 +31,12 @@ const other = en ? 'ja' : 'en';
       {characterProfiles.map((profile, index) => <article id={profile.id} class="character-card" data-profile-card data-search={`${profile.name.en} ${profile.name.ja} ${profile.titles.en.join(' ')} ${profile.titles.ja.join(' ')}`}>
         <header><div class="portrait-pair">{profile.portraitIds.map((id) => <CharacterPortrait id={id}/>)}</div><span class="dossier-number" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span></header>
         <span class="eyebrow">{profile.coverage === 'profile' ? (en ? 'OFFICIAL PROFILE' : '公式プロフィール') : (en ? 'BRIEF INTRODUCTION' : '短い公式紹介')}</span>
-        <h2><a href={`#${profile.id}`}>{profile.name[locale]}</a></h2>
+        <h2><a href={characterHref(locale, profile.id)}>{profile.name[locale]}</a></h2>
         <p class="alternate-name" lang={other}>{profile.name[other]}</p>
         <p class="character-title">{profile.titles[locale].join(' / ')}</p>
         <p>{profile.summary[locale]}</p>
         <details><summary>{en ? 'Equipment & combat notes' : '装備・戦闘情報を見る'}</summary><ProfileFacts profile={profile} locale={locale}/></details>
+        {characterDetails.some(detail => detail.id === profile.id) && <p class="character-detail-link"><a class="text-link" href={characterHref(locale, profile.id)}>{en ? 'Read the full background & equipment dossier →' : '人物像と装備の詳しい資料を読む →'}</a></p>}
         <div class="character-links"><a class="text-link" href={`${path(locale, 'tools/character-compare')}?a=${profile.id}`}>{en ? 'Compare' : '比較する'}<Icon name="arrow" size={14}/></a><a class="tiny" href={`https://silverpalace.elementagames.com/${en ? 'en-us' : 'ja-jp'}/roles`} target="_blank" rel="noopener noreferrer">{en ? 'Official source ↗' : '公式の出典 ↗'}</a></div>
       </article>)}
     </div>

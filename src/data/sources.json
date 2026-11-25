@@ -171,10 +171,11 @@
     "title": "The Science of All Things — Local Edition: Morgue Street (EN)",
     "url": "https://silverpalace.elementagames.com/en-us/newsDetail?id=71",
     "publisher": "Elementa",
-    "checkedAt": "2026-11-22",
+    "checkedAt": "2026-11-24",
     "kind": "official-website",
     "facts": [
-      "Morgue Street within High Peers, landmark functions and qualitative hostile-faction background."
+      "Morgue Street within High Peers, landmark functions and qualitative hostile-faction background.",
+      "The linked gang illustration is headed Stonefall Syndicate: https://s.elementagames.com/official/image/20260709/bd7b8c91e0afaaf1316a23569c7fb263.jpg . The paired Japanese caption names ロアリングストーンズ. Read the matching captions and images together; do not translate the Japanese name literally into English."
     ],
     "limitations": "Article states work in progress. No map coordinates, routes, collectible totals, drops or enemy weaknesses established.",
     "assets": "Factual reference and independently written summaries. No article images or prose reproduced.",
@@ -185,7 +186,7 @@
     "title": "『万物の研究』地域編 モーグ街区（日本語）",
     "url": "https://silverpalace.elementagames.com/ja-jp/newsDetail?id=72",
     "publisher": "Elementa",
-    "checkedAt": "2026-11-22",
+    "checkedAt": "2026-11-24",
     "kind": "official-website",
     "facts": [
       "Official Japanese area names and counterpart region/landmark descriptions."
@@ -199,13 +200,29 @@
     "title": "Silvernia News — Dichotomy Beta Test Feedback and Optimization",
     "url": "https://silverpalace.elementagames.com/en-us/newsDetail?id=107",
     "publisher": "Elementa",
-    "checkedAt": "2026-11-22",
+    "checkedAt": "2026-11-24",
     "kind": "official-website",
     "facts": [
-      "Further branching deduction content and planned improvements to combat guidance, dialogue history, environments and Silverium Pegasus movement."
+      "Future Dialogue History, clearer combat feedback including Reactors and Catalysts, more use of the Revealer Light, and planned interiors, NPC and Silverium Pegasus improvements.",
+      "Curious Deductions is described as branching content, with further similar quests planned."
     ],
     "limitations": "Future plans must not be reported as completed launch features.",
     "assets": "Factual reference and independently written summaries. No article images or prose reproduced.",
     "publishedAt": "2026-08-22"
+  },
+  {
+    "id": "official-beta-feedback-ja",
+    "title": "「シルバニア」見聞録：「二分法テスト」フィードバックと最適化（日本語）",
+    "url": "https://silverpalace.elementagames.com/ja-jp/newsDetail?id=108",
+    "publisher": "Elementa",
+    "checkedAt": "2026-11-24",
+    "publishedAt": "2026-08-22",
+    "kind": "official-website",
+    "facts": [
+      "Japanese counterpart of the August feedback; official terms バックログ機能, 触媒, 痕跡ライト and シルバーリキッド・ペガサス.",
+      "Describes proposed development work, not confirmed launch implementation."
+    ],
+    "limitations": "Historical development intentions. No implementation date, complete equipment rules, device requirements, mount unlock or numerical performance evidence established.",
+    "assets": "Factual reference and independently written summaries. No article images or prose reproduced."
   }
 ]

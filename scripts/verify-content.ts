@@ -4,9 +4,10 @@ import { cases, routes, characters, materials, evidenceImages } from '../src/lib
 import { validatePublicationSet, validateGameReferences } from '../src/lib/publication-check';
 import sources from '../src/data/sources.json';
 import { characterProfiles, profileReferenceErrors } from '../src/lib/character-profiles';
+import { characterDetailErrors } from '../src/lib/character-details';
 import { referenceErrors } from '../src/lib/references';
 import { rewardEvent, rewardSlots } from '../src/lib/event-rewards';
-const errors = [...validatePublicationSet([cases, routes, characters], sources), ...validateGameReferences(cases, routes, characters, materials, evidenceImages), ...profileReferenceErrors, ...referenceErrors];
+const errors = [...validatePublicationSet([cases, routes, characters], sources), ...validateGameReferences(cases, routes, characters, materials, evidenceImages), ...profileReferenceErrors, ...characterDetailErrors, ...referenceErrors];
 for (const id of rewardEvent.sourceIds) {
   if (!sources.some(source => source.id === id && source.kind === 'official-website')) errors.push(`Event reward rules: unknown official source ${id}`);
 }

@@ -8,13 +8,15 @@ category: preparation
 status: published
 verification: editorial
 gameVersion: 'Pre-launch orientation; July beta mechanics labeled separately'
-updatedAt: '2026-11-22'
-revision: 2
-sourceRevision: 2
+updatedAt: '2026-11-24'
+revision: 3
+sourceRevision: 3
 sourceIds: [elementa-launch-20261031, official-overture-en, official-overture-ja, official-combat-en, official-combat-ja, official-deductions-en, official-deductions-ja, official-morgue-en, official-morgue-ja, official-roles-en, official-roles-ja]
 order: 0
 ---
 New to **Silver Palace**? Start with the question you need answered now, then follow the relevant reference. The order below is our editorial suggestion. It is based on official announcements and labeled beta previews, rather than a tested opening-hour walkthrough.
+
+If you want to understand the setting and the game’s overall structure first, read [what Silver Palace is about](../game-overview/): it connects the Detective’s story, city exploration, investigations and combat.
 
 ## Before launch: settle the practical questions
 

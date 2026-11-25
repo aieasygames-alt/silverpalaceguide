@@ -7,11 +7,11 @@ summary: '公式の紹介で確認できる分岐する結末と再推理の仕�
 category: field-notes
 status: published
 verification: official-announcement
-gameVersion: '2026年7月の推理紹介 / 解法は未検証'
-updatedAt: '2026-11-22'
-revision: 1
-sourceRevision: 1
-sourceIds: [official-deductions-en, official-deductions-ja]
+gameVersion: '7月の推理紹介と8月のバックログ計画 / 解法は未検証'
+updatedAt: '2026-11-24'
+revision: 2
+sourceRevision: 2
+sourceIds: [official-deductions-en, official-deductions-ja, official-beta-feedback-en, official-beta-feedback-ja]
 order: 4
 ---
 ## 事件の結末は1つとは限らない
@@ -31,6 +31,12 @@ order: 4
 公式記事では「**死者蘇生の謎**」として、墓地の調査や学者の死を巡る事件が紹介されています。謎を楽しめるよう、ここでは導入にとどめます。公式記事には、より詳しいあらすじと画像があります。
 
 英語名は**The Resurrection Mystery**です。モードは**Curious Deductions**、ボードは**Evidence Board**、再推理は**Restart Deduction**。異なる言語の動画や会話を追うときに役立つ対応語です。
+
+## バックログと捜査ボードは同じもの？
+
+公式紹介では目的を分けて説明しています。7月の記事は捜査ボードの進捗と再推理を扱い、**8月22日のフィードバック**は、会話や事件の詳細を読み返す**バックログ機能**を今後追加するとしています。英語名は**Dialogue History**です。
+
+8月の記事には、会話を読み返すとボードが変化すること、分岐を選ぶこと、結末をリセットすることは書かれていません。メニューの場所や実装日も示されていません。計画の範囲は[開発情報の解説](../development-updates/)をご覧ください。個人のメモでも、実際に見た発言と自分の解釈を区別して残すと照合しやすくなります。
 
 ## 必要な分だけヒントを読む
 

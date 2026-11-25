@@ -7,11 +7,11 @@ summary: 'What the official deduction preview establishes about branching ending
 category: field-notes
 status: published
 verification: official-announcement
-gameVersion: 'July 2026 deduction preview; no walkthrough verified'
-updatedAt: '2026-11-22'
-revision: 1
-sourceRevision: 1
-sourceIds: [official-deductions-en, official-deductions-ja]
+gameVersion: 'July deduction preview and August dialogue-history plan; no walkthrough verified'
+updatedAt: '2026-11-24'
+revision: 2
+sourceRevision: 2
+sourceIds: [official-deductions-en, official-deductions-ja, official-beta-feedback-en, official-beta-feedback-ja]
 order: 4
 ---
 ## A case can lead to more than one conclusion
@@ -31,6 +31,12 @@ The preview also says that revealing the case's truth unlocks a particular colle
 The preview names **The Resurrection Mystery** and introduces a cemetery investigation and a scholar's death. We keep this introduction brief to preserve the mystery. The official article contains further premise details and screenshots.
 
 Its Japanese title is **死者蘇生の謎**. The mode is **奇事件の再演**, the board is **捜査ボード**, and the restart action is **再推理**. These localized terms can help when following a video or discussing a case across languages.
+
+## Is Dialogue History the same as the Evidence Board?
+
+They are described for different purposes. The July preview explains Evidence Board progress and Restart Deduction. The **22 August feedback** separately proposes **Dialogue History**, a future feature for reviewing past conversations and case details. Its Japanese name is **バックログ機能**.
+
+The August notice does not say that rereading a conversation changes the board, chooses a branch or resets an ending. It also gives no menu path or implementation date. Use the [development feedback guide](../development-updates/) for the plan’s scope, and keep the exact statement you observed separate from your interpretation when taking personal notes.
 
 ## Choose how much help you want
 

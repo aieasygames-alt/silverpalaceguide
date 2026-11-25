@@ -9,7 +9,13 @@
 .guide-contents a:hover { color: var(--copper); text-decoration: underline; }
 .guide-contents a > span { font: 600 15px var(--serif); color: var(--copper); flex-shrink: 0; }
 .guide-article h2 { scroll-margin-top: 24px; }
+.guide-section-anchor { scroll-margin-top: 24px; }
+.guide-section-anchor:first-child + h2 { margin-top: 0; }
 .guide-article h2:target { border-left: 3px solid var(--copper); padding-left: 16px; }
+.guide-article table { width: 100%; table-layout: fixed; border-collapse: collapse; margin-block: 24px; font-size: 13px; }
+.guide-article th, .guide-article td { padding: 12px; border-bottom: 1px solid var(--line); text-align: start; vertical-align: top; overflow-wrap: anywhere; }
+.guide-article th { background: var(--paper-deep); font-weight: 600; }
+.guide-article th:first-child, .guide-article td:first-child { width: 36%; }
 .guide-next { margin-top: 40px; padding-top: 24px; border-top: 1px solid var(--line); }
 .guide-next h2 { font-size: 1.8rem; margin: 10px 0 20px; }
 .guide-next .guide-row h3 { font-size: 1.45rem; }
@@ -20,6 +26,21 @@
 .beginner-entry p { max-width: 680px; font-size: 13px; color: #d1dbce; }
 .beginner-entry .button { background: var(--paper); color: var(--green); border-color: var(--paper); }
 .beginner-entry .button:hover { background: #e4e6d9; }
+.recent-guides { margin-bottom: 42px; padding-bottom: 36px; border-bottom: 1px solid var(--line); }
+.recent-guides .section-head { margin-bottom: 12px; }
+.recent-guides-note { max-width: 800px; font-size: 13px; margin-bottom: 22px; }
+.recent-guide-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.recent-guide { display: block; padding: 22px; border: 1px solid var(--line); border-top: 2px solid var(--copper); background: var(--white); text-decoration: none; }
+.recent-guide h3 { font-size: 1.55rem; line-height: 1.25; }
+:lang(ja) .recent-guide h3 { font-size: 1.15rem; line-height: 1.7; }
+.recent-guide .text-link { margin-top: 16px; font-size: 12px; }
+.guide-dates { display: flex; flex-wrap: wrap; gap: 6px 18px; margin-top: 12px; font: 400 11px/1.7 var(--sans); color: var(--muted); }
+.recent-guide .guide-dates { flex-direction: column; gap: 2px; }
+.region-context { padding: 22px; margin-block: 24px; border-block: 1px solid var(--line); background: var(--paper-deep); }
+.region-context ol { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; list-style: none; padding: 0; margin: 0; }
+.region-context li { margin: 0; padding-left: 14px; border-left: 2px solid var(--copper); }
+.region-context span { display: block; font-size: 11px; color: var(--muted); }
+.region-context strong { display: block; font-size: 14px; }
 @media (max-width: 800px) {
   .guide-layout { grid-template-areas: "contents" "article" "metadata"; grid-template-rows: auto auto auto; }
   .guide-contents ol { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 24px; }
@@ -28,6 +49,7 @@
   .beginner-entry .button { justify-self: start; }
 }
 @media (max-width: 500px) {
+  .recent-guide-grid, .region-context ol { grid-template-columns: 1fr; }
   .guide-contents ol { grid-template-columns: 1fr; }
   .beginner-entry { padding: 22px; }
   .beginner-entry h2 { font-size: 1.9rem; }

@@ -207,14 +207,16 @@
     "sourceId": "official-combat-en",
     "sourceIds": [
       "official-combat-en",
-      "official-combat-ja"
+      "official-combat-ja",
+      "official-roles-en",
+      "official-roles-ja"
     ],
     "checkedAt": "2026-11-22",
     "category": "combat",
     "guide": "guides/combat-basics",
     "definition": {
-      "en": "Referenced by the official combat article in relation to resonance effects; full attributes remain unverified here.",
-      "ja": "共振効果との関係が公式戦闘記事に記載されているもの。全属性は未確認です。"
+      "en": "The combat preview links a Reactor attribute to resonance effects. Alf’s profile also describes a back-mounted Reactor changing her weapon; a shared activation condition is not established.",
+      "ja": "戦闘記事では共振効果と属性の関係が、フウの紹介では背中の装置による武器切り替えが説明されています。両者に共通する発動条件は未確認です。"
     }
   },
   {
@@ -483,8 +485,8 @@
     "category": "items",
     "guide": "tools/event-rewards",
     "definition": {
-      "en": "Listed in the event pool as ×1 per entry, with 1 pool entry. Upgrade costs are not established by the event rules.",
-      "ja": "イベントの1枠につき×1、全1枠。育成費用はイベントルールからは確認できません。"
+      "en": "A 4-star Motive reward: ×1 in one web-event pool entry. Equip slots, compatible characters and upgrade costs are not established by those rules.",
+      "ja": "イベント全1枠・×1の★4モーティヴ報酬。装備枠、対応キャラクター、育成費用はルールからは確認できません。"
     }
   },
   {
@@ -575,6 +577,132 @@
     "definition": {
       "en": "Listed in the event pool as ×20,000 per entry, with 2 pool entries. Upgrade costs are not established by the event rules.",
       "ja": "イベントの1枠につき×20,000、全2枠。育成費用はイベントルールからは確認できません。"
+    }
+  },
+  {
+    "id": "motive",
+    "en": "Motive",
+    "ja": "モーティヴ",
+    "kind": "official",
+    "sourceId": "official-overture-en",
+    "sourceIds": [
+      "official-overture-en",
+      "official-overture-ja"
+    ],
+    "checkedAt": "2026-11-22",
+    "category": "items",
+    "guide": "guides/combat-basics",
+    "definition": {
+      "en": "The type used for the 4-star reward The Curiosity Mystery in the web-event rules. Its relationship to a Reactor or resonance is not established there.",
+      "ja": "イベントルールで★4報酬「探求者の謎」に使われる種類名。リアクターや共振との関係は、このルールでは説明されていません。"
+    }
+  },
+  {
+    "id": "dialogue-history",
+    "en": "Dialogue History",
+    "ja": "バックログ機能",
+    "kind": "official",
+    "sourceId": "official-beta-feedback-en",
+    "sourceIds": [
+      "official-beta-feedback-en",
+      "official-beta-feedback-ja"
+    ],
+    "checkedAt": "2026-11-24",
+    "category": "investigation",
+    "guide": "guides/development-updates",
+    "definition": {
+      "en": "Planned conversation-review feature in the August beta feedback. Its implementation date, menu path and retention rules are not specified.",
+      "ja": "8月のテスト報告で今後追加するとした会話を読み返す機能。追加日、メニュー、保存範囲は未記載です。"
+    }
+  },
+  {
+    "id": "catalysts",
+    "en": "Catalysts",
+    "ja": "触媒",
+    "kind": "official",
+    "sourceId": "official-beta-feedback-en",
+    "sourceIds": [
+      "official-beta-feedback-en",
+      "official-beta-feedback-ja"
+    ],
+    "checkedAt": "2026-11-24",
+    "category": "combat",
+    "guide": "guides/combat-basics",
+    "definition": {
+      "en": "Named alongside Reactors and buffs as combat information that was hard to notice in the August feedback. Complete equipment rules and any equivalence to Motive are not established.",
+      "ja": "8月の報告で、リアクターやバフとともに効果を見落としやすいとされた要素。装備仕様やモーティヴとの同一性は未確認です。"
+    }
+  },
+  {
+    "id": "revealer-light",
+    "en": "Revealer Light",
+    "ja": "痕跡ライト",
+    "kind": "official",
+    "sourceId": "official-beta-feedback-en",
+    "sourceIds": [
+      "official-beta-feedback-en",
+      "official-beta-feedback-ja"
+    ],
+    "checkedAt": "2026-11-24",
+    "category": "investigation",
+    "guide": "guides/development-updates",
+    "definition": {
+      "en": "A detective mechanic the August feedback proposes using more often in the story. Its controls, range and individual clue interactions are not described there.",
+      "ja": "8月の報告でストーリーへの登場頻度を増やすとした探偵要素。操作、範囲、個々の手がかりとの関係は未記載です。"
+    }
+  },
+  {
+    "id": "silverium-pegasus",
+    "en": "Silverium Pegasus",
+    "ja": "シルバーリキッド・ペガサス",
+    "kind": "official",
+    "sourceId": "official-beta-feedback-en",
+    "sourceIds": [
+      "official-beta-feedback-en",
+      "official-beta-feedback-ja"
+    ],
+    "checkedAt": "2026-11-24",
+    "category": "places",
+    "guide": "guides/development-updates",
+    "definition": {
+      "en": "Named in the August plan to improve riding and flying controls. The notice does not give unlock steps, costs or flight limits.",
+      "ja": "8月の報告で騎乗・飛行中の操作感を改善するとした移動手段。解放手順、費用、飛行制限は未記載です。"
+    }
+  },
+  {
+    "id": "silvernia",
+    "en": "Silvernia",
+    "ja": "シルバニア",
+    "kind": "official",
+    "sourceId": "official-beta-feedback-en",
+    "sourceIds": [
+      "official-beta-feedback-en",
+      "official-beta-feedback-ja"
+    ],
+    "checkedAt": "2026-11-24",
+    "category": "places",
+    "guide": "guides/game-overview",
+    "definition": {
+      "en": "The city discussed in the official development feedback, with distinct areas, inhabitants and exploration. See the game overview for its setting.",
+      "ja": "公式開発報告で、地域ごとの街並みや人々、探索が語られている都市。世界観はゲーム紹介に整理しています。"
+    }
+  },
+  {
+    "id": "stonefall-syndicate",
+    "en": "Stonefall Syndicate",
+    "ja": "ロアリングストーンズ",
+    "kind": "official",
+    "sourceId": "official-morgue-en",
+    "sourceIds": [
+      "official-morgue-en",
+      "official-morgue-ja"
+    ],
+    "checkedAt": "2026-11-24",
+    "category": "places",
+    "guide": "guides/morgue-street",
+    "definition": {
+      "en": "A loose coalition of smaller gangs in High Peers. The English name appears in the official article’s gang illustration; the Japanese name is in its paired caption.",
+      "ja": "ハイ・ピアーズ地区で活動する複数の中小ギャングの緩やかな連合。英語記事の画像見出し「Stonefall Syndicate」と日本語の対応説明を照合しています。"
     }
   }
 ]

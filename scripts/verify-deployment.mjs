@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import { readFile } from 'node:fs/promises';
 
 const [target, mode] = process.argv.slice(2);
 assert.ok(target, 'Usage: npm run verify:deployment -- https://<hostname> [--preview]');
@@ -7,13 +8,16 @@ const base = new URL(target);
 assert.ok(base.protocol === 'https:' && base.pathname === '/' && !base.search && !base.hash, 'Use an HTTPS origin without a path');
 const preview = mode === '--preview';
 const canonical = 'https://silverpalaceguide.com';
+const glossary = JSON.parse(await readFile(new URL('../src/data/glossary.json', import.meta.url), 'utf8'));
+const profiles = JSON.parse(await readFile(new URL('../src/data/character-profiles.json', import.meta.url), 'utf8'));
+const expectedReferenceCount = glossary.filter(term => term.kind === 'official').length + profiles.length;
 
 async function request(path) {
   const response = await fetch(new URL(path, base), { redirect: 'manual', signal: AbortSignal.timeout(20_000) });
   return { path, response, body: await response.text() };
 }
 
-const referenceRoutes = ['en', 'ja'].flatMap(locale => ['guides/beginner-guide', 'guides/mystery-unveiled', 'guides/combat-basics', 'guides/curious-deductions', 'guides/morgue-street', 'tools/event-rewards', 'tools/glossary'].map(suffix => `/${locale}/${suffix}/`));
+const referenceRoutes = ['en', 'ja'].flatMap(locale => ['guides/development-updates', 'guides/game-overview', 'characters/lorin', 'guides/beginner-guide', 'guides/mystery-unveiled', 'guides/combat-basics', 'guides/curious-deductions', 'guides/morgue-street', 'tools/event-rewards', 'tools/glossary'].map(suffix => `/${locale}/${suffix}/`));
 const routes = ['/', '/en/', '/ja/', '/en/search/', '/en/characters/', '/ja/characters/', '/en/tools/character-compare/', '/ja/tools/character-compare/', ...referenceRoutes, '/en/events/mystery-unveiled.ics', '/ja/events/mystery-unveiled.ics', '/robots.txt', '/sitemap-index.xml', '/sitemap-0.xml', '/__deployment_check_missing__/', '/images/social/default-en.jpg', '/images/social/default-ja.jpg', '/en/cases/fixture-case/', '/en/exploration/fixture-route/', '/en/qa-preview/'];
 const results = await Promise.allSettled(routes.map(request));
 const failures = [];
@@ -61,7 +65,7 @@ for (let index = 0; index < results.length; index++) {
       assert.ok(body.includes(`rel="canonical" href="${canonical}${path}"`));
       assert.equal(/name="robots" content="[^"]*noindex/.test(body), preview);
       if (path.includes('/tools/event-rewards/')) assert.equal((body.match(/data-reward-card=/g) || []).length, 10);
-      if (path.includes('/tools/glossary/')) assert.equal((body.match(/data-term-card/g) || []).length, 50);
+      if (path.includes('/tools/glossary/')) assert.equal((body.match(/data-term-card/g) || []).length, expectedReferenceCount);
       if (path.includes('/guides/')) {
         const contents = body.match(/<nav\b[^>]*data-guide-contents[^>]*>([\s\S]*?)<\/nav>/)?.[1] ?? '';
         const targets = [...contents.matchAll(/href="#([^"]+)"/g)].map(match => decodeURIComponent(match[1]));

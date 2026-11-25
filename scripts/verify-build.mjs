@@ -79,12 +79,18 @@ for (const locale of ['en', 'ja']) {
   const roster = await readFile(`dist/${locale}/characters/index.html`, 'utf8');
   assert.equal(roster.includes('name="robots" content="noindex'), isPreview, 'Character indexing does not match the deployment environment');
   assert.equal((roster.match(/data-profile-card/g) || []).length, 20, 'Character dossier missing');
-  for (const suffix of ['guides/beginner-guide', 'guides/mystery-unveiled', 'guides/combat-basics', 'guides/curious-deductions', 'guides/morgue-street', 'tools/event-rewards', 'tools/glossary']) {
+  for (const suffix of ['guides/development-updates', 'guides/beginner-guide', 'guides/mystery-unveiled', 'guides/combat-basics', 'guides/curious-deductions', 'guides/morgue-street', 'tools/event-rewards', 'tools/glossary']) {
     const route = `/${locale}/${suffix}/`;
     assert.ok(sitemap.includes(`<loc>${site}${route}</loc>`), `${route}: missing from sitemap`);
     const html = await readFile(`dist${route}index.html`, 'utf8');
     assert.equal(/name="robots" content="[^"]*noindex/.test(html), isPreview, `${route}: wrong indexing policy`);
   }
+  const guideDirectory = await readFile(`dist/${locale}/guides/index.html`, 'utf8');
+  const recentSection = guideDirectory.match(/<section\b[^>]*data-recent-guides[^>]*>([\s\S]*?)<\/section>/)?.[1] ?? '';
+  const recentLinks = [...recentSection.matchAll(/href="([^"]+)"/g)].map(match => match[1]);
+  assert.equal(new Set(recentLinks).size, 4, 'Four distinct recent guide entries required');
+  assert.ok(recentLinks.every(href => href.startsWith(`/${locale}/guides/`)), 'Recent entries must retain their language');
+  assert.ok((recentSection.match(/<time\b/g) || []).length >= 8, 'Recent entries need separate article and source dates');
   const calendar = await readFile(`dist/${locale}/events/mystery-unveiled.ics`, 'utf8');
   assert.match(calendar, /^BEGIN:VCALENDAR\r\n/);
   assert.equal((calendar.match(/BEGIN:VEVENT/g) || []).length, 2);
@@ -92,6 +98,34 @@ for (const locale of ['en', 'ja']) {
   assert.ok(!sitemap.includes(`/${locale}/events/mystery-unveiled.ics`), 'Calendar downloads must not be indexed as pages');
 }
 const sourceIds = new Set(JSON.parse(await readFile('src/data/sources.json', 'utf8')).map((source) => source.id));
+const dossierIds = JSON.parse(await readFile('src/data/character-details.json', 'utf8')).map(detail => detail.id);
+for (const locale of ['en', 'ja']) {
+  const directory = await readFile(`dist/${locale}/characters/index.html`, 'utf8');
+  const comparison = await readFile(`dist/${locale}/tools/character-compare/index.html`, 'utf8');
+  const glossary = await readFile(`dist/${locale}/tools/glossary/index.html`, 'utf8');
+  const planner = await readFile(`dist/${locale}/tools/material-planner/index.html`, 'utf8');
+  const overviewRoute = `/${locale}/guides/game-overview/`;
+  assert.ok(sitemap.includes(`<loc>${site}${overviewRoute}</loc>`), 'Game overview missing from sitemap');
+  assert.ok((await readFile(`dist/${locale}/index.html`, 'utf8')).includes(`href="${overviewRoute}"`), 'Home must link to the overview');
+  for (const id of dossierIds) {
+    const route = `/${locale}/characters/${id}/`;
+    const html = await readFile(`dist${route}index.html`, 'utf8');
+    assert.ok(sitemap.includes(`<loc>${site}${route}</loc>`), `${route}: missing from sitemap`);
+    assert.equal(/name="robots" content="[^"]*noindex/.test(html), isPreview, `${route}: wrong indexing policy`);
+    assert.ok(html.includes(`data-character-detail="${id}"`), `${route}: missing dossier content`);
+    const ids = [...html.matchAll(/\bid="([^"]+)"/g)].map(match => match[1]);
+    assert.equal(new Set(ids).size, ids.length, `${route}: duplicate reading targets`);
+    const contents = html.match(/<nav\b[^>]*class="dossier-contents"[^>]*>([\s\S]*?)<\/nav>/)?.[1] ?? '';
+    const targets = [...contents.matchAll(/href="#([^"]+)"/g)].map(match => match[1]);
+    assert.ok(targets.length > 0 && targets.every(target => ids.includes(target)), `${route}: broken contents`);
+    for (const source of [directory, comparison, glossary]) assert.ok(source.includes(`href="${route}"`), `${route}: missing directory/tool entry`);
+    assert.ok(planner.includes(`data-profile-href="${route}"`), `${route}: missing planner reference`);
+    assert.ok(directory.includes(`id="${id}"`), `${route}: old directory anchor removed`);
+    for (const language of ['en', 'ja']) assert.ok(html.includes(`hreflang="${language}" href="${site}/${language}/characters/${id}/"`), `${route}: missing language counterpart`);
+  }
+  const generatedIds = htmlFiles.filter(file => new RegExp(`^dist/${locale}/characters/[^/]+/index\\.html$`).test(file)).map(file => file.split('/')[3]);
+  assert.deepEqual(generatedIds.sort(), [...dossierIds].sort(), 'Only eligible dossiers may generate character detail routes');
+}
 for (const term of JSON.parse(await readFile('src/data/glossary.json', 'utf8'))) assert.ok(term.kind === 'site-interface' || sourceIds.has(term.sourceId), `Unknown glossary source: ${term.id}`);
 for (const file of files.filter((file) => /\.(?:js|json)$/.test(file) && !file.includes('/pagefind/'))) {
   const source = await readFile(file, 'utf8');

@@ -2,6 +2,7 @@ import { z } from 'astro/zod';
 import glossary from '../data/glossary.json';
 import sources from '../data/sources.json';
 import { characterProfiles } from './character-profiles';
+import { characterReference } from './character-details';
 const bilingual = z.object({ en: z.string().min(1), ja: z.string().min(1) });
 const schema = z.object({
   id: z.string().regex(/^[a-z0-9-]+$/), en: z.string().min(1), ja: z.string().min(1), kind: z.enum(['official','site-interface']),
@@ -15,7 +16,7 @@ export const referenceTerms = [
     sourceIds: term.sourceIds ?? [term.sourceId!], definition: term.definition ?? {en:'The official localized game title.',ja:'ゲームの公式ローカライズ名。'},
   })),
   ...characterProfiles.map((profile) => ({ id:`character-${profile.id}`, en:profile.name.en, ja:profile.name.ja,
-    category:'characters', guide:`characters#${profile.id}`, sourceIds:profile.sourceIds, checkedAt:profile.checkedAt,
+    category:'characters', guide:characterReference(profile.id), sourceIds:profile.sourceIds, checkedAt:profile.checkedAt,
     definition:profile.summary,
   })),
 ];

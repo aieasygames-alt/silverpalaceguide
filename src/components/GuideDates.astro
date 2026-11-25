@@ -1,0 +1,8 @@
+---
+import { sourceCheckRange } from '../lib/guide-updates';
+import type { Locale } from '../lib/i18n';
+interface Props { locale: Locale; updatedAt: string; sourceIds: string[]; }
+const { locale, updatedAt, sourceIds } = Astro.props;
+const range = sourceCheckRange(sourceIds);
+---
+<span class="guide-dates" data-pagefind-ignore><span>{locale === 'en' ? 'Article updated' : '記事更新'} <time datetime={updatedAt}>{updatedAt}</time></span><span>{locale === 'en' ? 'Sources checked' : '出典確認'} <time datetime={range.first}>{range.first}</time>{range.last !== range.first && <> – <time datetime={range.last}>{range.last}</time></>}</span></span>

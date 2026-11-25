@@ -8,13 +8,15 @@ category: preparation
 status: published
 verification: editorial
 gameVersion: 'リリース前の入門案内。7月テスト時の仕組みは個別に明記'
-updatedAt: '2026-11-22'
-revision: 1
-sourceRevision: 2
+updatedAt: '2026-11-24'
+revision: 2
+sourceRevision: 3
 sourceIds: [elementa-launch-20261031, official-overture-en, official-overture-ja, official-combat-en, official-combat-ja, official-deductions-en, official-deductions-ja, official-morgue-en, official-morgue-ja, official-roles-en, official-roles-ja]
 order: 0
 ---
 **白銀の城**をこれから始める方へ。今知りたいことから、必要な資料を選んで読めるようにまとめました。以下の順番は当サイトの提案です。公式発表と対象時期を明記したテスト紹介に基づく案内であり、序盤を実際にプレイして検証した攻略手順ではありません。
+
+世界観やゲーム全体の構成を先に知りたい方は、[白銀の城のゲーム紹介](../game-overview/)へどうぞ。探偵の物語と、都市探索・捜査・戦闘のつながりを整理しています。
 
 ## リリース前：端末と開始情報を確認する
 
