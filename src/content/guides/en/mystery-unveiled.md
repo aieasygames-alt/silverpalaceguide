@@ -8,9 +8,9 @@ category: preparation
 status: published
 verification: official-announcement
 gameVersion: 'Official pre-launch event / checked 22 November 2026'
-updatedAt: '2026-11-23'
-revision: 2
-sourceRevision: 2
+updatedAt: '2026-11-25'
+revision: 3
+sourceRevision: 3
 sourceIds: [official-overture-en, official-overture-ja]
 order: 0
 ---
@@ -52,6 +52,12 @@ Ten draws collect all ten entries. An item can appear under the same name twice 
 
 These quantities describe this event. They are separate from the global pre-registration milestone campaign. The rules do not establish item exchange values or complete equipment and upgrade systems.
 
+## What is Paper Bookmark of Conspiracy in this event?
+
+**Paper Bookmark of Conspiracy** is one of the in-game item rewards in Mystery Unveiled's Clue Archives pool. Its official Japanese name is **策謀の紙しおり**. The pool contains **two separate entries of ×10**: drawing and selecting both gives **20 bookmarks** and uses **two of the six claim slots**.
+
+The event rules establish the name, quantity and selection limit. They do not explain its complete in-game use or how many an upgrade requires. Check the item's current in-game description before using its quantity to plan an upgrade. The **4-star Motive** label in this pool belongs to **The Curiosity Mystery**, not the bookmark or a character reward.
+
 <div class="guide-section-anchor" id="prepare-up-to-six-entries-to-claim"></div>
 
 ## How do I claim my Mystery Unveiled rewards?
@@ -72,6 +78,30 @@ Before the official claim:
 **Yes. The limit is six drawn entries, not six different item names.** Two Ounce entries occupy two slots and total 40,000 Ounces; that leaves room for up to four other entries. A quantity shown inside one entry, such as ×10, still belongs to that single entry.
 
 In the [reward worksheet](../../tools/event-rewards/), mark the entries you actually drew before planning your selection. The worksheet totals quantities while keeping separately drawn copies distinct. It does not submit or reserve a claim.
+
+## Worked example: count slots before quantities
+
+Suppose your official inventory contains both Ounce entries and both Paper Bookmark of Conspiracy entries, and you plan to select all four:
+
+| Planned selection | Slots and total quantity |
+| --- | --- |
+| Ounce ×20,000, twice | 2 slots → 40,000 Ounces |
+| Paper Bookmark of Conspiracy ×10, twice | 2 slots → 20 bookmarks |
+| Combined selection | **4 of 6 slots used; up to 2 slots remain** |
+
+This is an arithmetic example, not a recommended selection. Only entries you have actually drawn can be selected. If you drew just one bookmark entry, you can plan that one entry for 10 bookmarks; the second copy's presence in the pool does not make it yours.
+
+To check your own selection, open the [reward worksheet](../../tools/event-rewards/), record the drawn copies, then choose the entries you are considering. Compare its slot count and item totals with the official inventory before the one-time claim.
+
+## Drawn, planned or claimed: which step is complete?
+
+Use these checks to keep the three actions separate:
+
+| State | What to check |
+| --- | --- |
+| Drawn on the official site | The entry appears in your official Event Inventory. A local worksheet mark is only your record of it. |
+| Planned in the worksheet | The selected copies fit within six slots. You can review the totals locally; this does not submit a claim. |
+| Claimed on the official site | After launch, review the receiving character and final selection, complete the official claim and check its confirmation. A saved plan or calendar reminder is not claim confirmation. |
 
 ## Which six rewards should I choose?
 

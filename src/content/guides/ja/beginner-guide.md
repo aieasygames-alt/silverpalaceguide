@@ -8,15 +8,29 @@ category: preparation
 status: published
 verification: editorial
 gameVersion: 'リリース前の入門案内。7月テスト時の仕組みは個別に明記'
-updatedAt: '2026-11-24'
-revision: 2
-sourceRevision: 3
+updatedAt: '2026-11-25'
+revision: 3
+sourceRevision: 4
 sourceIds: [elementa-launch-20261031, official-overture-en, official-overture-ja, official-combat-en, official-combat-ja, official-deductions-en, official-deductions-ja, official-morgue-en, official-morgue-ja, official-roles-en, official-roles-ja]
 order: 0
 ---
 **白銀の城**をこれから始める方へ。今知りたいことから、必要な資料を選んで読めるようにまとめました。以下の順番は当サイトの提案です。公式発表と対象時期を明記したテスト紹介に基づく案内であり、序盤を実際にプレイして検証した攻略手順ではありません。
 
 世界観やゲーム全体の構成を先に知りたい方は、[白銀の城のゲーム紹介](../game-overview/)へどうぞ。探偵の物語と、都市探索・捜査・戦闘のつながりを整理しています。
+
+## 最初に確認したい5つのこと
+
+ご自身に当てはまる項目から進めてください。ここにあるのは、リリース前からできる準備です。戦闘のタイミングや育成費用は、その時点のゲームで確認する必要があります。
+
+| 次にすること | 確認・用意しておきたいもの |
+| --- | --- |
+| 公式の配信ページを探す | 端末と地域に合う[ストア・ダウンロード先](../platforms-downloads/)。現在の動作条件とアカウントの案内を確認します。 |
+| 事前イベントの受け取りを準備する | 獲得済みの枠から6点以内で選んだ[報酬候補](../mystery-unveiled/)。受け取り可能になったら、公式サイトで操作を完了します。 |
+| 気になるキャラクターを調べる | 探偵の2つの紹介を含む[公式名と人物資料](../../characters/#main-character)。比較ツールでは、装備の説明と未確認の編成性能を分けて読めます。 |
+| 捜査メモを用意する | 見た事実・考えられる説明・結果を分けて残す[探索ノート](../../exploration/)。実際に見つけた手がかりを追記します。 |
+| 素材計画を用意する | 確認済みの必要数と所持数を入力する[計画表](../../tools/material-planner/)。未確認の費用を合計に含めず、記録後はバックアップを書き出します。 |
+
+**白銀の城の編成**を探している方は、[公式の人物紹介から編成についてわかること](../../tools/character-compare/#team-planning)へ。フウ、アーガス、ローレンの具体例と、編成を勧める前に必要なスキル情報を整理しています。
 
 ## リリース前：端末と開始情報を確認する
 

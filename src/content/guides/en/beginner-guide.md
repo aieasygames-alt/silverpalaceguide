@@ -8,15 +8,29 @@ category: preparation
 status: published
 verification: editorial
 gameVersion: 'Pre-launch orientation; July beta mechanics labeled separately'
-updatedAt: '2026-11-24'
-revision: 3
-sourceRevision: 3
+updatedAt: '2026-11-25'
+revision: 4
+sourceRevision: 4
 sourceIds: [elementa-launch-20261031, official-overture-en, official-overture-ja, official-combat-en, official-combat-ja, official-deductions-en, official-deductions-ja, official-morgue-en, official-morgue-ja, official-roles-en, official-roles-ja]
 order: 0
 ---
 New to **Silver Palace**? Start with the question you need answered now, then follow the relevant reference. The order below is our editorial suggestion. It is based on official announcements and labeled beta previews, rather than a tested opening-hour walkthrough.
 
 If you want to understand the setting and the game’s overall structure first, read [what Silver Palace is about](../game-overview/): it connects the Detective’s story, city exploration, investigations and combat.
+
+## Quick start: five things to check first
+
+Work through the rows that apply to you. These are preparation tasks you can do before launch; combat timing and upgrade costs need the current game.
+
+| Your next task | A useful result to have |
+| --- | --- |
+| Find your official platform page | A [store or download link](../platforms-downloads/) for your device and region, with its current compatibility and account information checked. |
+| Prepare an event claim | A [reward selection](../mystery-unveiled/) based on your drawn entries, using at most six slots. Complete claiming on the official site when available. |
+| Identify a character | The [official name and profile](../../characters/#main-character), including the Detective's two introductions. Use the comparison tool to separate equipment descriptions from unconfirmed team performance. |
+| Prepare your investigation notes | An [exploration notebook](../../exploration/) with separate observations, possible explanations and results. Add real clues when you encounter them. |
+| Prepare a material plan | A [worksheet](../../tools/material-planner/) ready for confirmed required and owned quantities. Keep unknown costs out of the totals and export a backup after adding records. |
+
+If you came looking for a **Silver Palace team**, start with [what the official character profiles tell us about team choices](../../tools/character-compare/#team-planning). It includes Alf, Argos and Lorin examples, with the skill details still needed before recommending a composition.
 
 ## Before launch: settle the practical questions
 

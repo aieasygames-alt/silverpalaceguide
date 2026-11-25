@@ -13,6 +13,7 @@ export const getStaticPaths = () => locales.map((locale) => ({ params: { locale 
 const locale = Astro.params.locale as Locale;
 const en = locale === 'en';
 const other = en ? 'ja' : 'en';
+const detective = characterProfiles.find((profile) => profile.id === 'detective')!;
 ---
 <Base locale={locale} title={en ? 'Characters & official profiles' : 'キャラクター・公式紹介まとめ'} description={en ? 'Meet the Silver Palace cast: official English and Japanese names, character backgrounds, equipment and combat details, with sources.' : '白銀の城のキャラクターを公式発表から紹介。英日公式名、人物像、装備、確認できる戦闘情報を出典とともに整理。'} section="characters">
   <div class="shell" data-pagefind-body>
@@ -22,6 +23,21 @@ const other = en ? 'ja' : 'en';
       <div><span class="pill">{en ? 'CHECKED 22 NOV 2026' : '確認日 2026年11月22日'}</span><a class="text-link" href={path(locale, 'tools/character-compare')}>{en ? 'Compare official profiles' : '公式資料を比較する'}<Icon name="arrow" size={16}/></a></div>
     </div>
     <p class="tiny roster-scope">{en ? 'Pre-release profiles, summarized without later plot developments. Builds and upgrade costs await verified data.' : 'リリース前の公式紹介を、後半の展開を避けて要約しています。育成攻略と必要素材は、確認できた情報から追加します。'}</p>
+    <section class="archive-answers" id="main-character" aria-labelledby="main-character-title">
+      <div>
+        <span class="eyebrow">{en ? 'START WITH THE DETECTIVE' : '主人公を知る'}</span>
+        <h2 id="main-character-title">{en ? 'Who is the Silver Palace main character?' : '白銀の城の主人公は誰？'}</h2>
+        <p><strong>{en ? 'The main character is the Detective (探偵).' : '主人公は「探偵」（英語名：Detective）です。'}</strong></p>
+        <p>{detective.summary[locale]}</p>
+        <a class="text-link" href="#detective">{en ? 'See both Detective portraits and the profile →' : '探偵の2つの姿と人物資料を見る →'}</a>
+      </div>
+      <div>
+        <h3>{en ? 'What is the Detective’s name?' : '探偵の名前は？'}</h3>
+        <p>{en ? 'The checked official introductions name the protagonist “Detective” in English and “探偵” in Japanese. They do not establish a separate personal name. The two displayed titles are:' : '確認した公式紹介では、主人公は日本語で「探偵」、英語で「Detective」と表記されています。別の個人名は、この紹介からは確認できません。掲載されている2つの称号は次のとおりです。'}</p>
+        <dl class="identity-names">{detective.titles.en.map((title, index) => <div><dt lang="en">{title}</dt><dd lang="ja">{detective.titles.ja[index]}</dd></div>)}</dl>
+        <p class="tiny">{en ? 'These are official epithets. The shared biography and two portraits do not establish different skills or two separate playable roster slots.' : 'これらは公式の称号です。共通の背景紹介と2つの姿だけでは、性能の違いや、別々のプレイ可能枠であることまでは判断できません。'}</p>
+      </div>
+    </section>
     <section aria-label={en ? 'Find a character' : 'キャラクターを探す'} class="roster-search" data-pagefind-ignore>
       <label class="field-label" for="character-search">{en ? 'Find by English or Japanese name' : '英語名・日本語名で探す'}</label>
       <input class="field" id="character-search" type="search" placeholder={en ? 'Alf, フウ, Argos…' : 'フウ、Alf、アーガス…'} autocomplete="off" aria-describedby="roster-count"/>
@@ -43,7 +59,7 @@ const other = en ? 'ja' : 'en';
     <p id="roster-empty" class="notice" hidden>{en ? 'No match. Try an English or Japanese name, or clear your search.' : '一致する人物がいません。英語名・日本語名で試すか、検索欄を空にしてください。'}</p>
     <noscript><p class="notice">{en ? 'All dossiers are shown. Enable JavaScript to filter them by name.' : 'すべての資料を表示しています。名前での絞り込みにはJavaScriptが必要です。'}</p></noscript>
     <div class="roster-next panel"><h2>{en ? 'From a face to a plan.' : '気になる人物から、準備へ。'}</h2><p>{en ? 'Compare what the official introductions actually say, then use the material worksheet for requirements you can verify in-game. Titles are official epithets rather than gameplay classes. Rarity, acquisition, skill multipliers and upgrade costs are not established by these introductions.' : '公式に紹介された特徴を比較し、ゲーム内で必要数を確認できたら素材計画に進めます。称号は人物紹介用の表現で、ゲーム上のクラスではありません。この紹介では、レアリティ、入手方法、スキル倍率、育成費用は確認できません。'}</p><div class="button-row"><a class="button" href={path(locale, 'tools/character-compare')}>{en ? 'Open profile comparison' : '人物資料の比較へ'}<Icon name="arrow" size={16}/></a><a class="text-link" href={path(locale, 'tools/material-planner')}>{en ? 'Material worksheet' : '素材の計画表'}</a></div></div>
-    <div class="button-row" style="margin-bottom:30px"><a class="text-link" href={path(locale, 'guides/combat-basics')}>{en ? 'Read the announced combat mechanics →' : '発表済みの戦闘システムを読む →'}</a><a class="text-link" href={path(locale, 'tools/glossary')}>{en ? 'Look up English and Japanese terms →' : '英日用語を調べる →'}</a></div><SourceList locale={locale} ids={['official-roles-en', 'official-roles-ja']}/>
+    <div class="button-row" style="margin-bottom:30px"><a class="text-link" href={`${path(locale, 'tools/character-compare')}#team-planning`}>{en ? 'What can these profiles tell us about teams? →' : '人物紹介から編成についてわかることは？ →'}</a><a class="text-link" href={path(locale, 'guides/combat-basics')}>{en ? 'Read the announced combat mechanics →' : '発表済みの戦闘システムを読む →'}</a><a class="text-link" href={path(locale, 'tools/glossary')}>{en ? 'Look up English and Japanese terms →' : '英日用語を調べる →'}</a></div><SourceList locale={locale} ids={['official-roles-en', 'official-roles-ja']}/>
   </div>
 </Base>
 <script>
