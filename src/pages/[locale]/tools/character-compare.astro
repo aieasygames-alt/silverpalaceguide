@@ -75,11 +75,15 @@ const en = locale === 'en';
         slot.replaceChildren(template ? template.content.cloneNode(true) : placeholders[i].cloneNode(true));
       });
       const query = comparisonQuery(selected);
-      history.replaceState(null, '', location.pathname + query);
+      history.replaceState(null, '', location.pathname + query + location.hash);
       const otherLanguage = root!.querySelector<HTMLAnchorElement>('#comparison-language')!;
       otherLanguage.search = query;
+      otherLanguage.hash = location.hash;
       const languageSwitch = document.querySelector<HTMLAnchorElement>('.language-switch');
-      if (languageSwitch) languageSwitch.search = query;
+      if (languageSwitch) {
+        languageSwitch.search = query;
+        languageSwitch.hash = location.hash;
+      }
       root!.querySelector<HTMLElement>('#comparison-status')!.textContent = en ? `${selected.filter(Boolean).length} of 3 profiles selected.` : `3枠中${selected.filter(Boolean).length}件を選択中。`;
     }
     selects.forEach((select) => select.addEventListener('change', render));
